@@ -15,3 +15,8 @@ class HomePageTest(TestCase):
 		response = home_page(request)
 		expected_html = render_to_string('home.html')
 		self.assertEqual(response.content.decode(), expected_html)
+
+class NewProjectTest(TestCase):
+	def test_url_resolves_to_add_project_view(self):
+		found = resolve('/add')
+		self.assertEqual(found.func, add_page)

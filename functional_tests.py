@@ -19,7 +19,6 @@ class NewVisitorTest(unittest.TestCase):
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('EPEI Project Tracking', header_text)
 
-
 ##She sees an overview of current projects, with the most pressing listed at the top
 
 ##She wants to find one of her projects in the database in the omnibox
