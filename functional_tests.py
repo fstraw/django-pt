@@ -15,11 +15,27 @@ class NewVisitorTest(unittest.TestCase):
 
 ##She sees that it is called 'EPEI Project Tracking'
 		self.assertIn('EPEI Project Tracking', self.browser.title)
-		self.fail('Finish the test!')
+		header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('EPEI Project Tracking', header_text)
+
 
 ##She sees an overview of current projects, with the most pressing listed at the top
 
 ##She wants to find one of her projects in the database in the omnibox
+		inputbox = self.browser.find_element_by_id('id_search_item')
+		self.assertEqual(
+			inputbox.get_attribute('placeholder'),
+			'Search for project'
+		)
+		##She looks for an EPEI Project
+		inputbox.send_keys('PBQ1601')
+		## When she presses enter, the list is filtered to just the project(s) she needs
+		inputbox.send_keys(Keys.ENTER)
+		table = self.browser.find_elements_by_tag_name('tr')
+		self.assertTrue(
+			any(row.text == 'PBQ1601' for row in rows)
+		)
+		self.fail('Finish the test!')
 
 ##She wants to create a new project
 
