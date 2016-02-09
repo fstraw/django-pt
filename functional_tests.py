@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import unittest
 
 class NewVisitorTest(unittest.TestCase):
@@ -22,7 +23,7 @@ class NewVisitorTest(unittest.TestCase):
 ##She sees an overview of current projects, with the most pressing listed at the top
 
 ##She wants to find one of her projects in the database in the omnibox
-		inputbox = self.browser.find_element_by_id('id_search_item')
+		inputbox = self.browser.find_element_by_id('id_search')
 		self.assertEqual(
 			inputbox.get_attribute('placeholder'),
 			'Search for project'
@@ -31,9 +32,11 @@ class NewVisitorTest(unittest.TestCase):
 		inputbox.send_keys('PBQ1601')
 		## When she presses enter, the list is filtered to just the project(s) she needs
 		inputbox.send_keys(Keys.ENTER)
-		table = self.browser.find_elements_by_tag_name('tr')
+		table = self.browser.find_element_by_id('id_project_table')
+		rows = self.browser.find_elements_by_tag_name('tr')
 		self.assertTrue(
-			any(row.text == 'PBQ1601' for row in rows)
+			any(row.text == 'PBQ1601' for row in rows),
+			"New project did not appear in table"
 		)
 		self.fail('Finish the test!')
 
