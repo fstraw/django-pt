@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 
-from nepa.views import home_page
+from nepa.views import home_page, add_page
 
 
 class HomePageTest(TestCase): 
@@ -18,5 +18,5 @@ class HomePageTest(TestCase):
 
 class NewProjectTest(TestCase):
 	def test_url_resolves_to_add_project_view(self):
-		found = resolve('/add')
+		found = resolve('/add/')
 		self.assertEqual(found.func, add_page)
