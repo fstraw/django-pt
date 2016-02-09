@@ -9,7 +9,7 @@ class NewVisitorTest(unittest.TestCase):
 	def tearDown(self):
 		self.browser.quit()
 
-	def test_can_start_a_project_and_retreive_it_later(self):
+	def test_can_start_a_project_and_retrieve_it_later(self):
 	## Heather wants to check out the new project tracking web app
 	## She goes to check out the homepage
 		self.browser.get('http://localhost:8000') 
@@ -21,12 +21,6 @@ class NewVisitorTest(unittest.TestCase):
 
 		##She sees an overview of current projects, with the most pressing listed at the top
 		
-		##She wants to create a new project. She sees a button called 'Add Project'
-		add_button = self.browser.find_element_by_id('id_add')
-		##She clicks the button to add a project
-		add_button.click()
-		##See sees that it is called "Add Project"
-		self.assertIn('Add Project', self.browser.title)
 		##She wants to find one of her projects in the database in the omnibox
 		inputbox = self.browser.find_element_by_id('id_search')
 		self.assertEqual(
@@ -43,6 +37,12 @@ class NewVisitorTest(unittest.TestCase):
 			any(row.text == 'PBQ1601' for row in rows),
 			"New project did not appear in table"
 		)
+		##She wants to create a new project. She sees a button called 'Add Project'
+		add_button = self.browser.find_element_by_id('id_add')
+		##She clicks the button to add a project
+		add_button.click()
+		##See sees that it is called "Add Project"
+		self.assertIn('Add Project', self.browser.title)
 		self.fail('Finish the test!')
 
 ##She moves on to something else
