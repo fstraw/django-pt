@@ -56,8 +56,8 @@ class NewVisitorTest(unittest.TestCase):
 		archaeology_input_box.send_keys('Yes')
 		history_input_box = self.browser.find_element_by_id('id_history')
 		history_input_box.send_keys('Yes')
-		#She saves the form and is taken to the home page
-		save_button = self.browser.find_element_by_id('save_project')
+		#She saves the form completely and is taken to the home page
+		save_button = self.browser.find_element_by_id('id_save_project')
 		save_button.click()
 		self.assertIn('EPEI Project Tracking', self.browser.title)
 

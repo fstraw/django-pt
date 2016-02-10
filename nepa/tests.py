@@ -22,9 +22,10 @@ class NewProjectTest(TestCase):
 		found = resolve('/add/')
 		self.assertEqual(found.func, add_page)
 	def test_add_page_returns_correct_html(self):
+		##for get request
 		request = HttpRequest()
 		response = add_page(request)
-		expected_html = render_to_string('add.html')
+		expected_html = render_to_string('home.html')
 		self.assertEqual(response.content.decode(), expected_html)
 
 class ModelTests(TestCase):
@@ -54,4 +55,15 @@ class ModelTests(TestCase):
 		self.assertEqual(first_saved_project.history, history)
 
 class AddFormTests(TestCase):
-	pass
+	def test_add_page_can_save_a_POST_request(self):
+		request = HttpRequest()
+		request.method = 'POST'
+		request.POST = {'epid' :' PBQ1601',
+						'air' : 'Yes',
+						'noise' : 'Yes',
+						'ecology' : 'Yes',
+						'archaeology' : 'Yes',
+						'history' : 'Yes',
+						}
+		response = add_page(request)
+		self.assertIn('PBQ1601', response.content.decode(), response.content.decode())

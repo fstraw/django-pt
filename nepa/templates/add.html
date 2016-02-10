@@ -4,10 +4,10 @@
 	</head>
 	<h1>Add Project</h1>
 	<body>
-	<form action="/" method="post">
+	<form action="/add/" method="POST">
 	{% csrf_token %}
 	{{ form.as_ul }}
-	<input id="save_project" type="submit" value="Submit" />
+	<input name="save_project" id="id_save_project" type="submit" value="Submit" />
 	</form>
 	</body>
 </html>
