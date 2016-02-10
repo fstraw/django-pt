@@ -12,13 +12,11 @@ class NewVisitorTest(unittest.TestCase):
 	def test_can_start_a_project_and_retrieve_it_later(self):
 	## Heather wants to check out the new project tracking web app
 	## She goes to check out the homepage
-		self.browser.get('http://localhost:8000') 
-
+		self.browser.get('http://localhost:8000')
 		##She sees that it is called 'EPEI Project Tracking'
 		self.assertIn('EPEI Project Tracking', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('EPEI Project Tracking', header_text)
-
 		##She sees an overview of current projects, with the most pressing listed at the top
 		
 		##She wants to find one of her projects in the database in the omnibox
@@ -41,10 +39,12 @@ class NewVisitorTest(unittest.TestCase):
 		add_button = self.browser.find_element_by_id('id_add')
 		##She clicks the button to add a project
 		add_button.click()
-		##See sees that it is called "Add Project"
+		##See sees that the page is called "EPEI Project Tracking - Add Project"
 		self.assertIn('Add Project', self.browser.title)
-		##She sees a fields for data entry
-		project_input_box = self.browser.find_element_by_id('project_input')
+		header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('Add Project', header_text)
+		##She sees fields for data entry
+		# project_input_box = self.browser.find_element_by_id('project_input')
 		self.fail('Finish the test!')
 
 ##She moves on to something else

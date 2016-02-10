@@ -2,10 +2,12 @@
 	<head>
 	<title>EPEI Project Tracking - Add Project</title>
 	</head>
+	<h1>Add Project</h1>
 	<body>
 	<form action="/add/" method="post">
 	{% csrf_token %}
-	{{ form }}
+	{{ form.as_ul }}
+	<input type="submit" value="Submit" />
 	</form>
 	</body>
 </html>
