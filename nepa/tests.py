@@ -30,10 +30,28 @@ class NewProjectTest(TestCase):
 class ModelTests(TestCase):
 	def test_saving_and_getting_projects(self):
 		epid = 'PBQ1601'
+		air = 'Yes'
+		noise = 'Yes'
+		ecology = 'Yes'
+		archaeology = 'Yes'
+		history = 'Yes'
 		first_project = Project()
 		first_project.epid = epid
+		first_project.air = air
+		first_project.noise = noise
+		first_project.ecology = ecology
+		first_project.archaeology = archaeology
+		first_project.history = history
 		first_project.save()
 		
 		saved_objects = Project.objects.all()
 		first_saved_project = saved_objects[0]
 		self.assertEqual(first_saved_project.epid, epid)
+		self.assertEqual(first_saved_project.air, air)
+		self.assertEqual(first_saved_project.noise, noise)
+		self.assertEqual(first_saved_project.ecology, ecology)
+		self.assertEqual(first_saved_project.archaeology, archaeology)
+		self.assertEqual(first_saved_project.history, history)
+
+class AddFormTests(TestCase):
+	pass

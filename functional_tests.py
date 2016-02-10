@@ -22,27 +22,29 @@ class NewVisitorTest(unittest.TestCase):
 		##She sees an overview of current projects, with the most pressing listed at the top
 		
 		##She wants to find one of her projects in the database in the omnibox
-		inputbox = self.browser.find_element_by_id('id_search')
-		self.assertEqual(
-			inputbox.get_attribute('placeholder'),
-			'Search for project'
-		)
-		##She looks for an EPEI Project
-		inputbox.send_keys('PBQ1601')
-		## When she presses enter, the list is filtered to just the project(s) she needs
-		inputbox.send_keys(Keys.ENTER)
-		table = self.browser.find_element_by_id('id_project_table')
-		rows = self.browser.find_elements_by_tag_name('tr')
-		self.assertTrue(
-			any(row.text == 'PBQ1601' for row in rows),
-			"New project did not appear in table"
-		)
+		# inputbox = self.browser.find_element_by_id('id_search')
+		# self.assertEqual(
+			# inputbox.get_attribute('placeholder'),
+			# 'Search for project'
+		# )
+		# She looks for an EPEI Project
+		# inputbox.send_keys('PBQ1601')
+		# When she presses enter, the list is filtered to just the project(s) she needs
+		# inputbox.send_keys(Keys.ENTER)
+		# table = self.browser.find_element_by_id('id_project_table')
+		# rows = self.browser.find_elements_by_tag_name('tr')
+		# self.assertTrue(
+			# any(row.text == 'PBQ1601' for row in rows),
+			# "New project did not appear in table"
+		# )
 		##She wants to create a new project. She sees a button called 'Add Project'
 		add_button = self.browser.find_element_by_id('id_add')
 		##She clicks the button to add a project
 		add_button.click()
 		##See sees that it is called "Add Project"
 		self.assertIn('Add Project', self.browser.title)
+		##She sees a fields for data entry
+		project_input_box = self.browser.find_element_by_id('project_input')
 		self.fail('Finish the test!')
 
 ##She moves on to something else

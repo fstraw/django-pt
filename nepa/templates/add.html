@@ -3,5 +3,9 @@
 	<title>EPEI Project Tracking - Add Project</title>
 	</head>
 	<body>
+	<form action="/add/" method="post">
+	{% csrf_token %}
+	{{ form }}
+	</form>
 	</body>
 </html>
