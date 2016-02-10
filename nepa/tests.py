@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django.core.urlresolvers import resolve 
 from django.test import TestCase 
 from django.http import HttpRequest
@@ -35,6 +36,7 @@ class ModelTests(TestCase):
 		ecology = 'Yes'
 		archaeology = 'Yes'
 		history = 'Yes'
+		nepa_due_date = datetime.now()
 		first_project = Project()
 		first_project.epid = epid
 		first_project.air = air
@@ -42,6 +44,7 @@ class ModelTests(TestCase):
 		first_project.ecology = ecology
 		first_project.archaeology = archaeology
 		first_project.history = history
+		first_project.nepa_due_date = nepa_due_date
 		first_project.save()
 		
 		saved_objects = Project.objects.all()
@@ -63,6 +66,7 @@ class AddFormTests(TestCase):
 						'ecology' : 'Yes',
 						'archaeology' : 'Yes',
 						'history' : 'Yes',
+						'nepa_due_date' : datetime.now(),
 						}
 		response = add_page(request)
 		self.assertIn('PBQ1601', response.content.decode(), response.content.decode())

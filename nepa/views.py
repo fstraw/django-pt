@@ -9,7 +9,7 @@ def home_page(request):
 	context = RequestContext(request, {'project_list' : project_list})
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
-	# return render(request, 'home.html', context)
+
 def add_page(request):
 	if request.method == 'POST':		
 		form = ProjectForm(request.POST)
