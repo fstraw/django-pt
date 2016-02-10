@@ -43,8 +43,24 @@ class NewVisitorTest(unittest.TestCase):
 		self.assertIn('Add Project', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('Add Project', header_text)
-		##She sees fields for data entry
-		# project_input_box = self.browser.find_element_by_id('project_input')
+		# She sees fields for data entry and fills them out
+		epid_input_box = self.browser.find_element_by_id('id_epid')
+		epid_input_box.send_keys('PBQ1601')
+		air_input_box = self.browser.find_element_by_id('id_air')
+		air_input_box.send_keys('Yes')
+		noise_input_box = self.browser.find_element_by_id('id_noise')
+		noise_input_box.send_keys('Yes')
+		ecology_input_box = self.browser.find_element_by_id('id_ecology')
+		ecology_input_box.send_keys('Yes')
+		archaeology_input_box = self.browser.find_element_by_id('id_archaeology')
+		archaeology_input_box.send_keys('Yes')
+		history_input_box = self.browser.find_element_by_id('id_history')
+		history_input_box.send_keys('Yes')
+		#She saves the form and is taken to the home page
+		save_button = self.browser.find_element_by_id('save_project')
+		save_button.click()
+		self.assertIn('EPEI Project Tracking', self.browser.title)
+
 		self.fail('Finish the test!')
 
 ##She moves on to something else
