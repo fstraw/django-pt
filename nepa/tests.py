@@ -25,8 +25,7 @@ class NewProjectTest(TestCase):
 		##for get request
 		request = HttpRequest()
 		response = add_page(request)
-		expected_html = render_to_string('home.html')
-		self.assertEqual(response.content.decode(), expected_html)
+		self.assertIn('Add Project', response.content.decode())
 
 class ModelTests(TestCase):
 	def test_saving_and_getting_projects(self):
