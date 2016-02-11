@@ -1,46 +1,35 @@
-<html>
-	<head>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<title>EPEI Project Tracking</title>
-	</head>
-	<div class = "container">
-	<body>
-		<h1>EPEI Project Tracking</h1>
-		<form method="POST">
-			<input name="project_text" id="id_search" placeholder="Search for project" />
-			{% csrf_token %}
-		</form>
-		<form action="/add">
-			<button type="submit" id="id_add">Add Project </button>
-		</form>
-		<table id="id_project_table" class="table table-bordered">
-			<tr>
-				<td>EP Project ID</td>				
-				<td>Project Manager</td>
-				<td>Nepa Due Date</td>
-				<td>Air Due Date</td>
-				<td>Noise Due Date</td>
-				<td>Ecology Due Date</td>
-				<td>Archaeology Due Date</td>
-				<td>History Due Date</td>
-			{% for project in project_list %}
-			</tr>
-				<td> {{ project.epid }} </td>
-				<td>  </td>				
-				<td> {{ project.nepa_due_in }}</td>
-				<td> {{ project.air_due_in }} </td>
-				<td> {{ project.noise_due_in }} </td>
-				<td> {{ project.ecology_due_in }} </td>
-				<td> {{ project.archaeology_due_in }} </td>
-				<td> {{ project.history_due_in }} </td>
-			</tr>
-			{% endfor %}
-		</table>
-	</body>
-</div>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div id="container">
+<h1>EPEI Project Tracking</h1>
+<form method="POST">
+	<input name="project_text" id="id_search" placeholder="Search for project" />
+	{% csrf_token %}
+</form>
+<form action="/add">
+	<button type="submit" id="id_add">Add Project </button>
+</form>
+<table id="id_project_table" class="table table-bordered">
+	<tr>
+		<td>EP Project ID</td>				
+		<td>Project Manager</td>
+		<td>Nepa Due Date</td>
+		<td>Air Due Date</td>
+		<td>Noise Due Date</td>
+		<td>Ecology Due Date</td>
+		<td>Archaeology Due Date</td>
+		<td>History Due Date</td>
+	{% for project in project_list %}
+	</tr>
+		<td> {{ project.epid }} </td>
+		<td>  </td>				
+		<td> {{ project.nepa_due_in }}</td>
+		<td> {{ project.air_due_in }} </td>
+		<td> {{ project.noise_due_in }} </td>
+		<td> {{ project.ecology_due_in }} </td>
+		<td> {{ project.archaeology_due_in }} </td>
+		<td> {{ project.history_due_in }} </td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

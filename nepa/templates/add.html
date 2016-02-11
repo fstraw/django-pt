@@ -1,13 +1,9 @@
-<html>
-	<head>
-	<title>EPEI Project Tracking - Add Project</title>
-	</head>
-	<h1>Add Project</h1>
-	<body>
+{% extends "base.html" %}
+{% block content %}
+<h1>Add Project</h1>
 	<form action="/add/" method="POST">
 	{% csrf_token %}
 	{{ form.as_ul }}
 	<input name="save_project" id="id_save_project" type="submit" value="Submit" />
 	</form>
-	</body>
-</html>
+{% endblock %}
