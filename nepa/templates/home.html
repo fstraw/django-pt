@@ -13,23 +13,21 @@
 <table id="id_project_table" class="table table-bordered">
 	<tr>
 		<td>Job Number</td>				
+		<td></td>
+		<td>Project Name</td>
+		<td>Project Number</td>
+		<td>PI Number</td>
 		<td>Project Manager</td>
-		<td>Nepa Due Date</td>
-		<td>Air Due Date</td>
-		<td>Noise Due Date</td>
-		<td>Ecology Due Date</td>
-		<td>Archaeology Due Date</td>
-		<td>History Due Date</td>
+		<td>County</td>
 	{% for project in project_list %}
 	</tr>
-		<td> {{ project.epid }} </td>
+		<td> {{ project.jobnumber }} </td>
 		<td>  </td>				
-		<td> {{ project.nepa_due_in }}</td>
-		<td> {{ project.air_due_in }} </td>
-		<td> {{ project.noise_due_in }} </td>
-		<td> {{ project.ecology_due_in }} </td>
-		<td> {{ project.archaeology_due_in }} </td>
-		<td> {{ project.history_due_in }} </td>
+		<td> {{ project.projectname }}</td>
+		<td> {{ project.projectnumber }} </td>
+		<td> {{ project.pinumber }} </td>
+		<td> {{ project.projectmanager }} </td>
+		<td> {{ project.county }} </td>
 	</tr>
 	{% endfor %}
 </table>
