@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 
 from nepa.views import home_page, add_page
-from nepa.models import Project
+from nepa.models import Project, Noise, Air, Ecology, Aquatics, Archaeology, History
 
 
 class HomePageTest(TestCase): 

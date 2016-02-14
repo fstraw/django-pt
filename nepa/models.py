@@ -55,3 +55,24 @@ class Project(models.Model):
 		days = '{}'.format(self.history_due_date - date.today())
 		days_stripped = days.replace(', 0:00:00', '')
 		return days_stripped
+
+class Nepa(models.Model):
+	pass
+
+class Air(models.Model):
+	pass
+
+class Noise(models.Model):
+	pass
+
+class Ecology(models.Model):
+	pass
+
+class Aquatics(models.Model):
+	pass
+
+class Archaeology(models.Model):
+	pass
+
+class History(models.Model):
+	pass
