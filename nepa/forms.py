@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, DateInput
 from django.forms.extras.widgets import SelectDateWidget
 from nepa.models import Project
 from django.contrib.admin.widgets import AdminDateWidget

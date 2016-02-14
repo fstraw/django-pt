@@ -30,6 +30,10 @@ html, body{
 #id_project_table {
 	text-align: center;
 }
+
+#search_float {
+	float: right;
+}
 body>.navbar-transparent {
     background-color: transparent;
     border-color: transparent;

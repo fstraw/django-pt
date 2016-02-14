@@ -15,7 +15,8 @@ def add_page(request):
 		form = ProjectForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return home_page(request)  
+			return HttpResponseRedirect('/')
+			# return home_page(request)
 		else:
 			## need to fix error checking
 			return render(request, 'add.html', {'form' : ProjectForm})

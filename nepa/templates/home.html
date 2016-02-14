@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="container">
 <h1>EPEI Project Tracking</h1>
+<div id="search_float">
 <form method="POST">
 	<input name="project_text" id="id_search" placeholder="Search for project" />
 	{% csrf_token %}
 </form>
+</div>
 <form action="/add">
 	<button type="submit" id="id_add">Add Project </button>
 </form>
 <table id="id_project_table" class="table table-bordered">
 	<tr>
-		<td>EP Project ID</td>				
+		<td>Job Number</td>				
 		<td>Project Manager</td>
 		<td>Nepa Due Date</td>
 		<td>Air Due Date</td>

@@ -31,20 +31,32 @@ class NewProjectTest(TestCase):
 class ModelTests(TestCase):
 	def test_saving_and_getting_projects(self):
 		epid = 'PBQ1601'
+		nepa = 'Yes'
 		air = 'Yes'
 		noise = 'Yes'
 		ecology = 'Yes'
 		archaeology = 'Yes'
 		history = 'Yes'
 		nepa_due_date = datetime.now()
+		air_due_date = datetime.now()
+		noise_due_date = datetime.now()
+		ecology_due_date = datetime.now()
+		archaeology_due_date = datetime.now()
+		history_due_date = datetime.now()
 		first_project = Project()
 		first_project.epid = epid
+		first_project.nepa = nepa
 		first_project.air = air
 		first_project.noise = noise
 		first_project.ecology = ecology
 		first_project.archaeology = archaeology
 		first_project.history = history
 		first_project.nepa_due_date = nepa_due_date
+		first_project.air_due_date = air_due_date
+		first_project.noise_due_date = noise_due_date
+		first_project.ecology_due_date = ecology_due_date
+		first_project.archaeology_due_date = archaeology_due_date
+		first_project.history_due_date = history_due_date
 		first_project.save()
 		
 		saved_objects = Project.objects.all()
@@ -61,12 +73,20 @@ class AddFormTests(TestCase):
 		request = HttpRequest()
 		request.method = 'POST'
 		request.POST = {'epid' :' PBQ1601',
+						'nepa' : 'Yes',
 						'air' : 'Yes',
 						'noise' : 'Yes',
 						'ecology' : 'Yes',
 						'archaeology' : 'Yes',
 						'history' : 'Yes',
 						'nepa_due_date' : datetime.now(),
+						'air_due_date' : datetime.now(),
+						'noise_due_date' : datetime.now(),
+						'ecology_due_date' : datetime.now(),
+						'archaeology_due_date' : datetime.now(),
+						'history_due_date' : datetime.now(),
 						}
+		##this test is currently failing due to HttpRequestRedirect
 		response = add_page(request)
-		self.assertIn('PBQ1601', response.content.decode(), response.content.decode())
+		request = HttpRequest()
+		self.assertIn('PBQ1601', home_page(request), home_page(request))

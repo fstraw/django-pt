@@ -39,10 +39,6 @@ class NewVisitorTest(unittest.TestCase):
 		add_button = self.browser.find_element_by_id('id_add')
 		##She clicks the button to add a project
 		add_button.click()
-		##See sees that the page is called "EPEI Project Tracking - Add Project"
-		self.assertIn('Add Project', self.browser.title)
-		header_text = self.browser.find_element_by_tag_name('h1').text
-		self.assertIn('Add Project', header_text)
 		# She sees fields for data entry and fills them out
 		epid_input_box = self.browser.find_element_by_id('id_epid')
 		epid_input_box.send_keys('PBQ1601')
