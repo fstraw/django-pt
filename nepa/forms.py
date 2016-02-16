@@ -7,7 +7,7 @@ class ProjectForm(ModelForm):
 	class Meta:
 		model = Project
 		fields = ['jobnumber', 'projectname', 'projectnumber', 'pinumber', 
-					'projectmanager']
+					'projectmanager', 'relatedprojects']
 		# widgets = {	
             # 'epid': Textarea(attrs={'cols': 20, 'rows': 1}),
             # 'air': Textarea(attrs={'cols': 20, 'rows': 1}),

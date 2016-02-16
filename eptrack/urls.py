@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from nepa import urls as nepa_urls
 
 urlpatterns = [
-	url(r'^$', 'nepa.views.home_page', name='home'),
-	url(r'^add/', 'nepa.views.add_page', name='add'),
+	# url(r'^$', 'nepa.views.home_page', name='home'),
+	# url(r'^add/', 'nepa.views.add_page', name='add'),
     url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'nepa/', include(nepa_urls))
+    ]

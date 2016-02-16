@@ -14,6 +14,9 @@ class Project(models.Model):
 	projectdescription = models.CharField(max_length=1000, default='')
 	county = models.CharField(max_length=15, default='')
 	relatedprojects = models.ManyToManyField('self')
+	def __str__(self):
+		return self.jobnumber
+		
 	
 class Nepa(models.Model):
 	jobnumber = models.ForeignKey(Project, default='')
