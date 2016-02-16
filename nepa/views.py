@@ -22,3 +22,6 @@ def add_page(request):
 			return render(request, 'add.html', {'form' : ProjectForm})
 	else:
 		return render(request, 'add.html', {'form' : ProjectForm})
+
+def project_dash(request, projectid):
+	return render(request, 'projectdash.html')
