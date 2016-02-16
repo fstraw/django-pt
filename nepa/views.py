@@ -24,4 +24,13 @@ def add_page(request):
 		return render(request, 'add.html', {'form' : ProjectForm})
 
 def project_dash(request, projectid):
-	return render(request, 'projectdash.html')
+	project = Project.objects.get(id=projectid)
+	context = {'jobnumber' : project.jobnumber, 
+				'projectname' : project.projectname,
+				'projectdescription' : project.projectdescription,
+				'pinumber' : project.pinumber,
+				'projectnumber' : project.projectnumber,
+				'projectmanager' : project.projectmanager,
+				'county' : project.county,
+				}
+	return render(request, 'projectdash.html', context)

@@ -21,7 +21,7 @@
 		<td>County</td>
 	{% for project in project_list %}
 	</tr>
-		<td> {{ project.jobnumber }} </td>
+		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>
 		<td>  </td>				
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectnumber }} </td>
