@@ -23,11 +23,23 @@ class Nepa(models.Model):
 	specialist = models.CharField(max_length=50, default='')
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='')
+	#Submittals
 	earlycoordination = models.DateField()
 	statedraft = models.DateField()
 	stateapproval = models.DateField()
 	fhwadraft = models.DateField()
 	fhwaapproval = models.DateField()
+	#Due Dates
+	statedraftdue = models.DateField()
+	fhwadraftdue = models.DateField()
+	def statedraft_due_in(self):
+		days = '{}'.format(self.statedraftdue - date.today())
+		days_stripped = days.replace(', 0:00:00', '')
+		return days_stripped
+	def fhwadraft_due_in(self):
+		days = '{}'.format(fhwadatedue - date.today())
+		days_stripped = days.replace(', 0:00:00', '')
+		return days_stripped
 	# def __str__(self):
 	# 	return self.jobnumber
 

@@ -6,7 +6,9 @@ from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 def home_page(request):
 	project_list = Project.objects.all()
-	context = RequestContext(request, {'project_list' : project_list})
+	nepas = Nepa.objects.all()
+	context = RequestContext(request, {'project_list' : project_list,
+										'nepas' : nepas})
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
 
