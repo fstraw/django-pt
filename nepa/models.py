@@ -8,8 +8,8 @@ import time
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='')
 	projectname = models.CharField(max_length=50, default='')
-	projectnumber = models.CharField(max_length=18, default='')
-	pinumber = models.CharField(max_length=7, default='')
+	# projectnumber = models.CharField(max_length=18, default='')
+	# pinumber = models.CharField(max_length=7, default='')
 	projectmanager = models.CharField(max_length=25, default='')
 	projectdescription = models.CharField(max_length=1000, default='')
 	county = models.CharField(max_length=15, default='')
@@ -19,7 +19,7 @@ class Project(models.Model):
 		
 	
 class Nepa(models.Model):
-	jobnumber = models.ForeignKey(Project, default='')
+	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='')
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='')
@@ -28,6 +28,8 @@ class Nepa(models.Model):
 	stateapproval = models.DateField()
 	fhwadraft = models.DateField()
 	fhwaapproval = models.DateField()
+	# def __str__(self):
+	# 	return self.jobnumber
 
 class Air(models.Model):
 	pass
@@ -46,3 +48,21 @@ class Archaeology(models.Model):
 
 class History(models.Model):
 	pass
+
+class PINumbers(models.Model):    
+    project = models.ForeignKey(Project)
+    pi_number = models.CharField(max_length=7, null=True)
+    
+    class Meta:
+            verbose_name_plural = 'PI Numbers'
+    def __str__(self):
+        return self.pi_number
+        
+class ProjectNumbers(models.Model):
+    project = models.ForeignKey(Project)
+    project_number = models.CharField(max_length=20, blank=True, null=True)
+    
+    class Meta:
+            verbose_name_plural = 'Project Numbers'
+    def __str__(self):
+        return self.project_number
