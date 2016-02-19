@@ -1,12 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>EPEI Project Tracking</h1>
-<div id="search_float">
-<form method="POST">
-	<input name="project_text" id="id_search" placeholder="Search for project" />
-	{% csrf_token %}
-</form>
-</div>
 <form action={% url 'add' %}>
 	<button type="submit" id="id_add">Add Project </button>
 </form>

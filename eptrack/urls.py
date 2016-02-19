@@ -21,5 +21,5 @@ urlpatterns = [
 	# url(r'^$', 'nepa.views.home_page', name='home'),
 	# url(r'^add/', 'nepa.views.add_page', name='add'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'nepa/projects/', include(nepa_urls),)
+    url(r'nepa/projects/', include(nepa_urls))
     ]

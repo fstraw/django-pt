@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import date
+from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES
 
 # Create your models here.
 
@@ -8,9 +9,9 @@ from datetime import date
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='', unique=True)
 	projectname = models.CharField(max_length=50, default='')
-	projectmanager = models.CharField(max_length=25, default='')
+	projectmanager = models.CharField(max_length=25, default='', choices=PROJECT_MANAGERS)
 	projectdescription = models.CharField(max_length=1000, default='')
-	county = models.CharField(max_length=15, default='')
+	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
 	pis = models.ManyToManyField('PINumbers', related_name='pinumbers')
 	projectnumbers = models.ManyToManyField('ProjectNumbers', related_name='projectnumbers')
@@ -20,7 +21,7 @@ class Project(models.Model):
 	
 class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
+	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='')
 	#Submittals

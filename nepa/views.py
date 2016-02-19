@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from nepa.forms import ProjectForm, NepaForm
@@ -30,6 +30,7 @@ def add_page(request):
 			project.county = project_data['county'] 
 			# project.pis = project_data['pis'] #not working
 			# project.projectnumbers = project_data['projectnumbers'] #not working
+			project.comments = project_data['comments'] 
 			project.save()
 			nepa_data['project'] = project
 			nepa.project = project
@@ -48,8 +49,8 @@ def add_page(request):
 			return home_page(request)
 		else:
 			## need to fix error checking
-			return HttpResponse('<html>{}</html>'.format(nepa_form.cleaned_data))
-			return render(request, 'add.html', {'project_form' : ProjectForm, 'nepa_form' : NepaForm})
+			
+			return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
 	else:
 		return render(request, 'add.html', {'project_form' : ProjectForm, 'nepa_form' : NepaForm})
 
@@ -64,7 +65,7 @@ def project_dash(request, projectid):
 		statedraft = nepa.statedraft
 		stateapproval = nepa.stateapproval
 		fhwadraft = nepa.fhwadraft
-		fhwaapproval = nepa.fhwaapproval
+		fhwaapproval = nepa.fhwaapproval		
 	except:
 		specialist = 'Unnassigned'
 		stateplanner = 'Unassigned'
@@ -89,5 +90,13 @@ def project_dash(request, projectid):
 				'stateapproval' : stateapproval,
 				'fhwadraft' : fhwadraft,
 				'fhwaapproval' : fhwaapproval,
+				'comments' : project.comments,				
 				}
 	return render(request, 'projectdash.html', context)
+
+def project_edit(request, projectid):
+	project = get_object_or_404(Project, pk=projectid)
+	if request.method == 'GET':		
+		project_form = ProjectForm(instance=project)
+		nepa_form = NepaForm(instance=project.nepa_set.all()[0]) #should only be one nepa project
+	return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
