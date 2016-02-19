@@ -1,8 +1,16 @@
+import inspect
 from django.contrib import admin
-from nepa.models import Project, Nepa, PINumbers, ProjectNumbers
+import nepa.models
 
 # Register your models here.
-admin.site.register(Project)
-admin.site.register(Nepa)
-admin.site.register(PINumbers)
-admin.site.register(ProjectNumbers)
+
+admin.site.register(nepa.models.Project)
+admin.site.register(nepa.models.ProjectNumbers)
+admin.site.register(nepa.models.PINumbers)
+admin.site.register(nepa.models.Nepa)
+admin.site.register(nepa.models.Air)
+admin.site.register(nepa.models.Noise)
+admin.site.register(nepa.models.Ecology)
+admin.site.register(nepa.models.Aquatics)
+admin.site.register(nepa.models.Archaeology)
+admin.site.register(nepa.models.History)

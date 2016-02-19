@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Textarea, DateInput, Form
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from nepa.models import Project, PINumbers, ProjectNumbers
+from nepa.models import Project, PINumbers, ProjectNumbers, Nepa
 
 
 # class ProjectForm(ModelForm):
@@ -24,13 +24,33 @@ from nepa.models import Project, PINumbers, ProjectNumbers
 
         # }
 
-class ProjectForm(Form):      
-      pis_from_db = [(pinum, pinum) for pinum in PINumbers.objects.all()]
-      project_nums_from_db = [(projnum, projnum) for projnum in ProjectNumbers.objects.all()]
-      projects_from_db = [(project, project) for project in Project.objects.all()]
-      jobnumber = forms.CharField(max_length=15)
-      projectname = forms.CharField(max_length=50)
-      pinumbers = forms.MultipleChoiceField(choices=pis_from_db)
-      projectnumbers = forms.MultipleChoiceField(choices=project_nums_from_db)
-      projectmanager = forms.CharField(max_length=25)
-      relatedprojects = forms.MultipleChoiceField(choices=projects_from_db)
+# class ProjectForm(Form):      
+#       jobnumber = forms.CharField(max_length=15)
+#       projectname = forms.CharField(max_length=50)
+#       projectmanager = forms.CharField(max_length=25)
+#       projectdescription = forms.CharField(max_length=1000)
+#       county = forms.CharField(max_length=25)
+#       pis = forms.ModelMultipleChoiceField(queryset=PINumbers.objects.all())
+#       projectnumbers = forms.ModelMultipleChoiceField(queryset=ProjectNumbers.objects.all())
+#       comments = forms.CharField(max_length=1000)
+      # relatedprojects = forms.ModelMultipleChoiceField(queryset=Project.objects.all())
+
+
+class ProjectForm(ModelForm):
+    class Meta:
+          model = Project
+          fields = ['jobnumber', 'projectname', 
+                  'projectmanager', 'projectdescription',
+                  'county',             'pis', 
+                  'projectnumbers', 'comments']
+          widgets = {'comments': Textarea(attrs={'cols': 20, 'rows': 3})}
+
+class NepaForm(ModelForm):
+    class Meta:
+          model = Nepa
+          fields = ['project', 'specialist', 
+                  'stateplanner', 'documenttype',
+                  'earlycoordination', 'statedraft',
+                  'statedraftdue', 'fhwadraftdue', 
+                  'stateapproval', 'fhwadraft',
+                  'fhwaapproval']

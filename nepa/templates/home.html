@@ -7,27 +7,24 @@
 	{% csrf_token %}
 </form>
 </div>
-<form action="add/">
+<form action={% url 'add' %}>
 	<button type="submit" id="id_add">Add Project </button>
 </form>
 <table id="id_project_table" class="table table-bordered">
 	<tr>
 		<td>Job Number</td>				
-
 		<td>Project Name</td>
-		<td>Project Number</td>
-		<td>PI Number</td>
 		<td>Project Manager</td>
-		<td>County</td>
+		<td>State Draft Due In</td>
+		<td>FHWA Draft Due In</td>
 	{% for project in project_list %}
 	</tr>
-		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>
-			
+		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
 		<td> {{ project.projectname }}</td>
-		<td> {{ project.nepa_specialist }} </td>
-		<!-- <td> {{ project.pinumber }} </td> -->
 		<td> {{ project.projectmanager }} </td>
-		<td> {{ project.county }} </td>
+		{# Should only be one nepa #}
+		<td> {% for nepa in project.nepa_set.all %} {{ nepa.statedraft_due_in }} {% endfor %}</td>
+		<td> {% for nepa in project.nepa_set.all %} {{ nepa.fhwadraft_due_in }} {% endfor %}</td>
 	</tr>
 	{% endfor %}
 </table>
