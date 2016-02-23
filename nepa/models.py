@@ -13,8 +13,6 @@ class Project(models.Model):
 	projectdescription = models.CharField(max_length=1000, default='')
 	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
-	# pis = models.ManyToManyField('PINumbers', related_name='pinumbers')
-	# projectnumbers = models.ManyToManyField('ProjectNumbers', related_name='projectnumbers')
 	comments = models.CharField(max_length=1000, default='', blank=True)
 	def __str__(self):
 		return self.jobnumber		
@@ -35,12 +33,18 @@ class Nepa(models.Model):
 	fhwadraftdue = models.DateField(default=timezone.now())
 	def statedraft_due_in(self):
 		if self.statedraftdue:
-			days = '{}'.format(self.statedraftdue - date.today())
+			date_diff = self.statedraftdue - date.today()
+			if not date_diff:
+				return 'Due Today'
+			days = '{}'.format(date_diff)
 			days_stripped = days.replace(', 0:00:00', '')
 			return days_stripped
 		return 'No Date'
 	def fhwadraft_due_in(self):
 		if self.fhwadraftdue:
+			date_diff = self.fhwadraftdue - date.today()
+			if not date_diff:
+				return 'Due Today'
 			days = '{}'.format(self.fhwadraftdue - date.today())
 			days_stripped = days.replace(', 0:00:00', '')
 			return days_stripped
