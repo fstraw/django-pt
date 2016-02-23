@@ -20,7 +20,7 @@ class Project(models.Model):
 		return self.jobnumber		
 	
 class Nepa(models.Model):
-	project = models.ForeignKey(Project, default='')
+	project = models.ForeignKey(Project, default='', related_name='nepadoc')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)
@@ -46,7 +46,7 @@ class Nepa(models.Model):
 			return days_stripped
 		return 'No Date'
 	def __str__(self):
-		return '{}_Nepa'.format(self.project.jobnumber)
+		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
 
 class Air(models.Model):
 	project = models.ForeignKey(Project, default='')

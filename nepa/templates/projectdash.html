@@ -17,7 +17,7 @@
 </div>-->
 <div class="row">
   <div class="col-md-4"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
-  <div class="col-md-4"><h4>NEPA</h4>{{ specialist }}</div>
+  <div class="col-md-4"><h4>NEPA</h4>{% for nepadoc in project.nepadoc.all %} {{ nepadoc }} {% endfor %}</div>
   <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 </div>
 <div class="row">
