@@ -55,42 +55,15 @@ def add_page(request):
 		return render(request, 'add.html', {'project_form' : ProjectForm, 'nepa_form' : NepaForm})
 
 def project_dash(request, projectid):
-	project = Project.objects.get(id=projectid)
-	try:
-		nepa = Nepa.objects.get(project=project)
-		specialist = nepa.specialist
-		stateplanner = nepa.stateplanner
-		documenttype = nepa.documenttype
-		earlycoordination = nepa.earlycoordination
-		statedraft = nepa.statedraft
-		stateapproval = nepa.stateapproval
-		fhwadraft = nepa.fhwadraft
-		fhwaapproval = nepa.fhwaapproval		
-	except:
-		specialist = 'Unnassigned'
-		stateplanner = 'Unassigned'
-		documenttype = 'No Document Type'
-		earlycoordination = 'No Early Coordination Date'
-		statedraft = 'No State Draft Date'
-		stateapproval = 'No State Approval Date'
-		fhwadraft = 'No FHWA Draft Date'
-		fhwaapproval = 'No FHWA Approval Date'
+	project = get_object_or_404(Project, id=projectid)
+
 	context = { 'project': project,
 				'jobnumber' : project.jobnumber, 
 				'projectname' : project.projectname,
 				'projectdescription' : project.projectdescription,				
 				# 'projectnumber' : project.projectnumber,
 				'projectmanager' : project.projectmanager,
-				'county' : project.county,
-				'specialist' : specialist,
-				'stateplanner' : stateplanner,
-				'documenttype' : documenttype,
-				'earlycoordination' : earlycoordination,
-				'statedraft' : statedraft,
-				'stateapproval' : stateapproval,
-				'fhwadraft' : fhwadraft,
-				'fhwaapproval' : fhwaapproval,
-				'comments' : project.comments,				
+				'county' : project.county,				
 				}
 	return render(request, 'projectdash.html', context)
 
