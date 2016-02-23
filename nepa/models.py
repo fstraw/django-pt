@@ -20,7 +20,7 @@ class Project(models.Model):
 		return self.jobnumber		
 	
 class Nepa(models.Model):
-	project = models.ForeignKey(Project, default='', related_name='nepadoc')
+	project = models.ForeignKey(Project, default='', related_name='nepadocs')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)

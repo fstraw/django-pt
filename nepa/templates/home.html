@@ -15,11 +15,10 @@
 		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectmanager }} </td>
-		{# Should only be one nepa #}
-		<td>{% for nepa in project.nepa_set.all %} {{ nepa.statedraft }} {% endfor %}</td>
-		<td>{% for nepa in project.nepa_set.all %} {{ nepa.fhwadraft }} {% endfor %}</td>
-		<td> {% for nepa in project.nepa_set.all %} {{ nepa.statedraft_due_in }} {% endfor %}</td>
-		<td> {% for nepa in project.nepa_set.all %} {{ nepa.fhwadraft_due_in }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft | linebreaks}} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.fhwadraft | linebreaks }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }} {% endfor %}</td>
 	</tr>
 	{% endfor %}
 </table>
