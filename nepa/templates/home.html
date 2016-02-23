@@ -6,6 +6,8 @@
 		<td>Job Number</td>				
 		<td>Project Name</td>
 		<td>Project Manager</td>
+		<td>State Draft Submittal</td>
+		<td>FHWA Draft Submittal</td>
 		<td>State Draft Due In</td>
 		<td>FHWA Draft Due In</td>
 	{% for project in project_list %}
@@ -14,6 +16,8 @@
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectmanager }} </td>
 		{# Should only be one nepa #}
+		<td>{% for nepa in project.nepa_set.all %} {{ nepa.statedraft }} {% endfor %}</td>
+		<td>{% for nepa in project.nepa_set.all %} {{ nepa.fhwadraft }} {% endfor %}</td>
 		<td> {% for nepa in project.nepa_set.all %} {{ nepa.statedraft_due_in }} {% endfor %}</td>
 		<td> {% for nepa in project.nepa_set.all %} {{ nepa.fhwadraft_due_in }} {% endfor %}</td>
 	</tr>
