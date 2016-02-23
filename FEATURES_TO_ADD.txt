@@ -9,3 +9,4 @@
 - Aquatics
 - History
 - Archaeology
+- Mapping component

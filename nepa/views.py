@@ -6,7 +6,6 @@ from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 def home_page(request):
 	project_list = Project.objects.all()
-	# nepas = Project.objects.all()[1].nepa_set
 	context = RequestContext(request, {'project_list' : project_list,
 										})
 	template = loader.get_template('home.html')
@@ -57,24 +56,18 @@ def add_page(request):
 def project_dash(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 
-	context = { 'project': project,
-				# 'jobnumber' : project.jobnumber, 
-				# 'projectname' : project.projectname,
-				# 'projectdescription' : project.projectdescription,				
-				# 'projectnumbers' : project.projectnumbers,
-				# 'projectmanager' : project.projectmanager,
-				# 'county' : project.county,				
-				}
+	context = { 
+				'project': project,				
+			}
 	return render(request, 'projectdash.html', context)
 
 def project_edit(request, projectid):
 	''' Should only come from edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
-		project_form = ProjectForm(request.POST, instance=project)		
+		project_form = ProjectForm(request.POST, instance=project)
 		if project_form.is_valid():
-			project_form.save() #save and commit job number to db, should update nepa automagically				
-			nepa_form.save()
+			project_form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
 		return render(request, 'add.html', {'project_form' : project_form})
 	else:
