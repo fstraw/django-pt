@@ -5,17 +5,16 @@ from nepa.models import Project, PINumbers, ProjectNumbers, Nepa
 
 
 class ProjectForm(ModelForm):
-    projectnumbers = forms.CharField(label='Project Number(s)')
-    pis = forms.CharField(label='PI Number(s)')
     class Meta:
           model = Project
           fields = ['jobnumber', 'projectname', 
                   'projectmanager', 'projectdescription',
                   'county', 'comments']
           widgets = {
+                      'jobnumber': Textarea(attrs={'cols': 20, 'rows': 1}),
+                      'projectname': Textarea(attrs={'cols': 40, 'rows': 1}),
+                      'projectdescription': Textarea(attrs={'cols': 50, 'rows': 3}),
                       'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
-                      'projectname': Textarea(attrs={'cols': 50, 'rows': 1}),
-                      'projectdescription': Textarea(attrs={'cols': 50, 'rows': 5}),
                     }
 
 class NepaForm(ModelForm):

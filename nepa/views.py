@@ -70,16 +70,13 @@ def project_dash(request, projectid):
 def project_edit(request, projectid):
 	''' Should only come from edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)
-	nepa = project.nepa_set.all()[0]
 	if request.method == 'POST':
-		project_form = ProjectForm(request.POST, instance=project)
-		nepa_form = NepaForm(request.POST, instance=nepa) #should only be one nepa project if Foreign Key is used
+		project_form = ProjectForm(request.POST, instance=project)		
 		if project_form.is_valid():
 			project_form.save() #save and commit job number to db, should update nepa automagically				
 			nepa_form.save()
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
+		return render(request, 'add.html', {'project_form' : project_form})
 	else:
 		project_form = ProjectForm(instance=project)
-		nepa_form = NepaForm(instance=project.nepa_set.all()[0])
-		return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
+		return render(request, 'add.html', {'project_form' : project_form})
