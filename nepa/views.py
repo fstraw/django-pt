@@ -58,12 +58,12 @@ def project_dash(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 
 	context = { 'project': project,
-				'jobnumber' : project.jobnumber, 
-				'projectname' : project.projectname,
-				'projectdescription' : project.projectdescription,				
-				# 'projectnumber' : project.projectnumber,
-				'projectmanager' : project.projectmanager,
-				'county' : project.county,				
+				# 'jobnumber' : project.jobnumber, 
+				# 'projectname' : project.projectname,
+				# 'projectdescription' : project.projectdescription,				
+				# 'projectnumbers' : project.projectnumbers,
+				# 'projectmanager' : project.projectmanager,
+				# 'county' : project.county,				
 				}
 	return render(request, 'projectdash.html', context)
 

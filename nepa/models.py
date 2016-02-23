@@ -95,7 +95,7 @@ class PINumbers(models.Model):
         return self.pi_number
         
 class ProjectNumbers(models.Model):
-    projects = models.ManyToManyField(Project, related_name='projects')
+    projects = models.ManyToManyField(Project, related_name='projectnumbers')
     project_number = models.CharField(max_length=20, null=True, unique=True)    
     class Meta:
             verbose_name_plural = 'Project Numbers'
