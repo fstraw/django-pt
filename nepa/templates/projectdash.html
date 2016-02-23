@@ -21,11 +21,11 @@
   <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>Project Number(s): {% for pn in project.projectnumbers.all %} {{ pn }} {% endfor %}</h4></div>
+  <div class="col-md-4"><h4>Project Number(s): {% for pn in project.projectnumbers_set.all %} {{ pn }} {% endfor %}</h4></div>
   <div class="col-md-4"><h4>Document Type: </h4>{{ documenttype }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>PI Number(s): {% for pi in project.pis.all %} {{ pi }} {% endfor %}</h4></div>
+  <div class="col-md-4"><h4>PI Number(s): {% for pi in project.pinumbers_set.all %} {{ pi }} {% endfor %}</h4></div>
   <div class="col-md-4"><h4>Early Coordination Date: </h4>{{ earlycoordination }}</div>
 </div>
 <div class="row">

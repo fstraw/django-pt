@@ -11,6 +11,16 @@ html, body{
   text-align: center;
 }
 
+.glyphicon.glyphicon-plus {
+    font-size: 45px;
+    color: black;
+}
+
+.glyphicon.glyphicon-pencil {
+    font-size: 18px;
+    color: black;
+}
+
 .footer {
   padding-top: 40px;
   padding-bottom: 40px;

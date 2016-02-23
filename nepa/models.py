@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import date
-from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES
+from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES
 
 # Create your models here.
 
@@ -13,8 +13,8 @@ class Project(models.Model):
 	projectdescription = models.CharField(max_length=1000, default='')
 	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
-	pis = models.ManyToManyField('PINumbers', related_name='pinumbers')
-	projectnumbers = models.ManyToManyField('ProjectNumbers', related_name='projectnumbers')
+	# pis = models.ManyToManyField('PINumbers', related_name='pinumbers')
+	# projectnumbers = models.ManyToManyField('ProjectNumbers', related_name='projectnumbers')
 	comments = models.CharField(max_length=1000, default='', blank=True)
 	def __str__(self):
 		return self.jobnumber		
@@ -23,7 +23,7 @@ class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)
 	#Submittals
 	earlycoordination = models.DateField(default=timezone.now())
 	statedraft = models.DateField(default=timezone.now())
@@ -34,13 +34,17 @@ class Nepa(models.Model):
 	statedraftdue = models.DateField(default=timezone.now())
 	fhwadraftdue = models.DateField(default=timezone.now())
 	def statedraft_due_in(self):
-		days = '{}'.format(self.statedraftdue - date.today())
-		days_stripped = days.replace(', 0:00:00', '')
-		return days_stripped
+		if self.statedraftdue:
+			days = '{}'.format(self.statedraftdue - date.today())
+			days_stripped = days.replace(', 0:00:00', '')
+			return days_stripped
+		return 'No Date'
 	def fhwadraft_due_in(self):
-		days = '{}'.format(self.fhwadraftdue - date.today())
-		days_stripped = days.replace(', 0:00:00', '')
-		return days_stripped
+		if self.fhwadraftdue:
+			days = '{}'.format(self.fhwadraftdue - date.today())
+			days_stripped = days.replace(', 0:00:00', '')
+			return days_stripped
+		return 'No Date'
 	def __str__(self):
 		return '{}_Nepa'.format(self.project.jobnumber)
 
@@ -83,6 +87,7 @@ class History(models.Model):
 	documenttype = models.CharField(max_length=10, default='')
 
 class PINumbers(models.Model):
+    projects = models.ManyToManyField(Project, related_name='pis')
     pi_number = models.CharField(max_length=7, null=True, unique=True)
     class Meta:
             verbose_name_plural = 'PI Numbers'
@@ -90,6 +95,7 @@ class PINumbers(models.Model):
         return self.pi_number
         
 class ProjectNumbers(models.Model):
+    projects = models.ManyToManyField(Project, related_name='projects')
     project_number = models.CharField(max_length=20, null=True, unique=True)    
     class Meta:
             verbose_name_plural = 'Project Numbers'

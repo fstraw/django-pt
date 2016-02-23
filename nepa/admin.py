@@ -1,4 +1,3 @@
-import inspect
 from django.contrib import admin
 import nepa.models
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from nepa.forms import ProjectForm, NepaForm
@@ -13,7 +13,7 @@ def home_page(request):
 	return HttpResponse(template.render(context))
 
 def add_page(request):
-	if request.method == 'POST':		
+	if request.method == 'POST':
 		project_form = ProjectForm(request.POST)
 		nepa_form = NepaForm(request.POST)
 		nepa_form.is_valid() ##generate cleaned_data attribute
@@ -95,8 +95,18 @@ def project_dash(request, projectid):
 	return render(request, 'projectdash.html', context)
 
 def project_edit(request, projectid):
-	project = get_object_or_404(Project, pk=projectid)
-	if request.method == 'GET':		
+	''' Should only come from edit page, so nepa should update automagically '''
+	project = get_object_or_404(Project, id=projectid)
+	nepa = project.nepa_set.all()[0]
+	if request.method == 'POST':
+		project_form = ProjectForm(request.POST, instance=project)
+		nepa_form = NepaForm(request.POST, instance=nepa) #should only be one nepa project if Foreign Key is used
+		if project_form.is_valid():
+			project_form.save() #save and commit job number to db, should update nepa automagically				
+			nepa_form.save()
+			return redirect('project_dash', projectid=project.id)
+		return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
+	else:
 		project_form = ProjectForm(instance=project)
-		nepa_form = NepaForm(instance=project.nepa_set.all()[0]) #should only be one nepa project
-	return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})
+		nepa_form = NepaForm(instance=project.nepa_set.all()[0])
+		return render(request, 'add.html', {'project_form' : project_form, 'nepa_form' : nepa_form})

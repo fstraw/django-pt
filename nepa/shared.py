@@ -1,3 +1,4 @@
+
 PROJECT_MANAGERS = (
 			('Susan Thomas', 'Susan Thomas'),
 			('Heather Perrin', 'Heather Perrin'),
@@ -60,3 +61,10 @@ COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
 }
 
 COUNTY_NAMES = [(c, c) for c in sorted(COUNTIES.iterkeys())]
+
+DOCUMENT_TYPES = (
+				('CE', 'CE'),
+				('EA', 'EA'),
+				('EIS', 'EIS'),
+				('FONSI', 'FONSI'),
+				)

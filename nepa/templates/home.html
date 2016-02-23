@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form action={% url 'add' %}>
-	<button type="submit" id="id_add">Add Project </button>
-</form>
+<a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 <table id="id_project_table" class="table table-bordered">
 	<tr>
 		<td>Job Number</td>				

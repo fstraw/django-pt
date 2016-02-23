@@ -1,16 +1,17 @@
-from django.forms import ModelForm, Textarea, DateInput, Form
+from django.forms import ModelForm, Textarea, DateInput, Form, TextInput
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from nepa.models import Project, PINumbers, ProjectNumbers, Nepa
 
 
 class ProjectForm(ModelForm):
+    projectnumbers = forms.CharField(label='Project Number(s)')
+    pis = forms.CharField(label='PI Number(s)')
     class Meta:
           model = Project
           fields = ['jobnumber', 'projectname', 
                   'projectmanager', 'projectdescription',
-                  'county',             'pis', 
-                  'projectnumbers', 'comments']
+                  'county', 'comments']
           widgets = {
                       'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
                       'projectname': Textarea(attrs={'cols': 50, 'rows': 1}),
@@ -18,11 +19,12 @@ class ProjectForm(ModelForm):
                     }
 
 class NepaForm(ModelForm):
-    class Meta:
-          model = Nepa
-          fields = ['project', 'specialist', 
+  class Meta:          
+    model = Nepa
+    fields = ['project', 'specialist', 
                   'stateplanner', 'documenttype',
                   'earlycoordination', 'statedraft',
                   'statedraftdue', 'fhwadraftdue', 
                   'stateapproval', 'fhwadraft',
                   'fhwaapproval']
+    # widgets = {'project': TextInput(attrs={'readonly':'readonly'})}

@@ -10,7 +10,7 @@
 			<h3>NEPA</h3>
 		</div>	
 	</div>
-	<form action={% url 'add' %} method="POST">
+	<form method="POST">
 	{% csrf_token %}
 	{{ form.non_field_errors }}
 		<div class="row">
@@ -86,11 +86,11 @@
     			{{ project_form.county }}
 			</div>
 			<div class="col-md-2">
-				{{ nepa_form.earlycoordination.errors }}
-				<label for="{{ nepa_form.earlycoordination.id_for_label }}">Early Coordination:</label>
+				{{ nepa_form.statedraftdue.errors }}
+				<label for="{{ nepa_form.statedraftdue.id_for_label }}">State Draft Due:</label>
 			</div>			
 			<div class="col-md-4">
-    			{{ nepa_form.earlycoordination }}
+    			{{ nepa_form.statedraftdue }}
 			</div>
 		</div>
 		<div class="row">
@@ -102,6 +102,38 @@
     			{{ project_form.pis }}
 			</div>
 			<div class="col-md-2">
+				{{ nepa_form.fhwadraftdue.errors }}
+				<label for="{{ nepa_form.statedraftdue.id_for_label }}">FHWA Draft Due:</label>
+			</div>			
+			<div class="col-md-4">
+    			{{ nepa_form.fhwadraftdue }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				{{ project_form.projectnumbers.errors }}
+				<label for="{{ project_form.projectnumbers.id_for_label }}">Project Number(s):</label>
+			</div>
+			<div class="col-md-4">				
+    			{{ project_form.projectnumbers }}
+			</div>
+			<div class="col-md-2">
+				{{ nepa_form.earlycoordination.errors }}
+				<label for="{{ nepa_form.earlycoordination.id_for_label }}">Early Coordination:</label>
+			</div>			
+			<div class="col-md-4">
+    			{{ nepa_form.earlycoordination }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				{{ project_form.comments.errors }}
+				<label for="{{ project_form.comments.id_for_label }}">Comments:</label>
+			</div>
+			<div class="col-md-4">
+    			{{ project_form.comments }}
+			</div>
+			<div class="col-md-2">
 				{{ nepa_form.statedraft.errors }}
 				<label for="{{ nepa_form.statedraft.id_for_label }}">State Draft Submittal:</label>
 			</div>			
@@ -111,11 +143,10 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				{{ project_form.projectnumbers.errors }}
-				<label for="{{ project_form.projectnumbers.id_for_label }}">Project Number(s):</label>
+
 			</div>
 			<div class="col-md-4">
-    			{{ project_form.projectnumbers }}
+
 			</div>
 			<div class="col-md-2">
 				{{ nepa_form.stateapproval.errors }}
@@ -127,11 +158,10 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				{{ project_form.comments.errors }}
-				<label for="{{ project_form.comments.id_for_label }}">Comments:</label>
+
 			</div>
 			<div class="col-md-4">
-    			{{ project_form.comments }}
+
 			</div>
 			<div class="col-md-2">
 				{{ nepa_form.fhwadraft.errors }}
@@ -155,39 +185,9 @@
 			<div class="col-md-4">
     			{{ nepa_form.fhwaapproval }}
 			</div>
-
 		</div>
-		<div class="row">
-			<div class="col-md-2">
-
-			</div>
-			<div class="col-md-4">
-
-			</div>
-			<div class="col-md-2">
-				{{ nepa_form.statedraftdue.errors }}
-				<label for="{{ nepa_form.statedraftdue.id_for_label }}">State Draft Due:</label>
-			</div>			
-			<div class="col-md-4">
-    			{{ nepa_form.statedraftdue }}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-
-			</div>
-			<div class="col-md-4">
-
-			</div>
-			<div class="col-md-2">
-				{{ nepa_form.fhwadraftdue.errors }}
-				<label for="{{ nepa_form.statedraftdue.id_for_label }}">FHWA Draft Due:</label>
-			</div>			
-			<div class="col-md-4">
-    			{{ nepa_form.fhwadraftdue }}
-			</div>
-		</div>
-	<input name="save_project" id="id_save_project" type="submit" value="Save" />
+	<button type="submit" class="save btn btn-primary">Save</button>	
 	</form>
 {% endblock %}
+
 
