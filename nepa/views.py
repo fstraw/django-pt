@@ -61,6 +61,14 @@ def project_dash(request, projectid):
 			}
 	return render(request, 'projectdash.html', context)
 
+def nepa_dash(request, projectid):
+	project = get_object_or_404(Project, id=projectid)
+	context = { 
+				'project': project,				
+			}
+	return render(request, 'projectdash.html', context)
+	
+
 def project_edit(request, projectid):
 	''' Should only come from edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)

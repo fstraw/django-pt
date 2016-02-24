@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-11">
     <h1>{{ project.jobnumber }} - {{ project.projectname }}</h1>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-1">
     <a class="btn btn-default" href="{% url 'project_edit' project.id %} ">
       <span class="glyphicon glyphicon-pencil">
       </span>
@@ -34,7 +34,7 @@
   <div class="col-md-4"><h4>Air Documents</h4>{{ documenttype }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>PI Number(s): {% for pi in project.pis.all %} {{ pi }} {% endfor %}</h4></div>
+  <div class="col-md-4"><h4>PI Number(s):</h4> {% for pi in project.pis.all %} {{ pi | linebreaks }} {% endfor %}</div>
   <div class="col-md-4"><h4>Noise Documents</h4>{{ earlycoordination }}</div>
 </div>
 <div class="row">
