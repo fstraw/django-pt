@@ -21,7 +21,8 @@ urlpatterns = [
 	url(r'^$', 'nepa.views.home_page', name='home'),
 	url(r'^add/$', 'nepa.views.add_page', name='add'),
     url(r'^admin/$', include(admin.site.urls)),
-    url(r'(?P<projectid>[0-9]+)/$', 'nepa.views.project_dash', name='project_dash'),
-	url(r'(?P<projectid>[0-9]+)/nepa/$', 'nepa.views.nepa_dash', name='nepa_dash'),
+    ##figure out why this order matters
+    url(r'(?P<projectid>[0-9]+)/nepa/(?P<nepaid>[0-9]+)/$', 'nepa.views.nepa_dash', name='nepa_dash'),
+    url(r'(?P<projectid>[0-9]+)/$', 'nepa.views.project_dash', name='project_dash'),	
     url(r'(?P<projectid>[0-9]+)/edit/$', 'nepa.views.project_edit', name='project_edit'),	
     ]

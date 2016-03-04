@@ -20,7 +20,7 @@
   <div class="col-md-4">
     <h4>NEPA Documents</h4>
     {% if project.nepadocs.all %}
-      {% for nepadoc in project.nepadocs.all %} {{ nepadoc | linebreaks }} {% endfor %}
+      {% for nepadoc in project.nepadocs.all %} <a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a> {% endfor %}
     {% else %}
       No NEPA Documents
     {% endif %}
