@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-11">
+    <h1>{{ project.jobnumber }} - {{ project.projectname }}</h1>
+  </div>
+  <div class="col-md-1">
+    <a class="btn btn-default" href="{% url 'project_edit' project.id %} ">
+      <span class="glyphicon glyphicon-pencil">
+      </span>
+    </a>
+  </div>
+</div>
+<!-- <div class="row"> 
+  <div class="col-md-4"><h3>General:</h3></div>
+  <div class="col-md-4"><h3>Nepa:</h3></div>
+</div> -->
+<div class="row">
+  <div class="col-md-4"><h4>Specialist:</h4> {{ nepa.specialist }}</div>
+  <div class="col-md-4"><h4>Early Coordination:</h4> {{ nepa.earlycoordination }}</div>
+  <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h4><h4>State Planner:</h4> {{ nepa.stateplanner }}</h4>
+  </div>
+  <div class="col-md-4"><h4>State Draft: </h4>{{ nepa.statedraft}}</div>
+</div>
+<div class="row">
+  <div class="col-md-4"><h4>Document Type:</h4> {{ nepa.documenttype }}</div>
+  <div class="col-md-4"><h4>State Approval</h4>{{ nepa.stateapproval }}</div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><h4>FHWA Draft</h4>{{ nepa.fhwadraft }}</div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><h4>FHWA Approval</h4>{{ nepa.fhwaapproval }}</div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><h4>State Draft Due On:</h4>{{ nepa.statedraftdue }}</div>
+</div>
+<div class="row">
+  <div class="col-md-4">  </div>
+  <div class="col-md-4"><h4>FHWA Draft Due</h4>{{ nepa.fhwadraftdue }}</div>
+</div>
+<div class="row">
+  
+</div>
+<div class="row">
+  
+</div>
+<div class="row">
+  
+</div>
+<div class="row">
+ 
+</div>
+<div class="row">
+  
+</div>
+<div class="row">
+  
+</div>
+{% endblock %}
