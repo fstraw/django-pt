@@ -1,13 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
-from nepa.forms import ProjectForm, NepaForm
+from nepa.forms import ProjectForm, NepaForm, PlannerForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
-def home_page(request):
-	project_list = Project.objects.all()
+def home_page(request):	
+	if request.method == 'GET':
+		project_list = Project.objects.all()
+		planner_form = PlannerForm()
+	elif request.method == 'POST':
+		planner_form = PlannerForm(request.POST)
+		project_list = Project.objects.filter(projectmanager=request.POST['pm'])	
 	context = RequestContext(request, {'project_list' : project_list,
-										})
+										'planner_form' : planner_form})
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
 

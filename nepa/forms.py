@@ -2,7 +2,11 @@ from django.forms import ModelForm, Textarea, DateInput, Form, TextInput
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from nepa.models import Project, PINumbers, ProjectNumbers, Nepa
+from shared import PROJECT_MANAGERS
 
+
+class PlannerForm(forms.Form):
+    pm = forms.ChoiceField(choices=PROJECT_MANAGERS)
 
 class ProjectForm(ModelForm):
     class Meta:

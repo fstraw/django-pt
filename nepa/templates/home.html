@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<div class="row">
+  <div class="col-md-9"><a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+  </div>
+   <div class="col-md-3" > 
+   	<form method="POST">
+   	{% csrf_token %}
+   	{{planner_form}}
+   	<input type='submit' value='Filter'/>
+   </form>
+  </div>
+
 <table id="id_project_table" class="table table-bordered">
 	<tr>
 		<td>Job Number</td>				
