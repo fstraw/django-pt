@@ -6,7 +6,8 @@ from shared import PROJECT_MANAGERS
 
 
 class PlannerForm(forms.Form):
-    pm = forms.ChoiceField(choices=PROJECT_MANAGERS)
+
+    pm = forms.ChoiceField(choices=PROJECT_MANAGERS, initial='')
 
 class ProjectForm(ModelForm):
     class Meta:

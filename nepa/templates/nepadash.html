@@ -5,7 +5,7 @@
     <h1>{{ project.jobnumber }} - {{ project.projectname }}</h1>
   </div>
   <div class="col-md-1">
-    <a class="btn btn-default" href="{% url 'project_edit' project.id %} ">
+    <a class="btn btn-default" href="{% url 'nepa_edit' project.id nepa.id %} ">
       <span class="glyphicon glyphicon-pencil">
       </span>
     </a>

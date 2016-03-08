@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/$', include(admin.site.urls)),
     ##figure out why this order matters
     url(r'(?P<projectid>[0-9]+)/nepa/(?P<nepaid>[0-9]+)/$', 'nepa.views.nepa_dash', name='nepa_dash'),
+    url(r'(?P<projectid>[0-9]+)/nepa/(?P<nepaid>[0-9]+)/edit$', 'nepa.views.nepa_edit', name='nepa_edit'),
     url(r'(?P<projectid>[0-9]+)/$', 'nepa.views.project_dash', name='project_dash'),	
     url(r'(?P<projectid>[0-9]+)/edit/$', 'nepa.views.project_edit', name='project_edit'),	
     ]
