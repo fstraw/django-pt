@@ -39,11 +39,10 @@ def add_page(request):
 			# raise Exception
 			return home_page(request)
 		else:
-			## need to fix error checking
-			
-			return render(request, 'add.html', {'project_form' : project_form})
+			## need to fix error checking			
+			return render(request, 'add_project.html', {'project_form' : project_form})
 	else:
-		return render(request, 'add.html', {'project_form' : ProjectForm})
+		return render(request, 'add_project.html', {'project_form' : ProjectForm})
 
 def project_dash(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
@@ -71,10 +70,10 @@ def project_edit(request, projectid):
 		if project_form.is_valid():
 			project_form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add.html', {'project_form' : project_form})
+		return render(request, 'add_project.html', {'project_form' : project_form})
 	else:
 		project_form = ProjectForm(instance=project)
-		return render(request, 'add.html', {'project_form' : project_form})
+		return render(request, 'add_project.html', {'project_form' : project_form})
 
 def nepa_edit(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
@@ -85,7 +84,13 @@ def nepa_edit(request, projectid, nepaid):
 			##fix nepa project change functionality
 			nepa_form.save() #save and commit job number to db			
 			return redirect('nepa_dash', projectid=project.id, nepaid=nepa.id)
-		return render(request, 'add_nepa.html', {'nepa_form' : nepa_form})
+		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
 	else:		
 		nepa_form = NepaForm(instance=nepa)
-		return render(request, 'add_nepa.html', {'nepa_form' : nepa_form})
+		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
+
+def nepa_add(request, projectid):
+	project = get_object_or_404(Project, id=projectid)
+	if request.method == 'GET':
+		nepa_form = NepaForm(initial={'project':project})	
+		return render(request, 'add_nepa.html', {'nepa_form':nepa_form, 'project':project})

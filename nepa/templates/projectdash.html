@@ -11,10 +11,6 @@
     </a>
   </div>
 </div>
-<!--<div class="row"> 
-  <div class="col-md-4"><h3>General:</h3></div>
-  <div class="col-md-4"><h3>Nepa:</h3></div>
-</div>-->
 <div class="row">
   <div class="col-md-4"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
   <div class="col-md-4">
@@ -24,6 +20,7 @@
     {% else %}
       No NEPA Documents
     {% endif %}
+  <i><a href="{% url 'nepa_add' project.id %} ">Add NEPA</a></i>
   </div>
   <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 </div>
