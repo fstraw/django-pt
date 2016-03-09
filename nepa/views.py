@@ -91,6 +91,13 @@ def nepa_edit(request, projectid, nepaid):
 
 def nepa_add(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
-	if request.method == 'GET':
+	if request.method == 'POST':
+		nepa_form = NepaForm(request.POST)
+		if nepa_form.is_valid():
+			##fix nepa project change functionality
+			nepa_form.save() #save and commit job number to db			
+			return redirect('project_dash', projectid=project.id)
+		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
+	else:
 		nepa_form = NepaForm(initial={'project':project})	
 		return render(request, 'add_nepa.html', {'nepa_form':nepa_form, 'project':project})
