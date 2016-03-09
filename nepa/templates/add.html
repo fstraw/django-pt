@@ -1,129 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Add Project</h1>
-	<div class="row">
-		<div class="col-md-2">
-			<h3>General</h3>
-		</div>
-	</div>
 	<form method="POST">
 	{% csrf_token %}
+	{% for field in project_form %}
 	{{ form.non_field_errors }}
 		<div class="row">
 			<div class="col-md-2">
-				{{ project_form.jobnumber.errors }}
-				<label for="{{ project_form.jobnumber.id_for_label }}">Job Number:</label>
+				{{ field.errors }}
+				<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
 			</div>			
 			<div class="col-md-4">
-    			{{ project_form.jobnumber }}
-			</div>
-			<div class="col-md-2">
-				<!--{{ nepa_form.project.errors }}
-				<label for="{{ nepa_form.project.id_for_label }}">Project:</label>-->
-			</div>			
-			<div class="col-md-4">
-    			<!--{{ nepa_form.project }}-->
+    			{{ field }}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.projectname.errors }}
-				<label for="{{ project_form.projectname.id_for_label }}">Project Name:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.projectname }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.projectmanager.errors }}
-				<label for="{{ project_form.projectmanager.id_for_label }}">Project Manager:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.projectmanager }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.projectdescription.errors }}
-				<label for="{{ project_form.projectdescription.id_for_label }}">Project Description:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.projectdescription }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.county.errors }}
-				<label for="{{ project_form.county.id_for_label }}">County:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.county }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.pis.errors }}
-				<label for="{{ project_form.pis.id_for_label }}">PI Number(s):</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.pis }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.projectnumbers.errors }}
-				<label for="{{ project_form.projectnumbers.id_for_label }}">Project Number(s):</label>
-			</div>
-			<div class="col-md-4">				
-    			{{ project_form.projectnumbers }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ project_form.comments.errors }}
-				<label for="{{ project_form.comments.id_for_label }}">Comments:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ project_form.comments }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-
-			</div>
-			<div class="col-md-4">
-
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-
-			</div>
-			<div class="col-md-4">
-
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-
-			</div>
-			<div class="col-md-4">
-
-			</div>
-
-		</div>
+	{% endfor %}
 	<button type="submit" class="save btn btn-primary">Save</button>	
 	</form>
 {% endblock %}
-
-
