@@ -1,132 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Add Project</h1>
-	<div class="row">
-		<div class="col-md-2">
-			<h3>General</h3>
-		</div>
-	</div>
+<h1>Edit Nepa</h1>
 	<form method="POST">
 	{% csrf_token %}
+	{% for field in nepa_form %}
 	{{ form.non_field_errors }}
 		<div class="row">
 			<div class="col-md-2">
-				{{ nepa_form.project.errors }}
-				<label for="{{ nepa_form.project.id_for_label }}">Project:</label>
+				{{ field.errors }}
+				<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
 			</div>			
 			<div class="col-md-4">
-    			{{ nepa_form.project }}
-			</div>
-			<div class="col-md-2">
-				<!--{{ nepa_form.project.errors }}
-				<label for="{{ nepa_form.project.id_for_label }}">Project:</label>-->
-			</div>			
-			<div class="col-md-4">
-    			<!--{{ nepa_form.project }}-->
+    			{{ field }}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.specialist.errors }}
-				<label for="{{ nepa_form.specialist.id_for_label }}">Specialist:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.specialist }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.stateplanner.errors }}
-				<label for="{{ nepa_form.stateplanner.id_for_label }}">State Planner:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.stateplanner }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.documenttype.errors }}
-				<label for="{{ nepa_form.documenttype.id_for_label }}">Document Type:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.documenttype }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.earlycoordination.errors }}
-				<label for="{{ nepa_form.earlycoordination.id_for_label }}">Early Coordination:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.earlycoordination }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.statedraft.errors }}
-				<label for="{{ nepa_form.statedraft.id_for_label }}">State Draft:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.statedraft }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.stateapproval.errors }}
-				<label for="{{ nepa_form.stateapproval.id_for_label }}">State Approval:</label>
-			</div>
-			<div class="col-md-4">				
-    			{{ nepa_form.stateapproval }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.fhwadraft.errors }}
-				<label for="{{ nepa_form.fhwadraft.id_for_label }}">FHWA Draft:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.fhwadraft }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.fhwaapproval.errors }}
-				<label for="{{ nepa_form.fhwaapproval.id_for_label }}">FHWA Approval:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.fhwaapproval }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.statedraftdue.errors }}
-				<label for="{{ nepa_form.statedraftdue.id_for_label }}">State Draft Due:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.statedraftdue }}
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				{{ nepa_form.fhwadraftdue.errors }}
-				<label for="{{ nepa_form.fhwadraftdue.id_for_label }}">FHWA Draft Due:</label>
-			</div>
-			<div class="col-md-4">
-    			{{ nepa_form.fhwadraftdue }}
-			</div>
-
-		</div>
+	{% endfor %}
 	<button type="submit" class="save btn btn-primary">Save</button>	
 	</form>
 {% endblock %}
-
-
