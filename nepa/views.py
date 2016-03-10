@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
 from nepa.forms import ProjectForm, NepaForm, PlannerForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
@@ -66,12 +66,17 @@ def project_edit(request, projectid):
 	''' Should only come from edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
+		if request.POST.get('delete'):
+			project.delete()
+			blank_request = HttpRequest()
+			blank_request.method = 'GET'
+			return home_page(blank_request)
 		project_form = ProjectForm(request.POST, instance=project)
 		if project_form.is_valid():
 			project_form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
 		return render(request, 'add_project.html', {'project_form' : project_form})
-	else:
+	else:		
 		project_form = ProjectForm(instance=project)
 		return render(request, 'add_project.html', {'project_form' : project_form})
 
