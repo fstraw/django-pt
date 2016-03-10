@@ -84,6 +84,11 @@ def nepa_edit(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
 	nepa = project.nepadocs.get(id=nepaid)
 	if request.method == 'POST':
+		if request.POST.get('delete'):
+			nepa.delete()
+			blank_request = HttpRequest()
+			blank_request.method = 'GET'
+			return project_dash(blank_request, projectid)
 		nepa_form = NepaForm(request.POST, instance=nepa)
 		if nepa_form.is_valid():
 			##fix nepa project change functionality
