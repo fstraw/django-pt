@@ -67,4 +67,6 @@ DOCUMENT_TYPES = (
 				('EA', 'EA'),
 				('EIS', 'EIS'),
 				('FONSI', 'FONSI'),
+				('GEPA_Type_B', 'GEPA Type B'),
+				('GEPA_EER', 'GEPA EER'),
 				)
