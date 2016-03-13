@@ -31,4 +31,10 @@ class NepaForm(ModelForm):
                   'statedraftdue', 'fhwadraftdue', 
                   'stateapproval', 'fhwadraft',
                   'fhwaapproval']
-    widgets = {'earlycoordination': DateInput()}
+    widgets = {'earlycoordination': DateInput(attrs={'class':'datepicker'}),
+				'statedraft': DateInput(attrs={'class':'datepicker'}),
+				'statedraftdue': DateInput(attrs={'class':'datepicker'}),
+				'fhwadraftdue': DateInput(attrs={'class':'datepicker'}),
+				'stateapproval': DateInput(attrs={'class':'datepicker'}),
+				'fhwadraft': DateInput(attrs={'class':'datepicker'}),
+				'fhwaapproval': DateInput(attrs={'class':'datepicker'}),}
