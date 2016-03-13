@@ -31,4 +31,4 @@ class NepaForm(ModelForm):
                   'statedraftdue', 'fhwadraftdue', 
                   'stateapproval', 'fhwadraft',
                   'fhwaapproval']
-    # widgets = {'project': TextInput(attrs={'readonly':'readonly'})}
+    widgets = {'earlycoordination': DateInput()}

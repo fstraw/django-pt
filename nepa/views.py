@@ -37,7 +37,9 @@ def add_page(request):
 			project.comments = project_data['comments'] 
 			project.save()
 			# raise Exception
-			return home_page(request)
+			blank_request = HttpRequest()
+			blank_request.method = 'GET'
+			return redirect(home_page)
 		else:
 			## need to fix error checking			
 			return render(request, 'add_project.html', {'project_form' : project_form})

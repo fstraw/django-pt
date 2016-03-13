@@ -21,16 +21,16 @@ class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='', related_name='nepadocs')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)
+	documenttype = models.CharField(max_length=15, default='', choices=DOCUMENT_TYPES)
 	#Submittals
-	earlycoordination = models.DateField(default=timezone.now)
-	statedraft = models.DateField(default=timezone.now)
-	stateapproval = models.DateField(default=timezone.now)
-	fhwadraft = models.DateField(default=timezone.now)
-	fhwaapproval = models.DateField(default=timezone.now)
+	earlycoordination = models.DateField(null=True, blank=True)
+	statedraft = models.DateField(null=True, blank=True)
+	stateapproval = models.DateField(null=True, blank=True)
+	fhwadraft = models.DateField(null=True, blank=True)
+	fhwaapproval = models.DateField(null=True, blank=True)
 	#Due Dates
-	statedraftdue = models.DateField(default=timezone.now)
-	fhwadraftdue = models.DateField(default=timezone.now)
+	statedraftdue = models.DateField(null=True, blank=True)
+	fhwadraftdue = models.DateField(null=True, blank=True)
 	def statedraft_due_in(self):
 		if self.statedraftdue:
 			date_diff = self.statedraftdue - date.today()
@@ -56,7 +56,7 @@ class Air(models.Model):
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='')
 	##doc type (PM2.5, air assessment, memorandum)
-	documenttype = models.CharField(max_length=10, default='')
+	documenttype = models.CharField(max_length=15, default='')
 	rptdeadline = models.DateField(default=timezone.now)
 	pmsubmitted = models.DateField(default=timezone.now)
 	pmapproval = models.DateField(default=timezone.now)
