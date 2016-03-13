@@ -1,18 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
+
+<script>
+$( document ).ready(function() {
+	var $rows = $('#id_project_table tr:not(:first-child)');
+	$('#search').keyup(function() {
+		var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+		
+		$rows.show().filter(function() {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+			return !~text.indexOf(val);
+		}).hide();
+	});
+});
+</script>
+
 <div class="row">
-  <div class="col-md-9"><a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+  <div class="col-md-10"><a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
   </div>
-   <div class="col-md-3" > 
-   	<form method="POST">
-   	{% csrf_token %}
-   	{{planner_form}}
-   	<input type='submit' value='Filter'/>
-   </form>
+   <div class="col-md-2" > 
+	<input type="text" id="search" placeholder="Type to search">
   </div>
 
 <table id="id_project_table" class="table table-bordered">
-	<tr>
+	<tr id="hdr">
 		<td><b>Job Number</b></td>				
 		<td><b>Project Name</b></td>
 		<td><b>Project Manager</b></td>
@@ -21,7 +32,7 @@
 		<td><b>State Draft Due In</b></td>
 		<td><b>FHWA Draft Due In</b></td>
 	{% for project in project_list %}
-	</tr>
+	</tr id="row_info">
 		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectmanager }} </td>
