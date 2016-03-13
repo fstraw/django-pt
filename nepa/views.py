@@ -70,7 +70,7 @@ def project_edit(request, projectid):
 			project.delete()
 			blank_request = HttpRequest()
 			blank_request.method = 'GET'
-			return home_page(blank_request)
+			return redirect(home_page)
 		project_form = ProjectForm(request.POST, instance=project)
 		if project_form.is_valid():
 			project_form.save() #save and commit job number to db			
