@@ -23,7 +23,7 @@ $( document ).ready(function() {
   </div>
 
 <table id="id_project_table" class="table table-bordered">
-	<tr id="hdr">
+	<tr>
 		<td><b>Job Number</b></td>				
 		<td><b>Project Name</b></td>
 		<td><b>Project Manager</b></td>
@@ -32,7 +32,7 @@ $( document ).ready(function() {
 		<td><b>State Draft Due In</b></td>
 		<td><b>FHWA Draft Due In</b></td>
 	{% for project in project_list %}
-	</tr id="row_info">
+	</tr>
 		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectmanager }} </td>

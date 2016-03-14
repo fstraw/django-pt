@@ -14,13 +14,14 @@
 <div class="row">
   <div class="col-md-4"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
   <div class="col-md-4">
-    <h4>NEPA Documents</h4>
+    <h4>Environmental Documents</h4>
     {% if project.nepadocs.all %}
       {% for nepadoc in project.nepadocs.all %} <a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a> {% endfor %}
     {% else %}
-      No NEPA Documents
+      No Environmental Documents
+	  <br>
     {% endif %}
-  <i><a href="{% url 'nepa_add' project.id %} ">Add NEPA Document</a></i>
+  <i><a href="{% url 'nepa_add' project.id %} ">Add Environmental Document</a></i>
   </div>
   <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 </div>
