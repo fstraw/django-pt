@@ -38,6 +38,8 @@ class Nepa(models.Model):
 	statedraftdue = models.DateField(null=True, blank=True)
 	fhwadraftdue = models.DateField(null=True, blank=True)
 	def statedraft_due_in(self):
+		if self.stateapproval:
+			return 'Approved'
 		if self.statedraftdue:
 			date_diff = self.statedraftdue - date.today()
 			if not date_diff:
@@ -47,6 +49,8 @@ class Nepa(models.Model):
 			return days_stripped
 		return 'No Date'
 	def fhwadraft_due_in(self):
+		if self.fhwaapproval:
+			return 'Approved'
 		if self.fhwadraftdue:
 			date_diff = self.fhwadraftdue - date.today()
 			if not date_diff:
