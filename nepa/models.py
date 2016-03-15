@@ -11,7 +11,6 @@ class Project(models.Model):
 	projectname = models.CharField(max_length=50, default='')
 	projectmanager = models.CharField(max_length=25, default='', choices=PROJECT_MANAGERS)
 	projectdescription = models.CharField(max_length=1000, default='')
-	client = models.CharField(max_length=30, default='', blank=True)
 	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
 	comments = models.CharField(max_length=1000, default='', blank=True)
