@@ -9,6 +9,8 @@ class PlannerForm(forms.Form):
     pm = forms.ChoiceField(choices=PROJECT_MANAGERS, initial='')
 
 class ProjectForm(ModelForm):
+    pinumber = forms.CharField(initial='', required=False)
+    projectnumber = forms.CharField(initial='', required=False) 
     class Meta:
           model = Project
           fields = ['jobnumber', 'projectname', 'client',
@@ -17,7 +19,7 @@ class ProjectForm(ModelForm):
           widgets = {
                       'jobnumber': Textarea(attrs={'cols': 20, 'rows': 1}),
                       'projectname': Textarea(attrs={'cols': 40, 'rows': 1}),
-					  'client': Textarea(attrs={'cols': 40, 'rows': 1}),
+					            'client': Textarea(attrs={'cols': 40, 'rows': 1}),
                       'projectdescription': Textarea(attrs={'cols': 50, 'rows': 3}),
                       'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
                     }

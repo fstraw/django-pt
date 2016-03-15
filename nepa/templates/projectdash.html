@@ -16,7 +16,7 @@
 		<div class="col-md-3">
 			<div class="row">
 				<div class="col-md-12"><h4>PI Number(s):</h4> {% for pi in project.pis.all %} {{ pi | linebreaks }} {% endfor %}</div>
-				<div class="col-md-12"><h4>Project Number(s):</h4> {% for pn in project.projectnumbers.all %} {{ pn }} {% endfor %}</div>
+				<div class="col-md-12"><h4>Project Number(s):</h4> {% for pn in project.projectnumbers.all %} {{ pn | linebreaks }} {% endfor %}</div>
 			</div>
 		</div>
 		<div class="col-md-3">

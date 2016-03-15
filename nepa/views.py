@@ -75,6 +75,14 @@ def project_edit(request, projectid):
 			return redirect(home_page)
 		project_form = ProjectForm(request.POST, instance=project)
 		if project_form.is_valid():
+			clean = project_form.cleaned_data
+			if not clean['pinumber'] == '':
+				pi = PINumbers.objects.get_or_create(pi_number=clean['pinumber'])[0]
+				project.pis.add(pi)
+			if not clean['projectnumber'] == '':
+				projectnumber = ProjectNumbers.objects.get_or_create(project_number=clean['projectnumber'])[0]			
+				project.projectnumbers.add(projectnumber)
+			# return HttpResponse('<html>{}</html>'.format(pi))
 			project_form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
 		return render(request, 'add_project.html', {'project_form' : project_form})
