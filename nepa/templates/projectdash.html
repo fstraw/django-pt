@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
+  <div class="col-md-4"><h4>Client:</h4> {{ project.client }}</div>
   <div class="col-md-4">
     <h4>Environmental Documents</h4>
     {% if project.nepadocs.all %}
@@ -26,33 +26,32 @@
   <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 </div>
 <div class="row">
-  <div class="col-md-4">
-    <h4>Project Number(s): {% for pn in project.projectnumbers.all %} {{ pn }} {% endfor %}</h4>
-  </div>
+  <div class="col-md-4"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
   <div class="col-md-4"><h4>Air Documents</h4>{{ documenttype }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>PI Number(s):</h4> {% for pi in project.pis.all %} {{ pi | linebreaks }} {% endfor %}</div>
+  <div class="col-md-4"><h4>Project Number(s): {% for pn in project.projectnumbers.all %} {{ pn }} {% endfor %}</h4></div>
   <div class="col-md-4"><h4>Noise Documents</h4>{{ earlycoordination }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>Project Manager:</h4> {{ project.projectmanager }}</div>
+  <div class="col-md-4"><h4>PI Number(s):</h4> {% for pi in project.pis.all %} {{ pi | linebreaks }} {% endfor %}</div>
   <div class="col-md-4"><h4>Ecology Documents</h4>{{ statedraft }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>County: </h4>{{ project.county }}</div>
+   <div class="col-md-4"><h4>Project Manager:</h4> {{ project.projectmanager }}</div>
   <div class="col-md-4"><h4>Aquatics Documents</h4>{{ stateapproval }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4"><h4>Comments: </h4>{{ project.comments }}</div>
+  <div class="col-md-4"><h4>County: </h4>{{ project.county }}</div>
   <div class="col-md-4"><h4>Archaeology Documents</h4>{{ fhwadraft }}</div>
 </div>
 <div class="row">
-  <div class="col-md-4">  </div>
+  <div class="col-md-4"><h4>District: </h4>{{ project.gdot_district }}</div>
   <div class="col-md-4"><h4>History Documents</h4>{{ fhwaapproval }}</div>
 </div>
 <div class="row">
-  
+  <div class="col-md-4"><h4>Comments: </h4>{{ project.comments }}</div>
+  <div class="col-md-4">  </div>
 </div>
 <div class="row">
   

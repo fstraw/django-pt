@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import date
-from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES
+from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES
 
 # Create your models here.
 
@@ -11,9 +11,15 @@ class Project(models.Model):
 	projectname = models.CharField(max_length=50, default='')
 	projectmanager = models.CharField(max_length=25, default='', choices=PROJECT_MANAGERS)
 	projectdescription = models.CharField(max_length=1000, default='')
+	client = models.CharField(max_length=30, default='', blank=True)
 	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
 	comments = models.CharField(max_length=1000, default='', blank=True)
+	def gdot_district(self):
+		if self.county:
+			return '{}'.format(COUNTIES[self.county])
+		else:
+			return 'Unassigned'
 	def __str__(self):
 		return self.jobnumber		
 	
