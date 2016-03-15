@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Add Project</h1>
+<h1>Add/Edit Project</h1>
 	<form method="POST">
 	{% csrf_token %}
 	{% for field in project_form %}
