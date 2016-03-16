@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+{% load staticfiles %}
+<script src="{% static 'site/js/jquery.tagsinput.js' %}"></script>
+<script>
+$( document ).ready(function() {
+	$('#id_pinumber').tagsInput({
+		'height':'100px',
+   		'width':'370px',
+   		'defaultText': 'Add',
+   		'maxChars' : 7,
+	});
+	$('#id_projectnumber').tagsInput({
+		'height':'100px',
+   		'width':'370px',
+   		'defaultText': 'Add',
+   		'maxChars' : 20,
+	});
+});
+</script>
+
 <h1>Add/Edit Project</h1>
 	<form method="POST">
 	{% csrf_token %}
@@ -13,9 +32,9 @@
 			<div class="col-md-4">
     			{{ field }}
 			</div>
-		</div>
-	{% endfor %}
+		</div>	
+	{% endfor %}	
 	<button type="submit" name='save' class="save btn btn-primary">Save</button>
-	<button type="submit" name='delete' value='delete' class="save btn btn-primary">Delete</button>
+	<button type="submit" name='delete' value='delete' class="save btn btn-primary">Delete</button> <br><br>	
 	</form>
 {% endblock %}

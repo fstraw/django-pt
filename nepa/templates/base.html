@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">  
-{% load staticfiles %}  
+{% load staticfiles %}
 	<head>
+		<title>{% block title %}{% include "_brandname.html" %}{% endblock %}</title>   
 		<meta charset="utf-8">    
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">    
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">    
@@ -9,15 +10,16 @@
 		<meta name="author" content="Arun Ravindran">    
 		<link rel="shortcut icon" href="{% static 'site/ico/favicon.ico' %}">
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-		<title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>   
 		<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">   
-		<link href="{% static 'site/css/main.css' %}" rel="stylesheet">		
+		<link href="{% static 'site/css/main.css' %}" rel="stylesheet">
+		<link href="{% static 'site/css/jquery.tagsinput.css' %}" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'site/js/jquery-ui-1.11.4/jquery-ui.min.css' %}">
+		<script src="{% static 'site/js/jquery-2.2.1.min.js' %}"></script>
+		<script src="{% static 'site/js/jquery.tagsinput.js' %}"></script>	
+		<script src="{% static 'site/js/jquery-ui-1.11.4/external/jquery/jquery.js' %}"></script>
+		<script src="{% static 'site/js/jquery-ui-1.11.4/jquery-ui.min.js' %}"></script>
 	</head> 
 	<body>
-	<script src="{% static 'site/js/jquery-2.2.1.min.js' %}"></script>
-	<link rel="stylesheet" href="{% static 'site/js/jquery-ui-1.11.4/jquery-ui.min.css' %}">
-	<script src="{% static 'site/js/jquery-ui-1.11.4/external/jquery/jquery.js' %}"></script>
-	<script src="{% static 'site/js/jquery-ui-1.11.4/jquery-ui.min.js' %}"></script>
 			<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
@@ -31,6 +33,5 @@
 			{% block content %}
 			{% endblock %}
 			</div>
-		</nav>
 	</body>
 </html>

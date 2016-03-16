@@ -3,6 +3,7 @@
 
 html, body{
     height:100%;		/* For full height images */
+    font-size: 16px;
 	/*font-family: 'Quattrocento', serif;*/
 }
 
@@ -18,10 +19,8 @@ html, body{
 
 .glyphicon.glyphicon-pencil {
     font-size: 18px;
-    color: black;
-	
+    color: black;	
 }
-
 
 .footer {
   padding-top: 40px;

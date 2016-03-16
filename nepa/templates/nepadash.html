@@ -1,67 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
+
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ nepa.documenttype }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'nepa_edit' project.id nepa.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
 <div class="row">
-  <div class="col-md-11">
-    <h2>{{ project.jobnumber }} - {{ project.projectname }}</h2>
-  </div>
-  <div class="col-md-1">
-    <a class="btn btn-default" href="{% url 'nepa_edit' project.id nepa.id %} ">
-      <span class="glyphicon glyphicon-pencil">
-      </span>
-    </a>
-  </div>
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Specialist</b></h4> {{ nepa.specialist }}</div>
+				<div class="col-md-12"><h4><b>State Planner</b></h4> {{ nepa.stateplanner }}</div>
+				<div class="col-md-12"><h4><b>Document Type</b></h4> {{ nepa.documenttype }}</div>
+				<div class="col-md-12"><h4></h4></div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Early Coordination</b></h4> {{ nepa.earlycoordination }}</div>
+				<div class="col-md-12"><h4><b>State Draft Submittal</b></h4> {{ nepa.statedraft }}</div>
+				<div class="col-md-12"><h4><b>Federal Draft Submittal</b></h4> {{ nepa.fhwadraft }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>State Approval</b></h4> {{ nepa.stateapproval }}</div>
+				<div class="col-md-12"><h4><b>Federal Approval</b></h4> {{ nepa.fhwaapproval }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">				
+				<div class="col-md-12"><h4>Air Documents</h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>Noise Documents</h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>Ecology Documents</h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>Aquatics Documents</h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>Archaeology Documents</h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>History</h4>{{ documenttype }}</div>	
+			</div>
+		</div>
+	</div>  
+		<div class="col-md-4">
+			<div class="col-md-12"><h4>Project Description:</h4> {{ project.projectdescription }}</div>
+			<div class="col-md-12"><h4>Comments:</h4> {{ project.comments }}</div>
+		</div>  
+	</div>
 </div>
-<!-- <div class="row"> 
-  <div class="col-md-4"><h3>General:</h3></div>
-  <div class="col-md-4"><h3>Nepa:</h3></div>
-</div> -->
-<div class="row">
-  <div class="col-md-4"><h4>Specialist:</h4> {{ nepa.specialist }}</div>
-  <div class="col-md-4"><h4>Early Coordination:</h4> {{ nepa.earlycoordination }}</div>
-  <!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h4><h4>State Planner:</h4> {{ nepa.stateplanner }}</h4>
-  </div>
-  <div class="col-md-4"><h4>State Draft: </h4>{{ nepa.statedraft}}</div>
-</div>
-<div class="row">
-  <div class="col-md-4"><h4>Document Type:</h4> {{ nepa.documenttype }}</div>
-  <div class="col-md-4"><h4>State Approval</h4>{{ nepa.stateapproval }}</div>
-</div>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4"><h4>FHWA Draft</h4>{{ nepa.fhwadraft }}</div>
-</div>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4"><h4>FHWA Approval</h4>{{ nepa.fhwaapproval }}</div>
-</div>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4"><h4>State Draft Due On:</h4>{{ nepa.statedraftdue }}</div>
-</div>
-<div class="row">
-  <div class="col-md-4">  </div>
-  <div class="col-md-4"><h4>FHWA Draft Due</h4>{{ nepa.fhwadraftdue }}</div>
-</div>
-<div class="row">
-  
-</div>
-<div class="row">
-  
-</div>
-<div class="row">
-  
-</div>
-<div class="row">
- 
-</div>
-<div class="row">
-  
-</div>
-<div class="row">
-  
-</div>
+<!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
 {% endblock %}

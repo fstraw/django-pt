@@ -74,14 +74,28 @@ def project_edit(request, projectid):
 			blank_request.method = 'GET'
 			return redirect(home_page)
 		project_form = ProjectForm(request.POST, instance=project)
+		attached_pis = [i.pi_number for i in project.pis.all()]
+		attached_pns = [pn.project_number for pn in project.projectnumbers.all()]
+		# return HttpResponse('<html>{}</html>'.format(attached_pns))
 		if project_form.is_valid():
 			clean = project_form.cleaned_data
 			if not clean['pinumber'] == '':
-				pi = PINumbers.objects.get_or_create(pi_number=clean['pinumber'])[0]
-				project.pis.add(pi)
+				for num in attached_pis:
+					pi = PINumbers.objects.get(pi_number=num)
+					project.pis.remove(pi)
+				for num in clean['pinumber'].split(','):
+					pi = PINumbers.objects.get_or_create(pi_number=num)[0]					
+					project.pis.add(pi)
+				# returnesponse('<html>{}<br>{}</html>'.format(sorted(attached_pis), sorted(clean['pinumber'].split(','))))
+				# return HttpResponse('<html>{}</html>'.format(l))
 			if not clean['projectnumber'] == '':
-				projectnumber = ProjectNumbers.objects.get_or_create(project_number=clean['projectnumber'])[0]			
-				project.projectnumbers.add(projectnumber)
+				for num in attached_pns:
+					pn = ProjectNumbers.objects.get(project_number=num)
+					project.projectnumbers.remove(pn)
+				for num in clean['projectnumber'].split(','):
+					pn = ProjectNumbers.objects.get_or_create(project_number=num)[0]					
+					project.projectnumbers.add(pn)
+			##add PI and PN cleanup, check for orphans
 			# return HttpResponse('<html>{}</html>'.format(pi))
 			project_form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
