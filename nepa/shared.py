@@ -19,6 +19,15 @@ NEPA_PLANNERS = (
 			('Jim Woodson', 'Jim Woodson'),
 	)
 
+CLIENTS = (
+			('Heath and Lineback', 'Heath and Lineback'),
+			('Parsons Brinkerhoff', 'Parsons Brinkerhoff'),
+			('Kimley-Horn', 'Kimley-Horn'),
+			('HTB', 'HTB'),
+			('Arcadis', 'Arcadis'),
+			('HDR', 'HDR'),
+	)
+
 COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
 'Banks':1, 'Barrow':1, 'Bartow':6, 'Ben Hill':4, 'Berrien':4, 'Bibb':3,
 'Bleckley':2, 'Brantley':5, 'Brooks':4, 'Bryan':5,

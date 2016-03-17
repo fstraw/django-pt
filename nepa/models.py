@@ -37,8 +37,6 @@ class Nepa(models.Model):
 	#Due Dates
 	statedraftdue = models.DateField(null=True, blank=True)
 	fhwadraftdue = models.DateField(null=True, blank=True)
-	def earliest_due_date(self):
-		pass
 	def statedraft_due_in(self):
 		if self.stateapproval:
 			return 'Approved'

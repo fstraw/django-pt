@@ -13,6 +13,7 @@
 - GDOT Nepa Planner List
 - Home page layout
 - Justify project description layout
+- Early coordination attached to project or nepa doc?
 
 Bug Tracker
 - PI Validation
