@@ -10,3 +10,11 @@
 - History
 - Archaeology
 - Mapping component
+- GDOT Nepa Planner List
+- Home page layout
+- Justify project description layout
+
+Bug Tracker
+- PI Validation
+- PN Validation
+- Nepa Form project change
