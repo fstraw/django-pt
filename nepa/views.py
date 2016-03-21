@@ -65,6 +65,15 @@ def nepa_dash(request, projectid, nepaid):
 				'nepa': nepa,				
 			}
 	return render(request, 'nepadash.html', context)
+
+def air_dash(request, projectid, airid):
+	project = get_object_or_404(Project, id=projectid)
+	air = project.air_set.all().get(id=airid)
+	context = { 
+				'project' : project,
+				'air': air,				
+			}
+	return render(request, 'airdash.html', context)
 	
 
 def project_edit(request, projectid):
@@ -148,3 +157,22 @@ def air_add(request, projectid):
 	else:
 		air_form = AirForm(initial={'project':project})	
 		return render(request, 'add_document.html', {'form':air_form, 'project':project})
+
+def air_edit(request, projectid, airid):
+	project = get_object_or_404(Project, id=projectid)
+	air = project.air_set.all().get(id=airid)
+	if request.method == 'POST':
+		if request.POST.get('delete'):
+			air.delete()
+			blank_request = HttpRequest()
+			blank_request.method = 'GET'
+			return project_dash(blank_request, projectid)
+		form = AirForm(request.POST, instance=air)
+		if form.is_valid():
+			##fix air project change functionality
+			form.save() #save and commit job number to db			
+			return redirect('air_dash', projectid=project.id, airid=air.id)
+		return render(request, 'add_document.html', {'form':form})
+	else:		
+		form = AirForm(instance=air)
+		return render(request, 'add_document.html', {'form':form})

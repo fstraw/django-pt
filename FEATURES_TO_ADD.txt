@@ -14,6 +14,7 @@
 - Home page layout
 - Justify project description layout
 - Early coordination attached to project or nepa doc?
+- Populate employee table
 
 Bug Tracker
 - PI Validation

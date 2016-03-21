@@ -1,9 +1,9 @@
-from django.forms import ModelForm, Textarea, DateInput, Form, TextInput
+from django.forms import ModelForm, Textarea, DateInput, Form, TextInput, CharField, ChoiceField
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air
-from shared import PROJECT_MANAGERS
+from shared import PROJECT_MANAGERS, EMPLOYEES
 
 
 class PlannerForm(forms.Form):
@@ -79,9 +79,12 @@ class NepaForm(ModelForm):
         }
 
 class AirForm(ModelForm):
-  class Meta:          
+  # def __init__(self, *args, **kwargs):
+  #   super(AirForm, self).__init__(*args, **kwargs)
+  #   self.fields['documenttype'].choices = AIR_DOCUMENT_TYPES
+  class Meta:
     model = Air
-    fields = ['project', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'specialist','draftsubmittal', 
               'draftapproval', 'duedate']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
