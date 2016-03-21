@@ -2,7 +2,7 @@ from django.forms import ModelForm, Textarea, DateInput, Form, TextInput
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from nepa.models import Project, PINumbers, ProjectNumbers, Nepa
+from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air
 from shared import PROJECT_MANAGERS
 
 
@@ -77,3 +77,20 @@ class NepaForm(ModelForm):
 			'fhwadraft': _('FHWA Draft Submitted On'),
 			'fhwaapproval': _('FHWA Approval'),
         }
+
+class AirForm(ModelForm):
+  class Meta:          
+    model = Air
+    fields = ['project', 'specialist','draftsubmittal', 
+              'draftapproval', 'duedate']
+    widgets = {
+        'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
+        'draftapproval': DateInput(attrs={'class':'datepicker'}),
+        'duedate': DateInput(attrs={'class':'datepicker'}),
+        }
+
+    labels = {
+      'draftsubmittal':_('Draft Submittal'),
+      'draftapproval': _('Draft Approval'),
+      'duedate': _('Due Date'),
+      }

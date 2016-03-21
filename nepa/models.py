@@ -72,8 +72,6 @@ class Nepa(models.Model):
 		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
 
 class Air(SpecialStudy):	
-	def __init__(self):
-		self.documenttype.choices = NEPA_PLANNERS
 	draftsubmittal = models.DateField(null=True, blank=True)
 	draftapproval = models.DateField(null=True, blank=True)
 	duedate = models.DateField(null=True, blank=True)

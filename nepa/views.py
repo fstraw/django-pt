@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
-from nepa.forms import ProjectForm, NepaForm, PlannerForm
+from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 def home_page(request):	
@@ -113,25 +113,38 @@ def nepa_edit(request, projectid, nepaid):
 			blank_request = HttpRequest()
 			blank_request.method = 'GET'
 			return project_dash(blank_request, projectid)
-		nepa_form = NepaForm(request.POST, instance=nepa)
-		if nepa_form.is_valid():
+		form = NepaForm(request.POST, instance=nepa)
+		if form.is_valid():
 			##fix nepa project change functionality
-			nepa_form.save() #save and commit job number to db			
+			form.save() #save and commit job number to db			
 			return redirect('nepa_dash', projectid=project.id, nepaid=nepa.id)
-		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
+		return render(request, 'add_document.html', {'form':form})
 	else:		
-		nepa_form = NepaForm(instance=nepa)
-		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
+		form = NepaForm(instance=nepa)
+		return render(request, 'add_document.html', {'form':form})
 
 def nepa_add(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
-		nepa_form = NepaForm(request.POST)
-		if nepa_form.is_valid():
+		form = NepaForm(request.POST)
+		if form.is_valid():
 			##fix nepa project change functionality
-			nepa_form.save() #save and commit job number to db			
+			form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add_nepa.html', {'nepa_form':nepa_form})
+		return render(request, 'add_document.html', {'form':form})
 	else:
-		nepa_form = NepaForm(initial={'project':project})	
-		return render(request, 'add_nepa.html', {'nepa_form':nepa_form, 'project':project})
+		form = NepaForm(initial={'project':project})	
+		return render(request, 'add_document.html', {'form':form, 'project':project})
+
+def air_add(request, projectid):
+	project = get_object_or_404(Project, id=projectid)
+	if request.method == 'POST':
+		air_form = AirForm(request.POST)
+		if air_form.is_valid():
+			##fix nepa project change functionality
+			air_form.save() #save and commit job number to db			
+			return redirect('project_dash', projectid=project.id)
+		return render(request, 'add_document.html', {'form':air_form})
+	else:
+		air_form = AirForm(initial={'project':project})	
+		return render(request, 'add_document.html', {'form':air_form, 'project':project})
