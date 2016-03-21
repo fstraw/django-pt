@@ -16,18 +16,20 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 import eptrack
+import views
+import forms
 
 urlpatterns = [
-	url(r'^$', 'nepa.views.home_page', name='home'),
-	url(r'^add/$', 'nepa.views.add_page', name='add'),
+	url(r'^$', views.home_page, name='home'),
+	url(r'^add/$', views.add_page, name='add'),
     url(r'^admin/$', include(admin.site.urls)),
     ##figure out why this order matters
-    url(r'(?P<projectid>[0-9]+)/nepa/(?P<nepaid>[0-9]+)/$', 'nepa.views.nepa_dash', name='nepa_dash'),
-    url(r'(?P<projectid>[0-9]+)/air/(?P<airid>[0-9]+)/$', 'nepa.views.air_dash', name='air_dash'),
-    url(r'(?P<projectid>[0-9]+)/nepa/(?P<nepaid>[0-9]+)/edit$', 'nepa.views.nepa_edit', name='nepa_edit'),
-    url(r'(?P<projectid>[0-9]+)/air/(?P<airid>[0-9]+)/edit$', 'nepa.views.air_edit', name='air_edit'),
-    url(r'(?P<projectid>[0-9]+)/nepa/add/$', 'nepa.views.nepa_add', name='nepa_add'),
-    url(r'(?P<projectid>[0-9]+)/air/add/$', 'nepa.views.air_add', name='air_add'),
-    url(r'(?P<projectid>[0-9]+)/$', 'nepa.views.project_dash', name='project_dash'),	
-    url(r'(?P<projectid>[0-9]+)/edit/$', 'nepa.views.project_edit', name='project_edit'),	
+    url(r'(?P<projectid>[0-9]+)/(?P<d>[0-9]+)/$', views.nepa_dash, name='nepa_dash'),
+    url(r'(?P<projectid>[0-9]+)/air/(?P<airid>[0-9]+)/$', views.air_dash, name='air_dash'),
+    url(r'(?P<projectid>[0-9]+)/(?P<d>[0-9]+)/edit$', views.nepa_edit, name='nepa_edit'),
+    url(r'(?P<projectid>[0-9]+)/air/(?P<ssid>[0-9]+)/edit$', views.ss_edit, {'ss_type' : 'air'}, name='air_edit'),
+    url(r'(?P<projectid>[0-9]+)/add/$', views.nepa_add, name='nepa_add'),
+    url(r'(?P<projectid>[0-9]+)/air/add/$', views.ss_add, {'form_type' : 'airform'}, name='project_add'),
+    url(r'(?P<projectid>[0-9]+)/$', views.project_dash, name='project_dash'),	
+    url(r'(?P<projectid>[0-9]+)/edit/$', views.project_edit, name='project_edit'),	
     ]

@@ -145,33 +145,63 @@ def nepa_add(request, projectid):
 		form = NepaForm(initial={'project':project})	
 		return render(request, 'add_document.html', {'form':form, 'project':project})
 
-def air_add(request, projectid):
+def form_lookup(request, form_from_url, instance=None):
+	form_dict = {
+	'airform': AirForm(request.POST),
+	'noiseform': '',
+	'archform': '',
+	'ecoform': '',
+	'aquaform': '',
+	'histform': '',
+	}
+	##with instance
+	inst_dict = {
+	'airform': AirForm(request.POST, instance),
+	'noiseform': '',
+	'archform': '',
+	'ecoform': '',
+	'aquaform': '',
+	'histform': '',
+	}
+	if instance:
+		return inst_dict[form_from_url]
+	return form_dict[form_from_url]
+
+def ss_add(request, projectid, form_type):
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
-		air_form = AirForm(request.POST)
-		if air_form.is_valid():
+		form = form_lookup(request, form_type)
+		if form.is_valid():
 			##fix nepa project change functionality
-			air_form.save() #save and commit job number to db			
+			form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add_document.html', {'form':air_form})
+		return render(request, 'add_document.html', {'form':form})
 	else:
-		air_form = AirForm(initial={'project':project})	
-		return render(request, 'add_document.html', {'form':air_form, 'project':project})
+		form = AirForm(initial={'project':project})	
+		return render(request, 'add_document.html', {'form':form, 'project':project})
 
-def air_edit(request, projectid, airid):
+def ss_lookup(ssid, ss_type, parent_project):
+	ss_dict = {
+	'air' : parent_project.air_set.all().get(id=ssid),
+	}
+	return ss_dict[ss_type]
+		
+def ss_edit(request, projectid, ssid, ss_type):
 	project = get_object_or_404(Project, id=projectid)
-	air = project.air_set.all().get(id=airid)
+	special_study = ss_lookup(ssid, ss_type, parent_project)
+	# air = project.air_set.all().get(id=ssid)
 	if request.method == 'POST':
 		if request.POST.get('delete'):
-			air.delete()
+			special_study.delete()
 			blank_request = HttpRequest()
 			blank_request.method = 'GET'
 			return project_dash(blank_request, projectid)
-		form = AirForm(request.POST, instance=air)
+		# form = AirForm(request.POST, instance=air)
+		form = form_lookup(request, special_study)
 		if form.is_valid():
 			##fix air project change functionality
 			form.save() #save and commit job number to db			
-			return redirect('air_dash', projectid=project.id, airid=air.id)
+			return redirect('air_dash', projectid=project.id, ssid=air.id)
 		return render(request, 'add_document.html', {'form':form})
 	else:		
 		form = AirForm(instance=air)

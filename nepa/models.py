@@ -77,7 +77,8 @@ class Nepa(models.Model):
 			return days_stripped
 		return 'No Date'
 	def __str__(self):
-		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
+		# return '{}_{}'.format(self.project.jobnumber, self.documenttype)
+		return '{}'.format(self.documenttype)
 
 class Air(SpecialStudy):
 	draftsubmittal = models.DateField(null=True, blank=True)
