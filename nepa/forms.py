@@ -23,6 +23,7 @@ class ProjectForm(ModelForm):
         inst_pis = self.instance.pis.all()
       except:
         inst_pis = []
+      ##Create initial form values from database values
       csv_project_numbers = [i.project_number for i in inst_projects]
       csv_pi_numbers = [i.pi_number for i in inst_pis]
       self.fields['pinumber'].initial = ','.join(csv_pi_numbers)
