@@ -23,13 +23,15 @@ class Project(models.Model):
 		return self.jobnumber		
 
 class SpecialStudy(models.Model):
-	""" Base class for document """
+	""" Base class for special studies documents """
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=10, default='')
 	class Meta:
 		abstract = True
-		
+	def __str__(self):
+		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
+
 class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
@@ -69,15 +71,13 @@ class Nepa(models.Model):
 	def __str__(self):
 		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
 
-class Air(SpecialStudy):
-	rptdeadline = models.DateField(default=timezone.now)
-	pmsubmitted = models.DateField(default=timezone.now)
-	pmapproval = models.DateField(default=timezone.now)
-	rptsubmittal = models.DateField(default=timezone.now)
-	rptapproval = models.DateField(default=timezone.now)
-	comments = models.CharField(max_length=1000, default='', blank=True)
-	def __str__(self):
-		return self.project.jobnumber
+class Air(SpecialStudy):	
+	def __init__(self):
+		self.documenttype.choices = NEPA_PLANNERS
+	draftsubmittal = models.DateField(null=True, blank=True)
+	draftapproval = models.DateField(null=True, blank=True)
+	duedate = models.DateField(null=True, blank=True)
+
 class Noise(SpecialStudy):
 	pass
 
