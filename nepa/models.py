@@ -4,7 +4,8 @@ from datetime import date
 from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES
 
 # Create your models here.
-
+class Document(models.Model):
+	pass
 ## EP Project
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='', unique=True)
@@ -24,7 +25,7 @@ class Project(models.Model):
 		return self.jobnumber		
 	
 class Nepa(models.Model):
-	project = models.ForeignKey(Project, default='', related_name='nepadocs')
+	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=15, default='', choices=DOCUMENT_TYPES)

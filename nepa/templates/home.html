@@ -36,22 +36,22 @@ $( document ).ready(function() {
 		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
 		<td> {{ project.projectname }}</td>
 		<td> {{ project.projectmanager }} </td>
-		<td>{% for nepadoc in project.nepadocs.all %} 
+		<td>{% for nepadoc in project.nepa_set.all %} 
 				{% if nepadoc.statedraft %}
 					{{nepadoc.documenttype}}-{{ nepadoc.statedraft | linebreaks}}
 				{% else %}
 					{{nepadoc.documenttype}}-Not Submitted<br>
 				{% endif %}
 			{% endfor %}</td>
-		<td>{% for nepadoc in project.nepadocs.all %} 
+		<td>{% for nepadoc in project.nepa_set.all %} 
 				{% if nepadoc.fhwadraft %}
 					{{nepadoc.documenttype}}-{{ nepadoc.fhwadraft | linebreaks}}
 				{% else %}
 					{{nepadoc.documenttype}}-Not Submitted<br>
 				{% endif %}
 			{% endfor %}</td>
-		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
-		<td>{% for nepadoc in project.nepadocs.all %} {{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }} {% endfor %}</td>
 	</tr>
 	{% endfor %}
 </table>

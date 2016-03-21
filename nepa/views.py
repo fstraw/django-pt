@@ -59,7 +59,7 @@ def project_dash(request, projectid):
 
 def nepa_dash(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
-	nepa = project.nepadocs.get(id=nepaid)
+	nepa = project.nepa_set.all().get(id=nepaid)
 	context = { 
 				'project' : project,
 				'nepa': nepa,				
@@ -106,7 +106,7 @@ def project_edit(request, projectid):
 
 def nepa_edit(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
-	nepa = project.nepadocs.get(id=nepaid)
+	nepa = project.nepa_set.all().get(id=nepaid)
 	if request.method == 'POST':
 		if request.POST.get('delete'):
 			nepa.delete()
