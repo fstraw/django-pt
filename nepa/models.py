@@ -4,8 +4,6 @@ from datetime import date
 from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES
 
 # Create your models here.
-class Document(models.Model):
-	pass
 ## EP Project
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='', unique=True)
@@ -23,7 +21,15 @@ class Project(models.Model):
 			return 'Unassigned'
 	def __str__(self):
 		return self.jobnumber		
-	
+
+class SpecialStudy(models.Model):
+	""" Base class for document """
+	project = models.ForeignKey(Project, default='')
+	specialist = models.CharField(max_length=50, default='')
+	documenttype = models.CharField(max_length=10, default='')
+	class Meta:
+		abstract = True
+		
 class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
@@ -63,11 +69,7 @@ class Nepa(models.Model):
 	def __str__(self):
 		return '{}_{}'.format(self.project.jobnumber, self.documenttype)
 
-class Air(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	##doc type (PM2.5, air assessment, memorandum)
-	documenttype = models.CharField(max_length=15, default='')
+class Air(SpecialStudy):
 	rptdeadline = models.DateField(default=timezone.now)
 	pmsubmitted = models.DateField(default=timezone.now)
 	pmapproval = models.DateField(default=timezone.now)
@@ -76,30 +78,20 @@ class Air(models.Model):
 	comments = models.CharField(max_length=1000, default='', blank=True)
 	def __str__(self):
 		return self.project.jobnumber
-class Noise(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+class Noise(SpecialStudy):
+	pass
 
-class Ecology(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+class Ecology(SpecialStudy):
+	pass
 
-class Aquatics(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+class Aquatics(SpecialStudy):
+	pass
 
-class Archaeology(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+class Archaeology(SpecialStudy):
+	pass
 
-class History(models.Model):
-	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=10, default='')
+class History(SpecialStudy):
+	pass
 
 class PINumbers(models.Model):
     projects = models.ManyToManyField(Project, related_name='pis')
