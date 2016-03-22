@@ -42,14 +42,13 @@ class SpecialStudy(models.Model):
 	""" Base class for special studies documents """
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=EMPLOYEES)
-	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)
+	documenttype = models.CharField(max_length=15, default='', choices=DOCUMENT_TYPES)
 	draftsubmittal = models.DateField(null=True, blank=True)
 	draftapproval = models.DateField(null=True, blank=True)
 	duedate = models.DateField(null=True, blank=True)
 	class Meta:
 		abstract = True
-	def __str__(self):
-		# return '{}_{}'.format(self.project.jobnumber, self.documenttype)
+	def __str__(self):		
 		return '{}'.format(self.documenttype)
 
 class Nepa(models.Model):
@@ -57,13 +56,13 @@ class Nepa(models.Model):
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=15, default='', choices=ENVIRONMENTAL_DOCUMENTS)
-	#Submittals
+	##Submittals
 	earlycoordination = models.DateField(null=True, blank=True)
 	statedraft = models.DateField(null=True, blank=True)
 	stateapproval = models.DateField(null=True, blank=True)
 	fhwadraft = models.DateField(null=True, blank=True)
 	fhwaapproval = models.DateField(null=True, blank=True)
-	#Due Dates
+	##Due Dates
 	statedraftdue = models.DateField(null=True, blank=True)
 	fhwadraftdue = models.DateField(null=True, blank=True)
 	def statedraft_due_in(self):
@@ -88,8 +87,7 @@ class Nepa(models.Model):
 			days_stripped = days.replace(', 0:00:00', '')
 			return days_stripped
 		return 'No Date'
-	def __str__(self):
-		# return '{}_{}'.format(self.project.jobnumber, self.documenttype)
+	def __str__(self):		
 		return '{}'.format(self.documenttype)
 
 class Air(SpecialStudy):

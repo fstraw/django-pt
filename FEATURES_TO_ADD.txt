@@ -15,6 +15,7 @@
 - Justify project description layout
 - Early coordination attached to project or nepa doc?
 - Populate employee table
+- Related projects
 
 Bug Tracker
 - PI Validation
