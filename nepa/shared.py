@@ -126,13 +126,16 @@ COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
 
 COUNTY_NAMES = [(c, c) for c in sorted(COUNTIES.iterkeys())]
 
-DOCUMENT_TYPES = (
-				('CE', 'CE'),
+ENVIRONMENTAL_DOCUMENTS = (
+ 				('CE', 'CE'),
 				('EA', 'EA'),
 				('EIS', 'EIS'),
 				('FONSI', 'FONSI'),
 				('GEPA_Type_B', 'GEPA Type B'),
 				('GEPA_EER', 'GEPA EER'),
+				)
+
+DOCUMENT_TYPES = (
 				('PM25', 'PM25'),
 				('GEPA', 'GEPA'),
 				('Air Assessment', 'Air Assessment'),

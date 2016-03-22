@@ -15,8 +15,8 @@ def home_page(request):
 			project_list = Project.objects.filter(projectmanager=request.POST['pm'])
 		except:
 			project_list = Project.objects.all()
-	context = RequestContext(request, {'project_list' : project_list,
-										'planner_form' : planner_form})
+	context = {'project_list' : project_list,
+				'planner_form' : planner_form}
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
 
@@ -24,7 +24,6 @@ def add_page(request):
 	if request.method == 'POST':
 		project_form = ProjectForm(request.POST)
 		if project_form.is_valid():
-			# return HttpResponse('<html>{}</html>'.format('bleh'))
 			project_data = project_form.cleaned_data
 			project = Project()
 			project.jobnumber = project_data['jobnumber']
@@ -77,7 +76,7 @@ def air_dash(request, projectid, airid):
 	
 
 def project_edit(request, projectid):
-	''' Should only come from edit page, so nepa should update automagically '''
+	''' Should only come from project edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
 		if request.POST.get('delete'):
@@ -180,15 +179,14 @@ def ss_add(request, projectid, form_type):
 		form = AirForm(initial={'project':project})	
 		return render(request, 'add_document.html', {'form':form, 'project':project})
 
-def ss_lookup(ssid, ss_type, parent_project):
-	ss_dict = {
-	'air' : parent_project.air_set.all().get(id=ssid),
-	}
-	return ss_dict[ss_type]
-		
 def ss_edit(request, projectid, ssid, ss_type):
+	def ss_lookup(ssid, ss_type, parent_project):
+		ss_dict = {
+		'air' : parent_project.air_set.all().get(id=ssid),
+		}
+		return ss_dict[ss_type]
 	project = get_object_or_404(Project, id=projectid)
-	special_study = ss_lookup(ssid, ss_type, parent_project)
+	special_study = ss_lookup(ssid, ss_type, project)
 	# air = project.air_set.all().get(id=ssid)
 	if request.method == 'POST':
 		if request.POST.get('delete'):
@@ -204,5 +202,5 @@ def ss_edit(request, projectid, ssid, ss_type):
 			return redirect('air_dash', projectid=project.id, ssid=air.id)
 		return render(request, 'add_document.html', {'form':form})
 	else:		
-		form = AirForm(instance=air)
+		form = AirForm(instance=special_study)
 		return render(request, 'add_document.html', {'form':form})

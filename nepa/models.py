@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import date
-from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES, DEPARTMENTS, EMPLOYEES
+from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES, DEPARTMENTS, EMPLOYEES, ENVIRONMENTAL_DOCUMENTS
 
 # Create your models here.
 ## EP Project
@@ -20,20 +20,32 @@ class Project(models.Model):
 		else:
 			return 'Unassigned'
 	def __str__(self):
-		return self.jobnumber		
+		return self.jobnumber
 
-class Employee(models.Model):
-	firstname = models.CharField(max_length=50, default='')
-	lastname = models.CharField(max_length=50, default='')
-	department = models.CharField(max_length=50, default='Employee', choices=DEPARTMENTS)
-	def __str__(self):
-		return '{}_{}'.format(self.lastname, self.firstname)
+class PINumbers(models.Model):
+    projects = models.ManyToManyField(Project, related_name='pis')
+    pi_number = models.CharField(max_length=7, null=True, unique=True)
+    class Meta:
+            verbose_name_plural = 'PI Numbers'
+    def __str__(self):
+        return self.pi_number
+        
+class ProjectNumbers(models.Model):
+    projects = models.ManyToManyField(Project, related_name='projectnumbers')
+    project_number = models.CharField(max_length=20, null=True, unique=True)    
+    class Meta:
+            verbose_name_plural = 'Project Numbers'
+    def __str__(self):
+        return self.project_number
 
 class SpecialStudy(models.Model):
 	""" Base class for special studies documents """
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=EMPLOYEES)
 	documenttype = models.CharField(max_length=10, default='', choices=DOCUMENT_TYPES)
+	draftsubmittal = models.DateField(null=True, blank=True)
+	draftapproval = models.DateField(null=True, blank=True)
+	duedate = models.DateField(null=True, blank=True)
 	class Meta:
 		abstract = True
 	def __str__(self):
@@ -44,7 +56,7 @@ class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=15, default='', choices=DOCUMENT_TYPES)
+	documenttype = models.CharField(max_length=15, default='', choices=ENVIRONMENTAL_DOCUMENTS)
 	#Submittals
 	earlycoordination = models.DateField(null=True, blank=True)
 	statedraft = models.DateField(null=True, blank=True)
@@ -81,9 +93,7 @@ class Nepa(models.Model):
 		return '{}'.format(self.documenttype)
 
 class Air(SpecialStudy):
-	draftsubmittal = models.DateField(null=True, blank=True)
-	draftapproval = models.DateField(null=True, blank=True)
-	duedate = models.DateField(null=True, blank=True)
+	pass
 
 class Noise(SpecialStudy):
 	pass
@@ -99,19 +109,3 @@ class Archaeology(SpecialStudy):
 
 class History(SpecialStudy):
 	pass
-
-class PINumbers(models.Model):
-    projects = models.ManyToManyField(Project, related_name='pis')
-    pi_number = models.CharField(max_length=7, null=True, unique=True)
-    class Meta:
-            verbose_name_plural = 'PI Numbers'
-    def __str__(self):
-        return self.pi_number
-        
-class ProjectNumbers(models.Model):
-    projects = models.ManyToManyField(Project, related_name='projectnumbers')
-    project_number = models.CharField(max_length=20, null=True, unique=True)    
-    class Meta:
-            verbose_name_plural = 'Project Numbers'
-    def __str__(self):
-        return self.project_number

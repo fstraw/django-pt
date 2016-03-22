@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air
-from shared import PROJECT_MANAGERS, EMPLOYEES
+from shared import PROJECT_MANAGERS, ENVIRONMENTAL_DOCUMENTS, NEPA_PLANNERS
 
 
 class PlannerForm(forms.Form):
@@ -49,6 +49,10 @@ class ProjectForm(ModelForm):
         }
 
 class NepaForm(ModelForm):
+  def __init__(self, *args, **kwargs):
+    super(NepaForm, self).__init__(*args, **kwargs)
+    self.fields['documenttype'].choices = ENVIRONMENTAL_DOCUMENTS
+    self.fields['specialist'].choices = NEPA_PLANNERS
   class Meta:          
     model = Nepa
     fields = ['project', 'specialist', 
