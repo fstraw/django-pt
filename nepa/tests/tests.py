@@ -54,27 +54,39 @@ class ModelTests(TestCase):
 		self.assertEqual(first_saved_project.pinumber, pinumber)
 		self.assertEqual(first_saved_project.projectmanager, projectmanager)
 		self.assertEqual(first_saved_project.county, county)
-		# self.assertEqual(first_saved_project.relatedprojects, relatedprojects)
 
-# class AddFormTests(TestCase):
-	# def test_add_page_can_save_a_POST_request(self):
-		# request = HttpRequest()
-		# request.method = 'POST'
-		# request.POST = {'epid' :' PBQ1601',
-						# 'nepa' : 'Yes',
-						# 'air' : 'Yes',
-						# 'noise' : 'Yes',
-						# 'ecology' : 'Yes',
-						# 'archaeology' : 'Yes',
-						# 'history' : 'Yes',
-						# 'nepa_due_date' : datetime.now(),
-						# 'air_due_date' : datetime.now(),
-						# 'noise_due_date' : datetime.now(),
-						# 'ecology_due_date' : datetime.now(),
-						# 'archaeology_due_date' : datetime.now(),
-						# 'history_due_date' : datetime.now(),
-						# }
-		#this test is currently failing due to HttpRequestRedirect
-		# response = add_page(request)
-		# request = HttpRequest()
-		# self.assertIn('PBQ1601', home_page(request), home_page(request))
+	def test_can_add_new_nepa_project(self):
+		pass
+	def test_can_add_new_air_project(self):
+		pass	
+	def test_can_add_new_noise_project(self):
+		pass
+	def test_can_add_new_archaeology_project(self):
+		pass
+	def test_can_add_new_aquatics_project(self):
+		pass
+	def test_can_add_new_ecology_project(self):
+		pass
+	def test_can_add_new_history_project(self):
+		pass
+	def test_can_add_new_section4f_project(self):
+		pass
+	def test_can_edit_nepa_project(self):
+		pass
+	def test_can_edit_air_project(self):
+		pass	
+	def test_can_edit_noise_project(self):
+		pass
+	def test_can_edit_archaeology_project(self):
+		pass
+	def test_can_edit_aquatics_project(self):
+		pass
+	def test_can_edit_ecology_project(self):
+		pass
+	def test_can_edit_history_project(self):
+		pass
+	def test_can_edit_section4f_project(self):
+		pass
+	def test_redirect(self):
+		pass
+

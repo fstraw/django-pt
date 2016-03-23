@@ -1,22 +1,22 @@
 from django.db import models
 from django.utils import timezone
 from datetime import date
-from shared import NEPA_PLANNERS, PROJECT_MANAGERS, COUNTY_NAMES, DOCUMENT_TYPES, COUNTIES, DEPARTMENTS, EMPLOYEES, ENVIRONMENTAL_DOCUMENTS
+import shared
 
 # Create your models here.
 ## EP Project
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='', unique=True)
 	projectname = models.CharField(max_length=50, default='')
-	projectmanager = models.CharField(max_length=25, default='', choices=PROJECT_MANAGERS)
+	projectmanager = models.CharField(max_length=25, default='', choices=shared.PROJECT_MANAGERS)
 	projectdescription = models.CharField(max_length=1000, default='')
 	client = models.CharField(max_length=30, default='', blank=True)
-	county = models.CharField(max_length=15, default='', choices=COUNTY_NAMES)
+	county = models.CharField(max_length=15, default='', choices=shared.COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
 	comments = models.CharField(max_length=1000, default='', blank=True)
 	def gdot_district(self):
 		if self.county:
-			return '{}'.format(COUNTIES[self.county])
+			return '{}'.format(shared.COUNTIES[self.county])
 		else:
 			return 'Unassigned'
 	def __str__(self):
@@ -41,8 +41,9 @@ class ProjectNumbers(models.Model):
 class SpecialStudy(models.Model):
 	""" Base class for special studies documents """
 	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='', choices=EMPLOYEES)
-	documenttype = models.CharField(max_length=15, default='', choices=DOCUMENT_TYPES)
+	specialist = models.CharField(max_length=50, default='', choices=shared.EMPLOYEES)
+	title = models.CharField(max_length=50, default='')
+	documenttype = models.CharField(max_length=15, default='')
 	draftsubmittal = models.DateField(null=True, blank=True)
 	draftapproval = models.DateField(null=True, blank=True)
 	duedate = models.DateField(null=True, blank=True)
@@ -53,9 +54,9 @@ class SpecialStudy(models.Model):
 
 class Nepa(models.Model):
 	project = models.ForeignKey(Project, default='')
-	specialist = models.CharField(max_length=50, default='', choices=NEPA_PLANNERS)
+	specialist = models.CharField(max_length=50, default='', choices=shared.NEPA_PLANNERS)
 	stateplanner = models.CharField(max_length=50, default='')
-	documenttype = models.CharField(max_length=15, default='', choices=ENVIRONMENTAL_DOCUMENTS)
+	documenttype = models.CharField(max_length=15, default='', choices=shared.ENVIRONMENTAL_DOCUMENTS)
 	##Submittals
 	earlycoordination = models.DateField(null=True, blank=True)
 	statedraft = models.DateField(null=True, blank=True)

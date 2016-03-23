@@ -41,9 +41,17 @@
 					{% else %}					
 					<br>
 					{% endif %}
-					<i><a href="{% url 'project_add' project.id %} ">Add Air Document</a></i>
+					<i><a href="{% url 'air_add' project.id %} ">Add Air Document</a></i>
 				</div>
-				<div class="col-md-12"><h4><b>Noise Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12">
+					<h4><b>Noise Documents</b></h4>
+					{% if project.noise_set.all %}
+					{% for noisedoc in project.noise_set.all %} <b><a href="{% url 'noise_dash' project.id noisedoc.id %}"> {{ noisedoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'noise_add' project.id %} ">Add Noise Document</a></i>
+				</div>
 				<div class="col-md-12"><h4><b>Ecology Documents</b></h4>{{ documenttype }}</div>
 				<div class="col-md-12"><h4><b>Aquatics Documents</b></h4>{{ documenttype }}</div>
 				<div class="col-md-12"><h4><b>Archaeology Documents</b></h4>{{ documenttype }}</div>

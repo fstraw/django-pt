@@ -2,12 +2,12 @@ from django.forms import ModelForm, Textarea, DateInput, Form, TextInput, CharFi
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air
-from shared import PROJECT_MANAGERS, ENVIRONMENTAL_DOCUMENTS, NEPA_PLANNERS
+from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise
+import shared
 
 
 class PlannerForm(forms.Form):
-    pm = forms.ChoiceField(choices=PROJECT_MANAGERS, initial='')
+    pm = forms.ChoiceField(choices=shared.PROJECT_MANAGERS, initial='')
 
 class ProjectForm(ModelForm):
     initial_fields = ('pinumber', 'projectnumber')
@@ -49,10 +49,10 @@ class ProjectForm(ModelForm):
         }
 
 class NepaForm(ModelForm):
-  def __init__(self, *args, **kwargs):
-    super(NepaForm, self).__init__(*args, **kwargs)
-    self.fields['documenttype'].choices = ENVIRONMENTAL_DOCUMENTS
-    self.fields['specialist'].choices = NEPA_PLANNERS
+  # def __init__(self, *args, **kwargs):
+  #   super(NepaForm, self).__init__(*args, **kwargs)
+  #   self.fields['documenttype'].choices = ENVIRONMENTAL_DOCUMENTS
+  #   self.fields['specialist'].choices = NEPA_PLANNERS
   class Meta:          
     model = Nepa
     fields = ['project', 'specialist', 
@@ -88,7 +88,27 @@ class AirForm(ModelForm):
   #   self.fields['documenttype'].choices = AIR_DOCUMENT_TYPES
   class Meta:
     model = Air
-    fields = ['project', 'documenttype', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+              'draftapproval', 'duedate']
+    widgets = {
+        'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
+        'draftapproval': DateInput(attrs={'class':'datepicker'}),
+        'duedate': DateInput(attrs={'class':'datepicker'}),
+        }
+
+    labels = {
+      'draftsubmittal':_('Draft Submittal'),
+      'draftapproval': _('Draft Approval'),
+      'duedate': _('Due Date'),
+      }
+
+class NoiseForm(ModelForm):
+  def __init__(self, *args, **kwargs):
+    super(NoiseForm, self).__init__(*args, **kwargs)
+    self.fields['documenttype'] = ChoiceField(choices=shared.NOISE_DOCUMENTS)
+  class Meta:
+    model = Noise
+    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
               'draftapproval', 'duedate']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),

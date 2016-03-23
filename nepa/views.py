@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
-from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm
+from django.core.exceptions import ObjectDoesNotExist
+from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
+
 
 def home_page(request):	
 	if request.method == 'GET':
@@ -73,6 +75,15 @@ def air_dash(request, projectid, airid):
 				'air': air,				
 			}
 	return render(request, 'airdash.html', context)
+
+def noise_dash(request, projectid, noiseid):
+	project = get_object_or_404(Project, id=projectid)
+	noise = project.noise_set.all().get(id=noiseid)
+	context = { 
+				'project' : project,
+				'noise': noise,				
+			}
+	return render(request, 'noisedash.html', context)
 	
 
 def project_edit(request, projectid):
@@ -147,7 +158,7 @@ def nepa_add(request, projectid):
 def form_lookup(request, form_from_url, instance=None):
 	form_dict = {
 	'airform': AirForm(request.POST),
-	'noiseform': '',
+	'noiseform': NoiseForm(request.POST),
 	'archform': '',
 	'ecoform': '',
 	'aquaform': '',
@@ -156,7 +167,7 @@ def form_lookup(request, form_from_url, instance=None):
 	##with instance
 	inst_dict = {
 	'airform': AirForm(request.POST, instance),
-	'noiseform': '',
+	'noiseform': NoiseForm(request.POST, instance),
 	'archform': '',
 	'ecoform': '',
 	'aquaform': '',
@@ -166,7 +177,37 @@ def form_lookup(request, form_from_url, instance=None):
 		return inst_dict[form_from_url]
 	return form_dict[form_from_url]
 
-def ss_add(request, projectid, form_type):
+def blank_form_lookup(ss_type, special_study):
+	try:
+		air = AirForm(instance=special_study)
+	except:
+		air = ''
+	try:
+		noise = NoiseForm(instance=special_study)
+	except:
+		noise = ''
+	form_dict = {
+		'air' : air,
+		'noise' : noise
+	}
+	return form_dict[ss_type]
+
+def initial_form_lookup(ss_type, project_from_db):
+	try:
+		air = AirForm(initial={'project': project_from_db})
+	except:
+		air = ''
+	try:
+		noise = NoiseForm(initial={'project' : project_from_db})
+	except:
+		noise = ''
+	form_dict = {
+		'air' : air,
+		'noise' : noise
+	}
+	return form_dict[ss_type]
+
+def ss_add(request, projectid, ss_type, form_type):
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
 		form = form_lookup(request, form_type)
@@ -176,15 +217,27 @@ def ss_add(request, projectid, form_type):
 			return redirect('project_dash', projectid=project.id)
 		return render(request, 'add_document.html', {'form':form})
 	else:
-		form = AirForm(initial={'project':project})	
+		# form = AirForm(initial={'project':project})
+		form = initial_form_lookup(ss_type, project)
 		return render(request, 'add_document.html', {'form':form, 'project':project})
 
-def ss_edit(request, projectid, ssid, ss_type):
-	def ss_lookup(ssid, ss_type, parent_project):
+def ss_edit(request, projectid, ssid, ss_type, form_type):
+	##clean this function up
+	def ss_lookup(ssid, ss_type, parent_project):	
+		try:
+			air = parent_project.air_set.all().get(id=ssid)
+		except ObjectDoesNotExist:
+			air = ''	
+		try:
+			noise = parent_project.noise_set.all().get(id=ssid)
+		except ObjectDoesNotExist:
+			noise = ''
 		ss_dict = {
-		'air' : parent_project.air_set.all().get(id=ssid),
+		'air' : air,
+		'noise' : noise,
 		}
 		return ss_dict[ss_type]
+		
 	project = get_object_or_404(Project, id=projectid)
 	special_study = ss_lookup(ssid, ss_type, project)
 	# air = project.air_set.all().get(id=ssid)
@@ -195,12 +248,13 @@ def ss_edit(request, projectid, ssid, ss_type):
 			blank_request.method = 'GET'
 			return project_dash(blank_request, projectid)
 		# form = AirForm(request.POST, instance=air)
-		form = form_lookup(request, special_study)
+		form = form_lookup(request, form_type)
 		if form.is_valid():
 			##fix air project change functionality
-			form.save() #save and commit job number to db			
-			return redirect('air_dash', projectid=project.id, ssid=air.id)
+			form.save() ##save and commit job number to db	
+			return redirect('{}_dash'.format(ss_type), projectid=project.id, ssid=ssid)
 		return render(request, 'add_document.html', {'form':form})
-	else:		
-		form = AirForm(instance=special_study)
+	else:
+		##also ugly - fix
+		form = blank_form_lookup(ss_type, special_study)
 		return render(request, 'add_document.html', {'form':form})

@@ -18,7 +18,7 @@ pd = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo l
 pms = shared.PROJECT_MANAGERS
 clients = shared.CLIENTS
 counties = [c for c in shared.COUNTIES.iteritems()]
-doctypes = shared.DOCUMENT_TYPES
+doctypes = shared.ENVIRONMENTAL_DOCUMENTS
 ecrangestart = datetime.strptime('8/1/2015', '%m/%d/%Y')
 ecrangeend = datetime.strptime('11/1/2015', '%m/%d/%Y')
 sdrangestart = datetime.strptime('1/1/2016', '%m/%d/%Y')
@@ -47,21 +47,22 @@ def random_date(start, end):
 
 def add_dummy_data(num_of_entries):
     for i in range(num_of_entries):
+        c = 1
         jobnumber='{}{}'.format('JOB', random.randint(1001, 9999))
         project = models.Project.objects.get_or_create(jobnumber=jobnumber)[0]
         project.projectmanager = pms[random.randrange(len(pms))][0]
-        project.projectname = 'Sample Project {}'.format(i)
+        project.projectname = 'Sample Project {}'.format(c)
         project.projectdescription = pd
         project.client = clients[random.randrange(len(clients))][0]
         project.county = counties[random.randrange(len(counties))][0]
         project.comments = 'Project Info, meeting notes, client notes, etc.'        
-        i+=1
-#        for pi in pi_list:
-#            piobj = models.PINumbers.objects.get_or_create(pi_number=pi)[0]
-#            project.pis.add(piobj)
-#        for pn in pn_list:
-#            pnobj = models.ProjectNumbers.objects.get_or_create(project_number=pn)[0]
-#            project.projectnumbers.add(pnobj)
+        c+=1
+        for pi in pi_list:
+            piobj = models.PINumbers.objects.get_or_create(pi_number=pi)[0]
+            project.pis.add(piobj)
+        for pn in pn_list:
+            pnobj = models.ProjectNumbers.objects.get_or_create(project_number=pn)[0]
+            project.projectnumbers.add(pnobj)
         project.save()
         nepadoc = models.Nepa()
         nepadoc.project = project
@@ -76,13 +77,30 @@ def add_dummy_data(num_of_entries):
             nepadoc.fhwadraft = random_date(frangestart, frangeend)
             nepadoc.fhwadraftdue = random_date(frangestart, frangeend)
         nepadoc.save()
-                
+        
+        #Air docs
+        airdoc = models.Air()
+        airdoc.project = project
+        airdoc.documenttype = shared.AIR_DOCUMENTS[random.randrange(len(shared.AIR_DOCUMENTS))][0]
+        airdoc.title = 'Sample Air Document Title'
+        airdoc.specialist = shared.EMPLOYEES[random.randrange(len(shared.EMPLOYEES))][0]
+        airdoc.duedate = random_date(sduerangestart, sduerangeend)
+        airdoc.save()
+
+        #Noise docs
+        noisedoc = models.Noise()
+        noisedoc.project = project
+        noisedoc.documenttype = shared.NOISE_DOCUMENTS[random.randrange(len(shared.NOISE_DOCUMENTS))][0]
+        noisedoc.title = 'Sample Noise Document Title'
+        noisedoc.specialist = shared.EMPLOYEES[random.randrange(len(shared.EMPLOYEES))][0]
+        noisedoc.duedate = random_date(sduerangestart, sduerangeend)
+        noisedoc.save()
         
 
 def clear_database():
     django.setup()
     models.Project.objects.all().delete()
         
-if __name__ == '__main__':
-#    clear_database()
-    add_dummy_data(100)
+# if __name__ == '__main__':
+clear_database()
+add_dummy_data(100)
