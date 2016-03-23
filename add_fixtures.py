@@ -46,8 +46,8 @@ def random_date(start, end):
     return start + timedelta(seconds=random_second)
 
 def add_dummy_data(num_of_entries):
-    for i in range(num_of_entries):
-        c = 1
+    c = 1
+    for i in range(num_of_entries):        
         jobnumber='{}{}'.format('JOB', random.randint(1001, 9999))
         project = models.Project.objects.get_or_create(jobnumber=jobnumber)[0]
         project.projectmanager = pms[random.randrange(len(pms))][0]
