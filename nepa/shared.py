@@ -93,8 +93,9 @@ ENVIRONMENTAL_DOCUMENTS = (
 				)
 
 AIR_DOCUMENTS = (
-				('PM25', 'PM25'),
-				('GEPA', 'GEPA'),
+				('PM25 Exemption', 'PM25 Exemption'),
+				('PM25 LOD', 'PM25 LOD'),
+				('GEPA Memorandum', 'GEPA Memorandum'),
 				('Air Assessment', 'Air Assessment'),
 				('Air Memorandum', 'Air Memorandum'),
 				)

@@ -46,12 +46,20 @@ $( document ).ready(function() {
 		<td>{% for nepadoc in project.nepa_set.all %} 
 				{% if nepadoc.fhwadraft %}
 					{{nepadoc.documenttype}}-{{ nepadoc.fhwadraft | linebreaks}}
+				{% elif nepadoc.is_gepa %}
+					Not Applicable<br>
 				{% else %}
-					{{nepadoc.documenttype}}-Not Submitted<br>
+					Not Submitted<br>
 				{% endif %}
 			{% endfor %}</td>
 		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
-		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }} {% endfor %}</td>
+		<td>{% for nepadoc in project.nepa_set.all.all %}
+				{% if nepadoc.is_gepa %}
+					Not Applicable<br>
+				{% else %}
+					{{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }}
+				{% endif %}
+			{% endfor %}</td>
 	</tr>
 	{% endfor %}
 </table>

@@ -66,6 +66,10 @@ class Nepa(models.Model):
 	##Due Dates
 	statedraftdue = models.DateField(null=True, blank=True)
 	fhwadraftdue = models.DateField(null=True, blank=True)
+	def is_gepa(self):
+		if 'GEPA' in self.documenttype:
+			return True
+		return False
 	def statedraft_due_in(self):
 		if self.stateapproval:
 			return 'Approved'
@@ -78,6 +82,8 @@ class Nepa(models.Model):
 			return days_stripped
 		return 'No Date'
 	def fhwadraft_due_in(self):
+		if 'GEPA' in self.documenttype:
+			return 'Not Applicable'
 		if self.fhwaapproval:
 			return 'Approved'
 		if self.fhwadraftdue:

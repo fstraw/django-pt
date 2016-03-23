@@ -37,7 +37,7 @@ class ProjectForm(ModelForm):
       widgets = {
                   'jobnumber': Textarea(attrs={'cols': 20, 'rows': 1}),
                   'projectname': Textarea(attrs={'cols': 40, 'rows': 1}),
-				  'client': Textarea(attrs={'cols': 40, 'rows': 1}),
+				          'client': Textarea(attrs={'cols': 40, 'rows': 1}),
                   'projectdescription': Textarea(attrs={'cols': 50, 'rows': 3}),
                   'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
                  }
@@ -83,9 +83,10 @@ class NepaForm(ModelForm):
         }
 
 class AirForm(ModelForm):
-  # def __init__(self, *args, **kwargs):
-  #   super(AirForm, self).__init__(*args, **kwargs)
-  #   self.fields['documenttype'].choices = AIR_DOCUMENT_TYPES
+  def __init__(self, *args, **kwargs):
+    super(AirForm, self).__init__(*args, **kwargs)
+    self.name = 'Air Document'
+    self.fields['documenttype'] = ChoiceField(choices=shared.AIR_DOCUMENTS)
   class Meta:
     model = Air
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
@@ -105,6 +106,7 @@ class AirForm(ModelForm):
 class NoiseForm(ModelForm):
   def __init__(self, *args, **kwargs):
     super(NoiseForm, self).__init__(*args, **kwargs)
+    self.name = 'Noise Document'
     self.fields['documenttype'] = ChoiceField(choices=shared.NOISE_DOCUMENTS)
   class Meta:
     model = Noise

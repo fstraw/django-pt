@@ -75,7 +75,7 @@ def add_dummy_data(num_of_entries):
         nepadoc.stateapproval = random_date(sapprangestart, sapprangeend)
         if not 'GEPA' in nepadoc.documenttype:
             nepadoc.fhwadraft = random_date(frangestart, frangeend)
-            nepadoc.fhwadraftdue = random_date(frangestart, frangeend)
+            nepadoc.fhwadraftdue = random_date(fduerangestart, fduerangeend)
         nepadoc.save()
         
         #Air docs
@@ -103,4 +103,4 @@ def clear_database():
         
 # if __name__ == '__main__':
 clear_database()
-add_dummy_data(100)
+add_dummy_data(200)
