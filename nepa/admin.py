@@ -1,7 +1,7 @@
 from django.contrib import admin
 import nepa.models
 
-## Register your models here.
+# Register your models here.
 
 admin.site.register(nepa.models.Project)
 admin.site.register(nepa.models.ProjectNumbers)
