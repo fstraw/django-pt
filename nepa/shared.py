@@ -102,7 +102,7 @@ AIR_DOCUMENTS = (
 NOISE_DOCUMENTS = (
 				('Assessment', 'Assessment'),
 				('Addendum', 'Addendum'),
-				('TypeIII', 'TypeIII'),
+				('TypeIII', 'Type III'),
 				('Memorandum', 'Memorandum'),
 				)
 

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os, sys
+import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '19o@zrf639gd8s#lccd&5_ccuf9tnye+&izua$g*87#9l$c0cj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['104.236.43.204']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -76,21 +76,11 @@ WSGI_APPLICATION = 'eptrack.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'django',
-       'USER': 'django',
-       'PASSWORD': 'GqA2n8lmMa',
-       'HOST': 'localhost',
-       'PORT': '',
-       'TEST': {
-           'NAME': 'edwardw6_bptest',
-       },
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-
-if 'test' in sys.argv:
-	DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 
 # Internationalization
@@ -128,5 +118,3 @@ DATETIME_INPUT_FORMATS = [
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_FILES_DIRS = ['/home/django/django_project/nepa/static']
-STATIC_ROOT = '/home/django/django_project/static'
