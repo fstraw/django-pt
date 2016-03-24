@@ -1,40 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 {% load staticfiles %}
-<script src="{% static 'site/js/jquery.tagsinput.js' %}"></script>
-<script>
-$( document ).ready(function() {
-	$('#id_pinumber').tagsInput({
-		'height':'80px',
-   		'width':'370px',
-   		'defaultText': 'Add',
-   		'maxChars' : 7,
-	});
-	$('#id_projectnumber').tagsInput({
-		'height':'80px',
-   		'width':'370px',
-   		'defaultText': 'Add',
-   		'maxChars' : 20,
-	});
-});
 </script>
-
-<h1>Add/Edit Project</h1>
-	<form method="POST">
-	{% csrf_token %}
-	{% for field in project_form %}
-	{{ form.non_field_errors }}
-		<div class="row">
-			<div class="col-md-2">
-				{{ field.errors }}
-				<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
-			</div>			
-			<div class="col-md-4">
-    			{{ field }}
-			</div>
-		</div>	
-	{% endfor %}	
-	<button type="submit" name='save' class="save btn btn-primary">Save</button>
-	<button type="submit" name='delete' value='delete' class="save btn btn-primary">Delete</button> <br><br>	
-	</form>
+	<h1>Add/Edit Project</h1>
+		<form method="POST">
+		{% csrf_token %}
+		{% for field in project_form %}
+		{{ form.non_field_errors }}
+			<div class="row">
+				<div class="col-md-2">
+					{{ field.errors }}
+					<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+				</div>			
+				<div class="col-md-4">
+	    			{{ field }}
+				</div>
+			</div>	
+		{% endfor %}	
+		<button type="submit" name='save' class="save btn btn-primary">Save</button>
+		<button type="submit" name='delete' value='delete' class="save btn btn-primary">Delete</button> <br><br>	
+		</form>
 {% endblock %}
