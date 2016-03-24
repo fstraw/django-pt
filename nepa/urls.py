@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^(?P<projectid>[0-9]+)/noise/(?P<noiseid>[0-9]+)/$', views.noise_dash, name='noise_dash'),
     ##Edit, make names unique
     url(r'^(?P<projectid>[0-9]+)/edit/$', views.project_edit, name='project_edit'),
-    url(r'^(?P<projectid>[0-9]+)/(?P<d>[0-9]+)/edit$', views.nepa_edit, name='nepa_edit'),
+    url(r'^(?P<projectid>[0-9]+)/(?P<nepaid>[0-9]+)/edit$', views.nepa_edit, name='nepa_edit'),
     url(r'^(?P<projectid>[0-9]+)/air/(?P<ssid>[0-9]+)/edit$', views.ss_edit, {'ss_type' : 'air', 'form_type' : 'airform'}, name='air_edit'),
     url(r'^(?P<projectid>[0-9]+)/noise/(?P<ssid>[0-9]+)/edit$', views.ss_edit, {'ss_type' : 'noise', 'form_type' : 'noiseform'}, name='noise_edit'),
     ##Add, make names unique
