@@ -49,7 +49,7 @@ $( document ).ready(function() {
 				{% elif nepadoc.is_gepa %}
 					Not Applicable<br>
 				{% else %}
-					Not Submitted<br>
+					{{nepadoc.documenttype}}-Not Submitted<br>
 				{% endif %}
 			{% endfor %}</td>
 		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
