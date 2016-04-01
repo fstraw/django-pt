@@ -55,14 +55,16 @@ EMPLOYEES = (
 		)
 
 PROJECT_MANAGERS = (
-			('Susan Thomas', 'Susan Thomas'),
-			('Heather Perrin', 'Heather Perrin'),
-			('Josh Earhart', 'Josh Earhart'),
-			('Russ Danser', 'Russ Danser'),
 			('Jill Brown', 'Jill Brown'),
-			('Jim Woodson', 'Jim Woodson'),
+			('Russ Danser', 'Russ Danser'),
+			('Josh Earhart', 'Josh Earhart'),
 			('Mark Grindstaff', 'Mark Grindstaff'),
-			('Dave Pierce', 'Dave Pierce')
+			('Dave Pearce', 'Dave Pearce'),
+			('Heather Perrin', 'Heather Perrin'),
+			('Lynn Pietak', 'Lynn Pietak'),
+			('Susan Thomas', 'Susan Thomas'),
+			('Jim Woodson', 'Jim Woodson'),		
+			
 	)
 
 NEPA_PLANNERS = (
