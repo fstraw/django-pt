@@ -13,6 +13,12 @@ class Project(models.Model):
 	client = models.CharField(max_length=30, default='', blank=True)
 	county = models.CharField(max_length=15, default='', choices=shared.COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
+	env_cert_row = models.DateField(null=True, blank=True)
+	env_cert_let = models.DateField(null=True, blank=True)
+	row_auth = models.DateField(null=True, blank=True)
+	let_cert = models.DateField(null=True, blank=True)
+	pfpr = models.DateField(null=True, blank=True)
+	ffpr = models.DateField(null=True, blank=True)
 	comments = models.CharField(max_length=1000, default='', blank=True)
 	def gdot_district(self):
 		if self.county:

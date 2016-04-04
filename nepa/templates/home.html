@@ -25,7 +25,7 @@ $( document ).ready(function() {
 <table id="id_project_table" class="table table-bordered">
 	<tr>
 		<td><b>Job Number</b></td>				
-		<td><b>Project Name</b></td>
+		<td><b>Project Numbers</b></td>
 		<td><b>Project Manager</b></td>
 		<td><b>State Draft Submittal</b></td>
 		<td><b>FHWA Draft Submittal</b></td>
@@ -34,7 +34,13 @@ $( document ).ready(function() {
 	{% for project in project_list %}
 	</tr>
 		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
-		<td> {{ project.projectname }}</td>
+		<td> {% for pi in project.pis.all %} 
+				{{ pi | linebreaks }} 
+			 {% endfor %}
+			 {% for pn in project.projectnumbers.all %} 
+			 	{{ pn | linebreaks }} 
+			 {% endfor %}
+			</td>
 		<td> {{ project.projectmanager }} </td>
 		<td>{% for nepadoc in project.nepa_set.all %} 
 				{% if nepadoc.statedraft %}

@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 {% load staticfiles %}
-</script>
+<script>
+$( document ).ready(function() {
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      yearRange: "1900:2050",
+      // You can put more options here.
+
+    });
+  });
+});
+  </script>
 	<h1>Add/Edit Project</h1>
 		<form method="POST">
 		{% csrf_token %}

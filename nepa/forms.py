@@ -33,14 +33,22 @@ class ProjectForm(ModelForm):
       model = Project
       fields = ['jobnumber', 'projectname', 'client',
                   'projectmanager', 'projectdescription',
-                  'county', 'comments']
+                  'county', 'comments', 'env_cert_row', 'env_cert_let',
+                  'row_auth', 'let_cert', 'pfpr', 'ffpr']
       widgets = {
                   'jobnumber': Textarea(attrs={'cols': 20, 'rows': 1}),
                   'projectname': Textarea(attrs={'cols': 40, 'rows': 1}),
 				          'client': Textarea(attrs={'cols': 40, 'rows': 1}),
                   'projectdescription': Textarea(attrs={'cols': 50, 'rows': 3}),
                   'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
+                  'env_cert_row': DateInput(attrs={'class':'datepicker'}),
+                  'env_cert_let': DateInput(attrs={'class':'datepicker'}),
+                  'row_auth': DateInput(attrs={'class':'datepicker'}),
+                  'let_cert': DateInput(attrs={'class':'datepicker'}),
+                  'pfpr': DateInput(attrs={'class':'datepicker'}),
+                  'ffpr': DateInput(attrs={'class':'datepicker'}),
                  }
+                 
       labels = {
             'jobnumber': _('Job Number'),
 			'projectname': _('Project Name'),
