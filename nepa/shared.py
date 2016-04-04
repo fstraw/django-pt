@@ -87,11 +87,14 @@ CLIENTS = (
 
 ENVIRONMENTAL_DOCUMENTS = (
  				('CE', 'CE'),
+ 				('PCE Type I', 'PCE Type I'),
+ 				('PCE Type II', 'PCE Type II'),
+ 				('PCE Type III', 'PCE Type III'),
 				('EA', 'EA'),
 				('EIS', 'EIS'),
 				('FONSI', 'FONSI'),
 				('GEPA_Type_B', 'GEPA Type B'),
-				('GEPA_EER', 'GEPA EER'),
+				('GEPA_EER', 'GEPA EER'),				
 				)
 
 AIR_DOCUMENTS = (
