@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
@@ -5,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
-
+@login_required
 def home_page(request):	
 	if request.method == 'GET':
 		project_list = Project.objects.all()
@@ -22,6 +23,7 @@ def home_page(request):
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
 
+@login_required
 def add_page(request):
 	if request.method == 'POST':
 		project_form = ProjectForm(request.POST)
@@ -50,6 +52,7 @@ def add_page(request):
 	else:
 		return render(request, 'add_project.html', {'project_form' : ProjectForm })
 
+@login_required
 def project_dash(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 
@@ -58,6 +61,7 @@ def project_dash(request, projectid):
 			}
 	return render(request, 'projectdash.html', context)
 
+@login_required
 def nepa_dash(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
 	nepa = project.nepa_set.all().get(id=nepaid)
@@ -67,6 +71,7 @@ def nepa_dash(request, projectid, nepaid):
 			}
 	return render(request, 'nepadash.html', context)
 
+@login_required
 def air_dash(request, projectid, airid):
 	project = get_object_or_404(Project, id=projectid)
 	air = project.air_set.all().get(id=airid)
@@ -76,6 +81,7 @@ def air_dash(request, projectid, airid):
 			}
 	return render(request, 'airdash.html', context)
 
+@login_required
 def noise_dash(request, projectid, noiseid):
 	project = get_object_or_404(Project, id=projectid)
 	noise = project.noise_set.all().get(id=noiseid)
@@ -85,7 +91,7 @@ def noise_dash(request, projectid, noiseid):
 			}
 	return render(request, 'noisedash.html', context)
 	
-
+@login_required
 def project_edit(request, projectid):
 	''' Should only come from project edit page, so nepa should update automagically '''
 	project = get_object_or_404(Project, id=projectid)
@@ -123,6 +129,7 @@ def project_edit(request, projectid):
 		project_form = ProjectForm(instance=project)
 		return render(request, 'add_project.html', {'project_form' : project_form})
 
+@login_required
 def nepa_edit(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
 	nepa = project.nepa_set.all().get(id=nepaid)
@@ -142,6 +149,7 @@ def nepa_edit(request, projectid, nepaid):
 		form = NepaForm(instance=nepa)
 		return render(request, 'add_document.html', {'form':form})
 
+@login_required
 def nepa_add(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
@@ -207,6 +215,7 @@ def initial_form_lookup(ss_type, project_from_db):
 	}
 	return form_dict[ss_type]
 
+@login_required
 def ss_add(request, projectid, ss_type, form_type):
 	project = get_object_or_404(Project, id=projectid)
 	if request.method == 'POST':
@@ -221,6 +230,7 @@ def ss_add(request, projectid, ss_type, form_type):
 		form = initial_form_lookup(ss_type, project)
 		return render(request, 'add_document.html', {'form':form, 'project':project})
 
+@login_required
 def ss_edit(request, projectid, ssid, ss_type, form_type):
 	##clean this function up
 	def ss_lookup(ssid, ss_type, parent_project):	

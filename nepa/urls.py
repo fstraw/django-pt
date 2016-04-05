@@ -17,12 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 import eptrack
 import views
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
 	url(r'^$', views.home_page, name='home'),
 	url(r'^add/$', views.add_page, name='add'),
-    url(r'^admin/', include(admin.site.urls)),
     ##Dashboards
     url(r'^(?P<projectid>[0-9]+)/$', views.project_dash, name='project_dash'),    
     url(r'^(?P<projectid>[0-9]+)/(?P<nepaid>[0-9]+)/$', views.nepa_dash, name='nepa_dash'),

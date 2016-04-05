@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from nepa import urls as nepa_urls
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-	# url(r'^$', 'nepa.views.home_page', name='home'),
-	# url(r'^add/', 'nepa.views.add_page', name='add'),
+    #Login
+    url(r'^accounts/login/$', auth_views.login),
     url(r'^admin/', include(admin.site.urls)),
     url(r'nepa/projects/', include(nepa_urls))
     ]
