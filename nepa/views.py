@@ -9,7 +9,8 @@ from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 @login_required
 def home_page(request):	
 	if request.method == 'GET':
-		project_list = Project.objects.all()
+		# project_list = Project.objects.all()
+		project_list = Project.objects.order_by('row_auth')
 		planner_form = PlannerForm()
 	elif request.method == 'POST':
 		planner_form = PlannerForm(request.POST)
