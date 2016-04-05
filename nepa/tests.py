@@ -21,11 +21,11 @@ class HomePageTest(TestCase):
         response = home_page(request)
         expected_html = render_to_string('home.html')
         self.assertEqual(response.content.decode(), expected_html, expected_html)
-# 	def test_home_page_returns_correct_html(self):
-# 		request = HttpRequest()
-# 		response = home_page(request)
-# 		expected_html = render_to_string('home.html')
-# 		self.assertEqual(response.content.decode(), expected_html)
+    def test_add_project_url_resolves_to_form(self):
+        request = self.factory.get('/nepa/projects/add/')
+        request.user = self.user
+        response = add_page(request)
+        self.assertTrue(r'Add/Edit Project' in response.content.decode(), response.content.decode())
 
 # class NewProjectTest(TestCase):
 # 	def test_url_resolves_to_add_project_view(self):
