@@ -3,15 +3,23 @@ from django.core.urlresolvers import resolve
 from django.test import TestCase 
 from django.http import HttpRequest
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
+from django.test import Client
 
 from nepa.views import home_page, add_page
 from nepa.models import Project, Nepa, Noise, Air, Ecology, Aquatics, Archaeology, History
 
 
-class HomePageTest(TestCase): 
-	def test_root_url_resolves_to_home_page_view(self): 
-		found = resolve('/')
-		self.assertEqual(found.func, home_page)
+class HomePageTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
+            username='test', email='test@test.com', password='test')
+	def test_root_url_resolves_to_home_page_view(self):
+		request = self.factory.get('/nepa/projects/')
+		request.user = self.user
+		response = home_page(request)
+		self.assertEqual(response, home_page, response)
 	def test_home_page_returns_correct_html(self):
 		request = HttpRequest()
 		response = home_page(request)

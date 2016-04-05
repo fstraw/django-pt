@@ -51,9 +51,15 @@ class ProjectForm(ModelForm):
                  
       labels = {
             'jobnumber': _('Job Number'),
-			'projectname': _('Project Name'),
-			'projectmanager': _('Project Manager'),
-			'projectdescription': _('Project Description'),
+      			'projectname': _('Project Name'),
+      			'projectmanager': _('Project Manager'),
+      			'projectdescription': _('Project Description'),
+            'env_cert_row': _('Environmental Certification ROW'),
+            'env_cert_let': _('Environmental Certification LET'),
+            'row_auth': _('ROW Authorization'),
+            'let_cert': _('LET Certification'),
+            'pfpr': _('Preliminary FPR'),
+            'ffpr': _('Final FPR'),
         }
 
 class NepaForm(ModelForm):
