@@ -75,7 +75,15 @@ class ViewsTest(TestCase):
         html = response.content.decode()
         self.assertTrue(ecodoc in html, html)
     def test_can_access_archaeology_dash(self):
-    	pass
+    	firstarchaeology = self.project.archaeology_set.all()[0]
+    	archaeologyid = firstarchaeology.id
+    	archaeologytype = firstarchaeology.documenttype
+    	ecodoc = r'{} - {} - {}'.format(self.project, self.project.projectname, archaeologytype)
+    	request = self.factory.get(reverse('archaeology_dash', kwargs={'projectid' : self.project.id, 'archaeologyid' : archaeologyid}))
+        request.user = self.user
+        response = views.archaeology_dash(request, self.project.id, archaeologyid)
+        html = response.content.decode()
+        self.assertTrue(ecodoc in html, html)
     def test_can_access_history_dash(self):
     	pass
     def test_can_access_project_form(self):
@@ -119,7 +127,12 @@ class ViewsTest(TestCase):
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Aquatics Document' in html, html)
     def test_can_access_archaeology_form(self):
-    	pass
+    	request = self.factory.get(reverse('archaeology_add', kwargs={'projectid': self.project.id,
+    										'ss_type' : 'archaeology', 'form_type' : 'archform'}))
+        request.user = self.user
+        response = views.ss_add(request, self.project.id, 'archaeology', 'archform')
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Archaeology Document' in html, html)
     def test_can_access_history_form(self):
     	pass
 # class ModelTests(TestCase):

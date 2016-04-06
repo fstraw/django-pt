@@ -77,7 +77,15 @@
 					<i><a href="{% url 'aquatics_add' project.id %} ">Add Aquatics Document</a></i>
 					
 				</div>
-				<div class="col-md-12"><h4><b>Archaeology Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12">
+					<h4><b>Archaeology Documents</b></h4>
+					{% if project.archaeology_set.all %}
+					{% for archdoc in project.archaeology_set.all %} <b><a href="{% url 'archaeology_dash' project.id archdoc.id %}"> {{ archdoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'archaeology_add' project.id %} ">Add Archaeology Document</a></i>
+				</div>
 				<div class="col-md-12"><h4><b>History</b></h4>{{ documenttype }}</div>	
 			</div>
 		</div>

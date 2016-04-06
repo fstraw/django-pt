@@ -122,6 +122,13 @@ AQUATICS_DOCUMENTS = (
 				('Addendum', 'Addendum'),
 				)
 
+ARCH_DOCUMENTS = (
+				('Short Form', 'Short Form'),
+				('Phase I', 'Phase I'),
+				('Phase II', 'Phase II'),
+				('Phase III', 'Phase III'),
+				)
+
 COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
 'Banks':1, 'Barrow':1, 'Bartow':6, 'Ben Hill':4, 'Berrien':4, 'Bibb':3,
 'Bleckley':2, 'Brantley':5, 'Brooks':4, 'Bryan':5,
