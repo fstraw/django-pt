@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
 from django.core.exceptions import ObjectDoesNotExist
-from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm
+from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm, EcologyForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 @login_required
@@ -91,6 +91,16 @@ def noise_dash(request, projectid, noiseid):
 				'noise': noise,				
 			}
 	return render(request, 'noisedash.html', context)
+
+@login_required
+def ecology_dash(request, projectid, ecologyid):
+	project = get_object_or_404(Project, id=projectid)
+	ecology = project.ecology_set.all().get(id=ecologyid)
+	context = { 
+				'project' : project,
+				'ecology': ecology,				
+			}
+	return render(request, 'ecologydash.html', context)
 	
 @login_required
 def project_edit(request, projectid):
@@ -169,7 +179,7 @@ def form_lookup(request, form_from_url, instance=None):
 	'airform': AirForm(request.POST),
 	'noiseform': NoiseForm(request.POST),
 	'archform': '',
-	'ecoform': '',
+	'ecoform': EcologyForm(request.POST),
 	'aquaform': '',
 	'histform': '',
 	}
@@ -178,7 +188,7 @@ def form_lookup(request, form_from_url, instance=None):
 	'airform': AirForm(request.POST, instance),
 	'noiseform': NoiseForm(request.POST, instance),
 	'archform': '',
-	'ecoform': '',
+	'ecoform': EcologyForm(request.POST, instance),
 	'aquaform': '',
 	'histform': '',
 	}
@@ -195,9 +205,14 @@ def blank_form_lookup(ss_type, special_study):
 		noise = NoiseForm(instance=special_study)
 	except:
 		noise = ''
+	try:
+		ecology = EcologyForm(instance=special_study)
+	except:
+		ecology = ''
 	form_dict = {
 		'air' : air,
-		'noise' : noise
+		'noise' : noise,
+		'ecology': ecology,
 	}
 	return form_dict[ss_type]
 
@@ -210,9 +225,14 @@ def initial_form_lookup(ss_type, project_from_db):
 		noise = NoiseForm(initial={'project' : project_from_db})
 	except:
 		noise = ''
+	try:
+		ecology = EcologyForm(initial={'project' : project_from_db})
+	except:
+		ecology = ''
 	form_dict = {
 		'air' : air,
-		'noise' : noise
+		'noise' : noise,
+		'ecology': ecology,
 	}
 	return form_dict[ss_type]
 
@@ -243,9 +263,14 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 			noise = parent_project.noise_set.all().get(id=ssid)
 		except ObjectDoesNotExist:
 			noise = ''
+		try:
+			ecology = parent_project.ecology_set.all().get(id=ssid)
+		except ObjectDoesNotExist:
+			ecology = ''
 		ss_dict = {
 		'air' : air,
 		'noise' : noise,
+		'ecology': ecology,
 		}
 		return ss_dict[ss_type]
 		

@@ -46,7 +46,7 @@ class ViewsTest(TestCase):
         html = response.content.decode()        
         self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, airtype) in html, html)
     def test_can_access_noise_dash(self):
-    	firstnoise = self.project.ecology_set.all()[0]
+    	firstnoise = self.project.noise_set.all()[0]
     	noiseid = firstnoise.id
     	noisetype = firstnoise.documenttype
     	request = self.factory.get(reverse('noise_dash', kwargs={'projectid' : self.project.id, 'noiseid' : noiseid}))
@@ -58,11 +58,12 @@ class ViewsTest(TestCase):
     	firstecology = self.project.ecology_set.all()[0]
     	ecologyid = firstecology.id
     	ecologytype = firstecology.documenttype
+    	ecodoc = r'{} - {} - {}'.format(self.project, self.project.projectname, ecologytype)
     	request = self.factory.get(reverse('ecology_dash', kwargs={'projectid' : self.project.id, 'ecologyid' : ecologyid}))
         request.user = self.user
         response = views.ecology_dash(request, self.project.id, ecologyid)
-        html = response.content.decode()        
-        self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, ecologytype) in html, html)
+        html = response.content.decode()
+        self.assertTrue(ecodoc in html, html)
     def test_can_access_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user
@@ -89,6 +90,13 @@ class ViewsTest(TestCase):
         response = views.ss_add(request, self.project.id, 'noise', 'noiseform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Noise Document' in html, html)
+    def test_can_access_ecology_form(self):
+    	request = self.factory.get(reverse('eco_add', kwargs={'projectid': self.project.id,
+    										'ss_type' : 'ecology', 'form_type' : 'ecoform'}))
+        request.user = self.user
+        response = views.ss_add(request, self.project.id, 'ecology', 'ecoform')
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Ecology Document' in html, html)
 
 # class ModelTests(TestCase):
 # 	def test_saving_and_getting_projects(self):
