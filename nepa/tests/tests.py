@@ -1,38 +1,53 @@
 from datetime import datetime, timedelta
 from unittest import skip
-from django.core.urlresolvers import resolve 
+from django.core.urlresolvers import resolve, reverse
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.template.loader import render_to_string
-
-
-from nepa.views import home_page, add_page
+from nepa import views
 from nepa.models import Project, Nepa, Noise, Air, Ecology, Aquatics, Archaeology, History
-from utils import clear_database
+from utils import clear_database, add_dummy_data
 
 class ViewsTest(TestCase):
     def setUp(self):
+    	add_dummy_data(1)
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username='test', email='test@test.com', password='test')        
+        self.project = Project.objects.all()[0]
     def test_root_url_resolves_to_home_page_view(self):
-        request = self.factory.get('/nepa/projects/')
+        request = self.factory.get(reverse('home'))
         request.user = self.user
-        response = home_page(request)
-        expected_html = render_to_string('home.html')
-        self.assertEqual(response.content.decode(), expected_html, expected_html)
+        response = views.home_page(request)
+        html = response.content.decode()
+        self.assertTrue(b'<table id="id_project_table"' in html, html)
     def test_add_project_url_resolves_to_form(self):
-        request = self.factory.get('/nepa/projects/add/')
+        request = self.factory.get(reverse('add'))
         request.user = self.user
-        response = add_page(request)
-        self.assertTrue(r'Add/Edit Project' in response.content.decode(), 
-							response.content.decode())
+        response = views.add_page(request)
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Project' in html, html)
+    def test_can_access_project_dash(self):
+    	request = self.factory.get(reverse('project_dash', kwargs={'projectid' : self.project.id}))
+        request.user = self.user
+        response = views.project_dash(request, self.project.id)
+        html = response.content.decode()        
+        self.assertTrue(r'{} - {}'.format(self.project, self.project.projectname)  in html, html)
+    def test_can_access_nepa_dash(self):
+    	firstnepa = self.project.nepa_set.all()[0]
+    	nepaid = firstnepa.id
+    	nepatype = firstnepa.documenttype
+    	request = self.factory.get(reverse('nepa_dash', kwargs={'projectid' : self.project.id, 'nepaid' : nepaid}))
+        request.user = self.user
+        response = views.nepa_dash(request, self.project.id, nepaid)
+        html = response.content.decode()        
+        self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, nepatype)  not in html, html)
     def test_add_nepa_url_resolves_to_form(self):
-        request = self.factory.get('/nepa/projects/add/')
+    	request = self.factory.get(reverse('nepa_add', kwargs={'projectid': self.project.id}))
         request.user = self.user
-        response = add_page(request)
-        self.assertTrue(r'Add/Edit Project' in response.content.decode(), 
-							response.content.decode())
+        response = views.nepa_add(request, self.project.id)
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit' in html, html)
 
 # class NewProjectTest(TestCase):
 # 	def test_url_resolves_to_add_project_view(self):
