@@ -85,7 +85,15 @@ class ViewsTest(TestCase):
         html = response.content.decode()
         self.assertTrue(ecodoc in html, html)
     def test_can_access_history_dash(self):
-    	pass
+    	firsthistory = self.project.history_set.all()[0]
+    	historyid = firsthistory.id
+    	historytype = firsthistory.documenttype
+    	ecodoc = r'{} - {} - {}'.format(self.project, self.project.projectname, historytype)
+    	request = self.factory.get(reverse('history_dash', kwargs={'projectid' : self.project.id, 'historyid' : historyid}))
+        request.user = self.user
+        response = views.history_dash(request, self.project.id, historyid)
+        html = response.content.decode()
+        self.assertTrue(ecodoc in html, html)
     def test_can_access_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user
@@ -134,7 +142,12 @@ class ViewsTest(TestCase):
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Archaeology Document' in html, html)
     def test_can_access_history_form(self):
-    	pass
+    	request = self.factory.get(reverse('history_add', kwargs={'projectid': self.project.id,
+    										'ss_type' : 'history', 'form_type' : 'histform'}))
+        request.user = self.user
+        response = views.ss_add(request, self.project.id, 'history', 'histform')
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit History Document' in html, html)
 # class ModelTests(TestCase):
 # 	def test_saving_and_getting_projects(self):
 # 		pass

@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
 from django.core.exceptions import ObjectDoesNotExist
-from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm
+from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm, HistoryForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 @login_required
@@ -121,6 +121,16 @@ def archaeology_dash(request, projectid, archaeologyid):
 				'archaeology': archaeology,				
 			}
 	return render(request, 'archaeologydash.html', context)
+
+@login_required
+def history_dash(request, projectid, historyid):
+	project = get_object_or_404(Project, id=projectid)
+	history = project.history_set.all().get(id=historyid)
+	context = { 
+				'project' : project,
+				'history': history,				
+			}
+	return render(request, 'historydash.html', context)
 	
 @login_required
 def project_edit(request, projectid):
@@ -201,7 +211,7 @@ def form_lookup(request, form_from_url, instance=None):
 	'archform': ArchaeologyForm(request.POST),
 	'ecoform': EcologyForm(request.POST),
 	'aquaform': AquaticsForm(request.POST),
-	'histform': '',
+	'histform': HistoryForm(request.POST),
 	}
 	##with instance
 	inst_dict = {
@@ -210,7 +220,7 @@ def form_lookup(request, form_from_url, instance=None):
 	'archform': ArchaeologyForm(request.POST, instance),
 	'ecoform': EcologyForm(request.POST, instance),
 	'aquaform': AquaticsForm(request.POST, instance),
-	'histform': '',
+	'histform': AquaticsForm(request.POST, instance),
 	}
 	if instance:
 		return inst_dict[form_from_url]
@@ -237,12 +247,17 @@ def blank_form_lookup(ss_type, special_study):
 		archaeology = ArchaeologyForm(instance=special_study)
 	except:
 		aquatics = ''
+	try:
+		history = HistoryForm(instance=special_study)
+	except:
+		history = ''
 	form_dict = {
 		'air' : air,
 		'noise' : noise,
 		'ecology': ecology,
 		'aquatics': aquatics,
 		'archaeology': archaeology,
+		'history': history,
 	}
 	return form_dict[ss_type]
 
@@ -266,13 +281,18 @@ def initial_form_lookup(ss_type, project_from_db):
 	try:
 		archaeology = ArchaeologyForm(initial={'project' : project_from_db})
 	except:
-		archaeolgy = ''
+		archaeology = ''
+	try:
+		history = HistoryForm(initial={'project' : project_from_db})
+	except:
+		history = ''
 	form_dict = {
 		'air' : air,
 		'noise' : noise,
 		'ecology': ecology,
 		'aquatics': aquatics,
 		'archaeology': archaeology,
+		'history': history,
 	}
 	return form_dict[ss_type]
 
@@ -315,12 +335,17 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 			archaeology = parent_project.archaeology_set.all().get(id=ssid)
 		except ObjectDoesNotExist:
 			archaeology = ''
+		try:
+			history = parent_project.history_set.all().get(id=ssid)
+		except ObjectDoesNotExist:
+			history = ''
 		ss_dict = {
 		'air' : air,
 		'noise' : noise,
 		'ecology': ecology,
 		'aquatics': aquatics,
 		'archaeology': archaeology,
+		'history': history,
 		}
 		return ss_dict[ss_type]
 		

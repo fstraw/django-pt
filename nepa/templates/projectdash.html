@@ -86,7 +86,15 @@
 					{% endif %}
 					<i><a href="{% url 'archaeology_add' project.id %} ">Add Archaeology Document</a></i>
 				</div>
-				<div class="col-md-12"><h4><b>History</b></h4>{{ documenttype }}</div>	
+				<div class="col-md-12">
+					<h4><b>History Documents</b></h4>
+					{% if project.history_set.all %}
+					{% for histdoc in project.history_set.all %} <b><a href="{% url 'history_dash' project.id histdoc.id %}"> {{ histdoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'history_add' project.id %} ">Add History Document</a></i>
+				</div>
 			</div>
 		</div>
 	</div>  
