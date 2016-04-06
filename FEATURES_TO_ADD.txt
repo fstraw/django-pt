@@ -2,12 +2,9 @@
 - Search by PI
 - Fix update form
 - Form validation
-- Support multiple documents
 - Mapping component
 - GDOT Nepa Planner List
 - Home page layout
-- Early coordination attached to project or nepa doc?
-- Populate employee table
 - Related projects
 
 Bug Tracker
@@ -16,7 +13,6 @@ Bug Tracker
 - Nepa Form project change
 
 Steps for adding special study:
-
 1. Add to nepa.tests.utils module (for testing)
 2. Add document typed to nepa.shared
 3. Add urls (dash, add, and edit)

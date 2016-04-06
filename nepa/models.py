@@ -50,6 +50,7 @@ class SpecialStudy(models.Model):
 	""" Base class for special studies documents """
 	project = models.ForeignKey(Project, default='')
 	specialist = models.CharField(max_length=50, default='', choices=shared.EMPLOYEES)
+	gdot_specialist = models.CharField(max_length=50, default='')
 	title = models.CharField(max_length=50, default='')
 	documenttype = models.CharField(max_length=15, default='')
 	draftsubmittal = models.DateField(null=True, blank=True)
@@ -75,6 +76,7 @@ class Nepa(models.Model):
 	##Due Dates
 	statedraftdue = models.DateField(null=True, blank=True)
 	fhwadraftdue = models.DateField(null=True, blank=True)
+	comments = models.CharField(max_length=1000, default='', blank=True)
 	def is_gepa(self):
 		if 'GEPA' in self.documenttype:
 			return True

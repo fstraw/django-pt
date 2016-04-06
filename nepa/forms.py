@@ -74,7 +74,7 @@ class NepaForm(ModelForm):
                   'statedraftdue', 'fhwadraftdue',
 				          'earlycoordination', 'statedraft',
                   'stateapproval', 'fhwadraft',
-                  'fhwaapproval']
+                  'fhwaapproval', 'comments']
     widgets = {
         'earlycoordination': DateInput(attrs={'class':'datepicker'}),
 				'statedraft': DateInput(attrs={'class':'datepicker'}),
@@ -83,6 +83,7 @@ class NepaForm(ModelForm):
 				'stateapproval': DateInput(attrs={'class':'datepicker'}),
 				'fhwadraft': DateInput(attrs={'class':'datepicker'}),
 				'fhwaapproval': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
     labels = {
 			'stateplanner':_('State Planner'),
@@ -103,7 +104,7 @@ class AirForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.AIR_DOCUMENTS)
   class Meta:
     model = Air
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -116,6 +117,7 @@ class AirForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
 
 class NoiseForm(ModelForm):
@@ -125,7 +127,7 @@ class NoiseForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.NOISE_DOCUMENTS)
   class Meta:
     model = Noise
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -138,6 +140,7 @@ class NoiseForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
 
 class EcologyForm(ModelForm):
@@ -147,7 +150,7 @@ class EcologyForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.ECOLOGY_DOCUMENTS)
   class Meta:
     model = Ecology
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -160,6 +163,7 @@ class EcologyForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
 
 class AquaticsForm(ModelForm):
@@ -169,7 +173,7 @@ class AquaticsForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.AQUATICS_DOCUMENTS)
   class Meta:
     model = Aquatics
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -182,6 +186,7 @@ class AquaticsForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
 
 class ArchaeologyForm(ModelForm):
@@ -191,7 +196,7 @@ class ArchaeologyForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.ARCH_DOCUMENTS)
   class Meta:
     model = Archaeology
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -204,6 +209,7 @@ class ArchaeologyForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
 
 class HistoryForm(ModelForm):
@@ -213,7 +219,7 @@ class HistoryForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.HISTORY_DOCUMENTS)
   class Meta:
     model = History
-    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+    fields = ['project', 'documenttype', 'title', 'specialist', 'gdot_specialist', 'draftsubmittal', 
               'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
@@ -226,4 +232,5 @@ class HistoryForm(ModelForm):
       'draftsubmittal':_('Draft Submittal'),
       'draftapproval': _('Draft Approval'),
       'duedate': _('Due Date'),
+      'gdot_specialist': _('GDOT Specialist'),
       }
