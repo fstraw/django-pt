@@ -112,7 +112,12 @@ class ViewsTest(TestCase):
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Ecology Document' in html, html)
     def test_can_access_aquatics_form(self):
-    	pass
+    	request = self.factory.get(reverse('aquatics_add', kwargs={'projectid': self.project.id,
+    										'ss_type' : 'aquatics', 'form_type' : 'aquaform'}))
+        request.user = self.user
+        response = views.ss_add(request, self.project.id, 'aquatics', 'aquaform')
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Aquatics Document' in html, html)
     def test_can_access_archaeology_form(self):
     	pass
     def test_can_access_history_form(self):

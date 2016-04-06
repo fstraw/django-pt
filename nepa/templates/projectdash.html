@@ -67,7 +67,16 @@
 					{% endif %}
 					<i><a href="{% url 'eco_add' project.id %} ">Add Ecology Document</a></i>
 				</div>
-				<div class="col-md-12"><h4><b>Aquatics Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4>
+					<b>Aquatics Documents</b></h4>
+					{% if project.aquatics_set.all %}
+					{% for aquadoc in project.aquatics_set.all %} <b><a href="{% url 'aquatics_dash' project.id aquadoc.id %}"> {{ aquadoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'aquatics_add' project.id %} ">Add Aquatics Document</a></i>
+					
+				</div>
 				<div class="col-md-12"><h4><b>Archaeology Documents</b></h4>{{ documenttype }}</div>
 				<div class="col-md-12"><h4><b>History</b></h4>{{ documenttype }}</div>	
 			</div>

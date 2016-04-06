@@ -2,7 +2,7 @@ from django.forms import ModelForm, Textarea, DateInput, Form, TextInput, CharFi
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise, Ecology
+from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise, Ecology, Aquatics
 import shared
 
 
@@ -145,6 +145,27 @@ class EcologyForm(ModelForm):
     self.fields['documenttype'] = ChoiceField(choices=shared.ECOLOGY_DOCUMENTS)
   class Meta:
     model = Ecology
+    fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
+              'draftapproval', 'duedate']
+    widgets = {
+        'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
+        'draftapproval': DateInput(attrs={'class':'datepicker'}),
+        'duedate': DateInput(attrs={'class':'datepicker'}),
+        }
+
+    labels = {
+      'draftsubmittal':_('Draft Submittal'),
+      'draftapproval': _('Draft Approval'),
+      'duedate': _('Due Date'),
+      }
+
+class AquaticsForm(ModelForm):
+  def __init__(self, *args, **kwargs):
+    super(AquaticsForm, self).__init__(*args, **kwargs)
+    self.name = 'Aquatics Document'
+    self.fields['documenttype'] = ChoiceField(choices=shared.AQUATICS_DOCUMENTS)
+  class Meta:
+    model = Aquatics
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
               'draftapproval', 'duedate']
     widgets = {

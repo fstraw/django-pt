@@ -14,3 +14,13 @@ Bug Tracker
 - PI Validation
 - PN Validation
 - Nepa Form project change
+
+Steps for adding special study:
+
+1. Add to nepa.tests.utils module (for testing)
+2. Add document typed to nepa.shared
+3. Add urls (dash, add, and edit)
+4. Add dash to nepa.views
+5. Update helper functions
+6. Add to nepa.forms
+7. Update project_dash template
