@@ -64,6 +64,20 @@ class ViewsTest(TestCase):
         response = views.ecology_dash(request, self.project.id, ecologyid)
         html = response.content.decode()
         self.assertTrue(ecodoc in html, html)
+    def test_can_access_aquatics_dash(self):
+    	firstaquatics = self.project.aquatics_set.all()[0]
+    	aquaticsid = firstaquatics.id
+    	aquaticstype = firstaquatics.documenttype
+    	ecodoc = r'{} - {} - {}'.format(self.project, self.project.projectname, aquaticstype)
+    	request = self.factory.get(reverse('aquatics_dash', kwargs={'projectid' : self.project.id, 'aquaticsid' : aquaticsid}))
+        request.user = self.user
+        response = views.aquatics_dash(request, self.project.id, aquaticsid)
+        html = response.content.decode()
+        self.assertTrue(ecodoc in html, html)
+    def test_can_access_archaeology_dash(self):
+    	pass
+    def test_can_access_history_dash(self):
+    	pass
     def test_can_access_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user
@@ -97,7 +111,12 @@ class ViewsTest(TestCase):
         response = views.ss_add(request, self.project.id, 'ecology', 'ecoform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Ecology Document' in html, html)
-
+    def test_can_access_aquatics_form(self):
+    	pass
+    def test_can_access_archaeology_form(self):
+    	pass
+    def test_can_access_history_form(self):
+    	pass
 # class ModelTests(TestCase):
 # 	def test_saving_and_getting_projects(self):
 # 		pass
