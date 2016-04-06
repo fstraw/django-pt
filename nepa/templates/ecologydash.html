@@ -22,24 +22,80 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row">
-				<div class="col-md-12"><h4><b>State Approval</b></h4></div>
-				<div class="col-md-12"><h4><b>Federal Approval</b></h4></div>
+				<div class="col-md-12">
+					<h4><b>Environmental Documents</b></h4>
+					{% if project.nepa_set.all %}
+					{% for nepadoc in project.nepa_set.all %} <b><a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'nepa_add' project.id %} ">Add Environmental Document</a></i>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="row">				
-				<div class="col-md-12"><h4><b>Air Documents</b></h4>{{ documenttype }}</div>
-				<div class="col-md-12"><h4><b>Noise Documents</b></h4>{{ documenttype }}</div>
-				<div class="col-md-12"><h4><b>Ecology Documents</b></h4>{{ documenttype }}</div>
-				<div class="col-md-12"><h4><b>Aquatics Documents</b></h4>{{ documenttype }}</div>
-				<div class="col-md-12"><h4><b>Archaeology Documents</b></h4>{{ documenttype }}</div>
-				<div class="col-md-12"><h4><b>History</b></h4>{{ documenttype }}</div>	
+				<div class="col-md-12">
+					<h4><b>Air Documents</b></h4>
+					{% if project.air_set.all %}
+					{% for airdoc in project.air_set.all %} <b><a href="{% url 'air_dash' project.id airdoc.id %}"> {{ airdoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'air_add' project.id %} ">Add Air Document</a></i>
+				</div>
+				<div class="col-md-12">
+					<h4><b>Noise Documents</b></h4>
+					{% if project.noise_set.all %}
+					{% for noisedoc in project.noise_set.all %} <b><a href="{% url 'noise_dash' project.id noisedoc.id %}"> {{ noisedoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'noise_add' project.id %} ">Add Noise Document</a></i>
+				</div>
+				<div class="col-md-12"><h4>
+					<b>Ecology Documents</b></h4>
+					{% if project.ecology_set.all %}
+					{% for ecodoc in project.ecology_set.all %} <b><a href="{% url 'ecology_dash' project.id ecodoc.id %}"> {{ ecodoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'eco_add' project.id %} ">Add Ecology Document</a></i>
+				</div>
+				<div class="col-md-12"><h4>
+					<b>Aquatics Documents</b></h4>
+					{% if project.aquatics_set.all %}
+					{% for aquadoc in project.aquatics_set.all %} <b><a href="{% url 'aquatics_dash' project.id aquadoc.id %}"> {{ aquadoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'aquatics_add' project.id %} ">Add Aquatics Document</a></i>
+					
+				</div>
+				<div class="col-md-12">
+					<h4><b>Archaeology Documents</b></h4>
+					{% if project.archaeology_set.all %}
+					{% for archdoc in project.archaeology_set.all %} <b><a href="{% url 'archaeology_dash' project.id archdoc.id %}"> {{ archdoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'archaeology_add' project.id %} ">Add Archaeology Document</a></i>
+				</div>
+				<div class="col-md-12">
+					<h4><b>History Documents</b></h4>
+					{% if project.history_set.all %}
+					{% for histdoc in project.history_set.all %} <b><a href="{% url 'history_dash' project.id histdoc.id %}"> {{ histdoc | linebreaks }} </a></b> {% endfor %}
+					{% else %}					
+					<br>
+					{% endif %}
+					<i><a href="{% url 'history_add' project.id %} ">Add History Document</a></i>
+				</div>
 			</div>
 		</div>
 	</div>  
 		<div class="col-md-4">
 			<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
-			<div class="col-md-12"><h4><b>Comments</b></h4>{{ project.comments }}</div>
+			<div class="col-md-12"><h4><b>Ecology Comments</b></h4>{{ ecology.comments }}</div>
 		</div>  
 	</div>
 </div>
