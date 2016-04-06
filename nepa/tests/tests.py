@@ -46,7 +46,7 @@ class ViewsTest(TestCase):
         html = response.content.decode()        
         self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, airtype) in html, html)
     def test_can_access_noise_dash(self):
-    	firstnoise = self.project.noise_set.all()[0]
+    	firstnoise = self.project.ecology_set.all()[0]
     	noiseid = firstnoise.id
     	noisetype = firstnoise.documenttype
     	request = self.factory.get(reverse('noise_dash', kwargs={'projectid' : self.project.id, 'noiseid' : noiseid}))
@@ -54,6 +54,15 @@ class ViewsTest(TestCase):
         response = views.noise_dash(request, self.project.id, noiseid)
         html = response.content.decode()        
         self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, noisetype) in html, html)
+    def test_can_access_ecology_dash(self):
+    	firstecology = self.project.ecology_set.all()[0]
+    	ecologyid = firstecology.id
+    	ecologytype = firstecology.documenttype
+    	request = self.factory.get(reverse('ecology_dash', kwargs={'projectid' : self.project.id, 'ecologyid' : ecologyid}))
+        request.user = self.user
+        response = views.ecology_dash(request, self.project.id, ecologyid)
+        html = response.content.decode()        
+        self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, ecologytype) in html, html)
     def test_can_access_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user
