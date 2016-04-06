@@ -104,11 +104,12 @@ class AirForm(ModelForm):
   class Meta:
     model = Air
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {
@@ -125,11 +126,12 @@ class NoiseForm(ModelForm):
   class Meta:
     model = Noise
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {
@@ -146,11 +148,12 @@ class EcologyForm(ModelForm):
   class Meta:
     model = Ecology
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {
@@ -167,11 +170,12 @@ class AquaticsForm(ModelForm):
   class Meta:
     model = Aquatics
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {
@@ -188,11 +192,12 @@ class ArchaeologyForm(ModelForm):
   class Meta:
     model = Archaeology
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {
@@ -209,11 +214,12 @@ class HistoryForm(ModelForm):
   class Meta:
     model = History
     fields = ['project', 'documenttype', 'title', 'specialist','draftsubmittal', 
-              'draftapproval', 'duedate']
+              'draftapproval', 'duedate', 'comments']
     widgets = {
         'draftsubmittal': DateInput(attrs={'class':'datepicker'}),
         'draftapproval': DateInput(attrs={'class':'datepicker'}),
         'duedate': DateInput(attrs={'class':'datepicker'}),
+        'comments': Textarea(attrs={'cols': 50, 'rows': 3}),
         }
 
     labels = {

@@ -20,6 +20,8 @@ class Project(models.Model):
 	pfpr = models.DateField(null=True, blank=True)
 	ffpr = models.DateField(null=True, blank=True)
 	comments = models.CharField(max_length=1000, default='', blank=True)
+	def is_complete():
+		pass
 	def gdot_district(self):
 		if self.county:
 			return '{}'.format(shared.COUNTIES[self.county])
@@ -53,6 +55,7 @@ class SpecialStudy(models.Model):
 	draftsubmittal = models.DateField(null=True, blank=True)
 	draftapproval = models.DateField(null=True, blank=True)
 	duedate = models.DateField(null=True, blank=True)
+	comments = models.CharField(max_length=1000, default='', blank=True)
 	class Meta:
 		abstract = True
 	def __str__(self):		
