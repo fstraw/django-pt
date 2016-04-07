@@ -17,7 +17,7 @@ $( document ).ready(function() {
 
 <div class="row">
 	<div class = "col-md-12">
-		<div class="col-md-10"><a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></div>
+		<div class="col-md-10"><a href="{% url 'add' %}" class="top-menu" data-toggle="tooltip" title="Add Project"><span class="glyphicon glyphicon-plus"></span></a></div>
 		<div class="col-md-2"><input type="text" id="search" placeholder="Type to search"></div>
 	</div>
 </div>
@@ -33,7 +33,7 @@ $( document ).ready(function() {
 		<td><b>FHWA Draft Due In</b></td>
 	{% for project in project_list %}
 	</tr>
-		<td> <a href='{{ project.id }}/'>{{ project.jobnumber }}</td>			
+		<td> <a href='{{ project.id }}/' data-toggle="tooltip" title="See details for {{ project.jobnumber }}">{{ project.jobnumber }}</td>			
 		<td> {% for pi in project.pis.all %} 
 				{{ pi | linebreaks }} 
 			 {% endfor %}

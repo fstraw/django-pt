@@ -13,9 +13,11 @@ html, body{
 }
 
 .glyphicon.glyphicon-plus {
-    font-size: 45px;
+    font-size: 25px;
     color: black;
 }
+
+
 
 .glyphicon.glyphicon-pencil {
     font-size: 18px;
