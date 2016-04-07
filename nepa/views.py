@@ -355,9 +355,8 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 	if request.method == 'POST':
 		if request.POST.get('delete'):
 			special_study.delete()
-			blank_request = HttpRequest()
-			blank_request.method = 'GET'
-			return project_dash(blank_request, projectid)
+			request.method = 'GET'
+			return project_dash(request, projectid)
 		# form = AirForm(request.POST, instance=air)
 		form = form_lookup(request, form_type)
 		if form.is_valid():
