@@ -63,10 +63,10 @@ class ProjectForm(ModelForm):
         }
 
 class NepaForm(ModelForm):
-  # def __init__(self, *args, **kwargs):
-  #   super(NepaForm, self).__init__(*args, **kwargs)
-  #   self.fields['documenttype'].choices = ENVIRONMENTAL_DOCUMENTS
-  #   self.fields['specialist'].choices = NEPA_PLANNERS
+  def __init__(self, *args, **kwargs):
+    super(NepaForm, self).__init__(*args, **kwargs)
+    self.name = 'Environmental Document'
+    # self.fields['specialist'].choices = NEPA_PLANNERS
   class Meta:          
     model = Nepa
     fields = ['project', 'specialist', 

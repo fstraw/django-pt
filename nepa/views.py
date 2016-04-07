@@ -240,13 +240,13 @@ def blank_form_lookup(ss_type, special_study):
 	except:
 		ecology = ''
 	try:
-		ecology = AquaticsForm(instance=special_study)
+		aquatics = AquaticsForm(instance=special_study)
 	except:
 		aquatics = ''
 	try:
 		archaeology = ArchaeologyForm(instance=special_study)
 	except:
-		aquatics = ''
+		archaeology = ''
 	try:
 		history = HistoryForm(instance=special_study)
 	except:

@@ -15,6 +15,9 @@ class ViewsTest(TestCase):
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username='test', email='test@test.com', password='test')        
         self.project = Project.objects.all()[0]
+        self.firstnepa = self.project.nepa_set.all()[0]
+        self.nepaid = self.firstnepa.id
+        self.nepatype = self.firstnepa.documenttype
     def test_root_url_resolves_to_home_page_view(self):
         request = self.factory.get(reverse('home'))
         request.user = self.user
@@ -28,14 +31,11 @@ class ViewsTest(TestCase):
         html = response.content.decode()        
         self.assertTrue(r'{} - {}'.format(self.project, self.project.projectname) in html, html)
     def test_can_access_nepa_dash(self):
-    	firstnepa = self.project.nepa_set.all()[0]
-    	nepaid = firstnepa.id
-    	nepatype = firstnepa.documenttype
-    	request = self.factory.get(reverse('nepa_dash', kwargs={'projectid' : self.project.id, 'nepaid' : nepaid}))
+    	request = self.factory.get(reverse('nepa_dash', kwargs={'projectid' : self.project.id, 'nepaid' : self.nepaid}))
         request.user = self.user
-        response = views.nepa_dash(request, self.project.id, nepaid)
+        response = views.nepa_dash(request, self.project.id, self.nepaid)
         html = response.content.decode()        
-        self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, nepatype) in html, html)
+        self.assertTrue(r'{} - {} - {}'.format(self.project, self.project.projectname, self.nepatype) in html, html)
     def test_can_access_air_dash(self):
     	firstair = self.project.air_set.all()[0]
     	airid = firstair.id
@@ -94,60 +94,72 @@ class ViewsTest(TestCase):
         response = views.history_dash(request, self.project.id, historyid)
         html = response.content.decode()
         self.assertTrue(ecodoc in html, html)
-    def test_can_access_project_form(self):
+    def test_can_access_new_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user
         response = views.add_page(request)
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Project' in html, html)
-    def test_can_access_nepa_form(self):
+    def test_can_access_new_nepa_form(self):
     	request = self.factory.get(reverse('nepa_add', kwargs={'projectid': self.project.id}))
         request.user = self.user
         response = views.nepa_add(request, self.project.id)
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit' in html, html)
-    def test_can_access_air_form(self):
+    def test_can_access_new_air_form(self):
     	request = self.factory.get(reverse('air_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'air', 'form_type' : 'airform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'air', 'airform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Air Document' in html, html)
-    def test_can_access_noise_form(self):
+    def test_can_access_new_noise_form(self):
     	request = self.factory.get(reverse('noise_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'noise', 'form_type' : 'noiseform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'noise', 'noiseform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Noise Document' in html, html)
-    def test_can_access_ecology_form(self):
+    def test_can_access_new_ecology_form(self):
     	request = self.factory.get(reverse('eco_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'ecology', 'form_type' : 'ecoform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'ecology', 'ecoform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Ecology Document' in html, html)
-    def test_can_access_aquatics_form(self):
+    def test_can_access_new_aquatics_form(self):
     	request = self.factory.get(reverse('aquatics_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'aquatics', 'form_type' : 'aquaform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'aquatics', 'aquaform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Aquatics Document' in html, html)
-    def test_can_access_archaeology_form(self):
+    def test_can_access_new_archaeology_form(self):
     	request = self.factory.get(reverse('archaeology_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'archaeology', 'form_type' : 'archform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'archaeology', 'archform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Archaeology Document' in html, html)
-    def test_can_access_history_form(self):
+    def test_can_access_new_history_form(self):
     	request = self.factory.get(reverse('history_add', kwargs={'projectid': self.project.id,
     										'ss_type' : 'history', 'form_type' : 'histform'}))
         request.user = self.user
         response = views.ss_add(request, self.project.id, 'history', 'histform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit History Document' in html, html)
+    def test_can_edit_existing_project_form(self):
+        request = self.factory.get(reverse('project_edit', kwargs={'projectid': self.project.id}))
+        request.user = self.user
+        response = views.project_edit(request, self.project.id)
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Project' in html, html)
+    def test_can_edit_existing_nepa_form(self):
+        request = self.factory.get(reverse('nepa_edit', kwargs={'projectid': self.project.id, 'nepaid': self.nepaid}))
+        request.user = self.user
+        response = views.nepa_edit(request, self.project.id, self.nepaid)
+        html = response.content.decode()  
+        self.assertTrue(r'Add/Edit Environmental Document' in html, html)
 # class ModelTests(TestCase):
 # 	def test_saving_and_getting_projects(self):
 # 		pass

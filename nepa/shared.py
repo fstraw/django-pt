@@ -115,6 +115,7 @@ NOISE_DOCUMENTS = (
 ECOLOGY_DOCUMENTS = (
 				('Assessment', 'Assessment'),
 				('Addendum', 'Addendum'),
+				('AOE', 'AOE'),
 				)
 
 AQUATICS_DOCUMENTS = (
@@ -133,6 +134,7 @@ ARCH_DOCUMENTS = (
 HISTORY_DOCUMENTS = (
 				('HRSR', 'HRSR'),
 				('Memorandum', 'Memorandum'),
+				('AOE', 'AOE'),
 				)
 
 COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
