@@ -6,9 +6,6 @@ from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise, Ec
 import shared
 
 
-class PlannerForm(forms.Form):
-    pm = forms.ChoiceField(choices=shared.PROJECT_MANAGERS, initial='')
-
 class ProjectForm(ModelForm):
     initial_fields = ('pinumber', 'projectnumber')
     pinumber = forms.CharField(required=False, label='PI Number(s)')

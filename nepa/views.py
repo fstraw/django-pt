@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
 from django.core.exceptions import ObjectDoesNotExist
-from nepa.forms import ProjectForm, NepaForm, PlannerForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm, HistoryForm
+from nepa.forms import ProjectForm, NepaForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm, HistoryForm
 from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
 
 @login_required
@@ -11,7 +11,6 @@ def home_page(request):
 	if request.method == 'GET':
 		# project_list = Project.objects.all()
 		project_list = Project.objects.order_by('row_auth')
-		planner_form = PlannerForm()
 	elif request.method == 'POST':
 		planner_form = PlannerForm(request.POST)
 		try:
@@ -19,8 +18,7 @@ def home_page(request):
 			project_list = Project.objects.filter(projectmanager=request.POST['pm'])
 		except:
 			project_list = Project.objects.all()
-	context = {'project_list' : project_list,
-				'planner_form' : planner_form}
+	context = {'project_list' : project_list}
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context))
 
