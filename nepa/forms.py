@@ -45,6 +45,21 @@ class ProjectForm(ModelForm):
                   'pfpr': DateInput(attrs={'class':'datepicker'}),
                   'ffpr': DateInput(attrs={'class':'datepicker'}),
                  }
+      help_texts = {
+                  'jobnumber': 'Assigned billing number for project',
+                  'projectname': 'Project title (i.e., Short Desc from TPRO)',
+                  'client': 'Prime consultant or client',
+                  'projectmanager': 'EP project manager',
+                  'projectdescription': 'Brief project description',                  
+                  'county': 'Primary county',
+                  'comments': 'Project-specific comments or helpful notes',
+                  'env_cert_row': '',
+                  'env_cert_let': '',
+                  'row_auth': '',
+                  'let_cert': '',
+                  'pfpr': '',
+                  'ffpr': '',
+              }
                  
       labels = {
             'jobnumber': _('Job Number'),
