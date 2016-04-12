@@ -7,9 +7,9 @@ import shared
 ## EP Project
 class Project(models.Model):
 	jobnumber = models.CharField(max_length=15, default='', unique=True)
-	projectname = models.CharField(max_length=50, default='')
+	projectname = models.CharField(max_length=100, default='')
 	projectmanager = models.CharField(max_length=25, default='', choices=shared.PROJECT_MANAGERS)
-	projectdescription = models.CharField(max_length=1000, default='')
+	projectdescription = models.CharField(max_length=1000, default='', blank=True)
 	client = models.CharField(max_length=30, default='', blank=True)
 	county = models.CharField(max_length=15, default='', choices=shared.COUNTY_NAMES)
 	# relatedprojects = models.ManyToManyField('self', null=True)
@@ -19,7 +19,7 @@ class Project(models.Model):
 	let_cert = models.DateField(null=True, blank=True)
 	pfpr = models.DateField(null=True, blank=True)
 	ffpr = models.DateField(null=True, blank=True)
-	comments = models.CharField(max_length=1000, default='', blank=True)
+	comments = models.CharField(max_length=2000, default='', blank=True)
 	def is_complete():
 		pass
 	def gdot_district(self):

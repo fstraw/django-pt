@@ -51,29 +51,30 @@ EMPLOYEES = (
 			('Thomas, Susan', 'Thomas, Susan'),
 			('Trudeau, Mary', 'Trudeau, Mary'),
 			('Welch, Lauren', 'Welch, Lauren'),
+			('Woodson, Jim', 'Woodson, Jim'),	
 			# ('Winkles, Debbie', 'Winkles, Debbie'),
 		)
 
 PROJECT_MANAGERS = (
-			('Jill Brown', 'Jill Brown'),
-			('Russ Danser', 'Russ Danser'),
-			('Josh Earhart', 'Josh Earhart'),
-			('Mark Grindstaff', 'Mark Grindstaff'),
-			('Dave Pearce', 'Dave Pearce'),
-			('Heather Perrin', 'Heather Perrin'),
-			('Lynn Pietak', 'Lynn Pietak'),
-			('Susan Thomas', 'Susan Thomas'),
-			('Jim Woodson', 'Jim Woodson'),		
+			('Brown, Jill', 'Brown, Jill'),
+			('Danser, Russ', 'Danser, Russ'),
+			('Earhart, Josh', 'Earhart, Josh'),
+			('Grindstaff, Mark', 'Grindstaff, Marc'),
+			('Pearce, David', 'Pearce, David'),
+			('Perrin, Heather', 'Perrin, Heather'),
+			('Pietak, Lynn', 'Pietak, Lynn'),
+			('Thomas, Susan', 'Thomas, Susan'),
+			('Woodson, Jim', 'Woodson, Jim'),		
 			
 	)
 
 NEPA_PLANNERS = (
-			('Susan Thomas', 'Susan Thomas'),
-			('Heather Perrin', 'Heather Perrin'),
-			('Josh Earhart', 'Josh Earhart'),
-			('Russ Danser', 'Russ Danser'),
-			('Jill Brown', 'Jill Brown'),
-			('Jim Woodson', 'Jim Woodson'),
+			('Brown, Jill', 'Brown, Jill'),
+			('Danser, Russ', 'Danser, Russ'),
+			('Earhart, Josh', 'Earhart, Josh'),
+			('Perrin, Heather', 'Perrin, Heather'),
+			('Thomas, Susan', 'Thomas, Susan'),
+			('Woodson, Jim', 'Woodson, Jim'),
 	)
 
 CLIENTS = (

@@ -11,8 +11,7 @@ def home_page(request):
 	if request.method == 'GET':
 		# project_list = Project.objects.all()
 		project_list = Project.objects.order_by('row_auth')
-	elif request.method == 'POST':
-		planner_form = PlannerForm(request.POST)
+	elif request.method == 'POST':		
 		try:
 			"""Dirty hack to handle post redirect from add_page :-/ """
 			project_list = Project.objects.filter(projectmanager=request.POST['pm'])
@@ -177,6 +176,7 @@ def nepa_edit(request, projectid, nepaid):
 			nepa.delete()
 			blank_request = HttpRequest()
 			blank_request.method = 'GET'
+			blank_request.user = request.user
 			return project_dash(blank_request, projectid)
 		form = NepaForm(request.POST, instance=nepa)
 		if form.is_valid():

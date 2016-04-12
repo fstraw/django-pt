@@ -134,3 +134,6 @@ def add_dummy_data(num_of_entries):
 def clear_database():
     django.setup()
     models.Project.objects.all().delete()
+    models.PINumbers.objects.all().delete()
+    models.ProjectNumbers.objects.all().delete()
+    models.Nepa.objects.all().delete()
