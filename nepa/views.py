@@ -64,7 +64,7 @@ def pi_dash(request, projectid):
 	project = get_object_or_404(Project, id=projectid)
 	project_list = Project.objects.filter(pis__projects=project)
 	context = { 
-				'project_list': project_list,				
+				'project_list': set(project_list),	
 			}
 	return render(request, 'home.html', context)
 
