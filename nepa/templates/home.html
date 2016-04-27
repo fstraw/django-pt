@@ -27,6 +27,7 @@ $( document ).ready(function() {
 		<td><b>Job Number</b></td>
 		<td><b>Project Name</b></td>		
 		<td><b>Project Numbers</b></td>
+		<td><b>County</b></td>
 		<td><b>Project Manager</b></td>
 
 	{% for project in project_list %}
@@ -40,6 +41,7 @@ $( document ).ready(function() {
 			 	{{ pn | linebreaks }} 
 			 {% endfor %}
 			</td>
+		<td> {{ project.county }} </td>
 		<td> {{ project.projectmanager }} </td>
 
 	</tr>
