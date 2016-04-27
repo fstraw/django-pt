@@ -24,16 +24,15 @@ $( document ).ready(function() {
 
 <table id="id_project_table" class="table table-bordered">
 	<tr>
-		<td><b>Job Number</b></td>				
+		<td><b>Job Number</b></td>
+		<td><b>Project Name</b></td>		
 		<td><b>Project Numbers</b></td>
 		<td><b>Project Manager</b></td>
-		<td><b>State Draft Submittal</b></td>
-		<td><b>FHWA Draft Submittal</b></td>
-		<td><b>State Draft Due In</b></td>
-		<td><b>FHWA Draft Due In</b></td>
+
 	{% for project in project_list %}
 	</tr>
-		<td> <a href="{% url 'project_dash' project.id %}" data-toggle="tooltip" title="See details for {{ project.jobnumber }}"><b>{{ project.jobnumber }}</b></td>			
+		<td> <a href="{% url 'project_dash' project.id %}" data-toggle="tooltip" title="See details for {{ project.jobnumber }}"><b>{{ project.jobnumber }}</b></td>
+		<td>{{ project.projectname }}</td>			
 		<td> {% for pi in project.pis.all %} 
 				<a href="{% url 'pi_dash' project.id %}" data-toggle="tooltip" title="See jobs for {{ pi }}">{{ pi | linebreaks }}</a>
 			 {% endfor %}
@@ -42,30 +41,7 @@ $( document ).ready(function() {
 			 {% endfor %}
 			</td>
 		<td> {{ project.projectmanager }} </td>
-		<td>{% for nepadoc in project.nepa_set.all %} 
-				{% if nepadoc.statedraft %}
-					{{nepadoc.documenttype}}-{{ nepadoc.statedraft | linebreaks}}
-				{% else %}
-					{{nepadoc.documenttype}}-Not Submitted<br>
-				{% endif %}
-			{% endfor %}</td>
-		<td>{% for nepadoc in project.nepa_set.all %} 
-				{% if nepadoc.fhwadraft %}
-					{{nepadoc.documenttype}}-{{ nepadoc.fhwadraft | linebreaks}}
-				{% elif nepadoc.is_gepa %}
-					Not Applicable<br>
-				{% else %}
-					{{nepadoc.documenttype}}-Not Submitted<br>
-				{% endif %}
-			{% endfor %}</td>
-		<td>{% for nepadoc in project.nepa_set.all.all %} {{nepadoc.documenttype}}-{{ nepadoc.statedraft_due_in | linebreaks }} {% endfor %}</td>
-		<td>{% for nepadoc in project.nepa_set.all.all %}
-				{% if nepadoc.is_gepa %}
-					Not Applicable<br>
-				{% else %}
-					{{nepadoc.documenttype}}-{{ nepadoc.fhwadraft_due_in | linebreaks }}
-				{% endif %}
-			{% endfor %}</td>
+
 	</tr>
 	{% endfor %}
 </table>

@@ -49,6 +49,19 @@ html, body{
 	text-align: center;
 }
 
+#id_project_table a {
+	text-decoration: none;
+}
+
+#id_project_table a:hover {
+	text-decoration: underline;
+}
+
+#id_project_table td {
+	vertical-align: middle;
+	border-bottom: 1px solid #ddd;
+}
+
 #search_float {
 	float: right;
 }
