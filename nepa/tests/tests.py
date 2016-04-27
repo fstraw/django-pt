@@ -94,6 +94,14 @@ class ViewsTest(TestCase):
         response = views.history_dash(request, self.project.id, self.historyid)
         html = response.content.decode()
         self.assertTrue(ecodoc in html, html)
+    def test_can_access_pi_dash(self):
+        # ecodoc = r'{} - {} - {}'.format(self.project, self.project.projectname, self.historytype)
+        project_list = Project.objects.filter(pis__projects=self.project)
+        request = self.factory.get(reverse('pi_dash', kwargs={'projectid' : self.project.id}))
+        request.user = self.user
+        response = views.pi_dash(request, self.project.id)
+        html = response.content.decode()
+        self.assertTrue(self.project.jobnumber in html, html)
     def test_can_access_new_project_form(self):
         request = self.factory.get(reverse('add'))
         request.user = self.user

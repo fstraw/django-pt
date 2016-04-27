@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^(?P<projectid>[0-9]+)/aquatics/(?P<aquaticsid>[0-9]+)/$', views.aquatics_dash, name='aquatics_dash'),
     url(r'^(?P<projectid>[0-9]+)/archaeology/(?P<archaeologyid>[0-9]+)/$', views.archaeology_dash, name='archaeology_dash'),
     url(r'^(?P<projectid>[0-9]+)/history/(?P<historyid>[0-9]+)/$', views.history_dash, name='history_dash'),
+    url(r'^(?P<projectid>[0-9]+)/pis/$', views.pi_dash, name='pi_dash'),
     ##Edit, make names unique
     url(r'^(?P<projectid>[0-9]+)/edit/$', views.project_edit, name='project_edit'),
     url(r'^(?P<projectid>[0-9]+)/(?P<nepaid>[0-9]+)/edit$', views.nepa_edit, name='nepa_edit'),
