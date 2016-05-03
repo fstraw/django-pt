@@ -184,29 +184,29 @@ class ViewsTest(TestCase):
         self.assertTrue(r'Add/Edit Noise Document' in html, html)
     def test_can_edit_existing_ecology_form(self):
         request = self.factory.get(reverse('ecology_edit', kwargs={'projectid': self.project.id, 'ssid': self.ecologyid,
-                                                                'ss_type': 'ecology', 'form_type': 'ecology'}))
+                                                                'ss_type': 'ecology', 'form_type': 'ecoform'}))
         request.user = self.user
-        response = views.ss_edit(request, self.project.id, self.ecologyid, 'ecology', 'ecology')
+        response = views.ss_edit(request, self.project.id, self.ecologyid, 'ecology', 'ecoform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Ecology Document' in html, html)
     def test_can_edit_existing_aquatics_form(self):
         request = self.factory.get(reverse('aquatics_edit', kwargs={'projectid': self.project.id, 'ssid': self.aquaticsid,
-                                                                'ss_type': 'aquatics', 'form_type': 'aquatics'}))
+                                                                'ss_type': 'aquatics', 'form_type': 'aquaform'}))
         request.user = self.user
-        response = views.ss_edit(request, self.project.id, self.aquaticsid, 'aquatics', 'aquatics')
+        response = views.ss_edit(request, self.project.id, self.aquaticsid, 'aquatics', 'aquaform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Aquatics Document' in html, html)
     def test_can_edit_existing_archaeology_form(self):
         request = self.factory.get(reverse('archaeology_edit', kwargs={'projectid': self.project.id, 'ssid': self.archaeologyid,
-                                                                'ss_type': 'archaeology', 'form_type': 'archaeology'}))
+                                                                'ss_type': 'archaeology', 'form_type': 'archform'}))
         request.user = self.user
-        response = views.ss_edit(request, self.project.id, self.archaeologyid, 'archaeology', 'archaeology')
+        response = views.ss_edit(request, self.project.id, self.archaeologyid, 'archaeology', 'archform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit Archaeology Document' in html, html)
     def test_can_edit_existing_history_form(self):
         request = self.factory.get(reverse('history_edit', kwargs={'projectid': self.project.id, 'ssid': self.historyid,
-                                                                'ss_type': 'history', 'form_type': 'history'}))
+                                                                'ss_type': 'history', 'form_type': 'histform'}))
         request.user = self.user
-        response = views.ss_edit(request, self.project.id, self.historyid, 'history', 'history')
+        response = views.ss_edit(request, self.project.id, self.historyid, 'history', 'histform')
         html = response.content.decode()  
         self.assertTrue(r'Add/Edit History Document' in html, html)

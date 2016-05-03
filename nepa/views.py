@@ -222,12 +222,12 @@ def form_lookup(request, form_from_url, instance=None):
 	}
 	##with instance
 	inst_dict = {
-	'airform': AirForm(request.POST, instance),
-	'noiseform': NoiseForm(request.POST, instance),
-	'archform': ArchaeologyForm(request.POST, instance),
-	'ecoform': EcologyForm(request.POST, instance),
-	'aquaform': AquaticsForm(request.POST, instance),
-	'histform': AquaticsForm(request.POST, instance),
+	'airform': AirForm(request.POST, instance=instance),
+	'noiseform': NoiseForm(request.POST, instance=instance),
+	'archform': ArchaeologyForm(request.POST, instance=instance),
+	'ecoform': EcologyForm(request.POST, instance=instance),
+	'aquaform': AquaticsForm(request.POST, instance=instance),
+	'histform': HistoryForm(request.POST, instance=instance),
 	}
 	if instance:
 		return inst_dict[form_from_url]
@@ -365,11 +365,12 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 			request.method = 'GET'
 			return project_dash(request, projectid)
 		# form = AirForm(request.POST, instance=air)
-		form = form_lookup(request, form_type)
+		form = form_lookup(request, form_type, special_study)
+		# return form
 		if form.is_valid():
 			##fix air project change functionality
-			form.save() ##save and commit job number to db	
-			return redirect('{}_dash'.format(ss_type), projectid=project.id, ssid=ssid)
+			form.save() ##save and commit job number to db
+			return redirect('{}_dash'.format(ss_type), project.id, ssid)
 		return render(request, 'add_document.html', {'form':form})
 	else:
 		##also ugly - fix
