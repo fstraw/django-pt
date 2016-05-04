@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ aquatics.documenttype }}</h2></div>
 <div class="col-md-1"><a class="btn btn-default" href="{% url 'aquatics_edit' project.id aquatics.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
 <div class="row">
@@ -20,90 +19,6 @@
 				<div class="col-md-12"><h4><b>Draft Due Date</b></h4>{{ aquatics.duedate }}</div>
 			</div>
 		</div>
-		<div class="col-md-3">
-			<div class="row">
-				<div class="col-md-8">
-					<h4><b>Environmental</b></h4>
-					{% if project.nepa_set.all %}
-						{% for nepadoc in project.nepa_set.all %} <b><a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}
-					{% endif %}								
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'nepa_add' project.id %} " data-toggle="tooltip" title="Add Environmental Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="row">				
-				<div class="col-md-8">
-					<h4><b>Air</b></h4>
-					{% if project.air_set.all %}
-						{% for airdoc in project.air_set.all %} <b><a href="{% url 'air_dash' project.id airdoc.id %}"> {{ airdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}
-					{% endif %}								
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'air_add' project.id %} " data-toggle="tooltip" title="Add Air Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8">
-					<h4><b>Noise</b></h4>
-					{% if project.noise_set.all %}
-						{% for noisedoc in project.noise_set.all %} <b><a href="{% url 'noise_dash' project.id noisedoc.id %}"> {{ noisedoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'noise_add' project.id %} " data-toggle="tooltip" title="Add Noise Document"><span class="glyphicon glyphicon-plus"></a></i>				
-				</div>
-				<div class="col-md-8"><h4>
-					<b>Ecology</b></h4>
-					{% if project.ecology_set.all %}
-						{% for ecodoc in project.ecology_set.all %} <b><a href="{% url 'ecology_dash' project.id ecodoc.id %}"> {{ ecodoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-					<div class="col-md-4">
-					<i><a href="{% url 'eco_add' project.id %} " data-toggle="tooltip" title="Add Ecology Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8"><h4>
-					<b>Aquatics</b></h4>
-					{% if project.aquatics_set.all %}
-						{% for aquadoc in project.aquatics_set.all %} <b><a href="{% url 'aquatics_dash' project.id aquadoc.id %}"> {{ aquadoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'aquatics_add' project.id %} " data-toggle="tooltip" title="Add Aquatics Document"><span class="glyphicon glyphicon-plus"></a></i>					
-				</div>
-				<div class="col-md-8">
-					<h4><b>Archaeology</b></h4>
-					{% if project.archaeology_set.all %}
-						{% for archdoc in project.archaeology_set.all %} <b><a href="{% url 'archaeology_dash' project.id archdoc.id %}"> {{ archdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'archaeology_add' project.id %} " data-toggle="tooltip" title="Add Archaeology Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8">
-					<h4><b>History</b></h4>
-					{% if project.history_set.all %}
-						{% for histdoc in project.history_set.all %} <b><a href="{% url 'history_dash' project.id histdoc.id %}"> {{ histdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'history_add' project.id %} " data-toggle="tooltip" title="Add History Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-			</div>
-		</div>
-	</div>  
-		<div class="col-md-4">
-			<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
-			<div class="col-md-12"><h4><b>Aquatics Comments</b></h4>{{ aquatics.comments }}</div>
-		</div>  
 	</div>
 </div>
-<!--<div class="col-md-4"><h4>Air</h4> {% for aquatics in project.aquatics_set.all %} {{ aquatics }} {% endfor %}</div>-->
 {% endblock %}

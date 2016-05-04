@@ -1,114 +1,86 @@
-{% extends "base.html" %}
-{% block content %}
-
-<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }}</h2></div>
-<div class="col-md-1"><a class="btn btn-default" href="{% url 'project_edit' project.id %}" data-toggle="tooltip" title="Edit {{project.jobnumber}}"><span class="glyphicon glyphicon-pencil"></span></a></div>
-<div class="row">
-	<div class="col-md-8">
-		<div class="col-md-3">
-			<div class="row">
-				<div class="col-md-12"><h4><b>Client</b></h4> {{ project.client }}</div>
-				<div class="col-md-12"><h4><b>Project Manager</b></h4> {{ project.projectmanager }}</div>
-				<div class="col-md-12"><h4><b>PI Number(s)</b></h4> {% for pi in project.pis.all %} <a href="{% url 'pi_dash' project.id %}">{{ pi | linebreaks }}{% endfor %}</a></div>
-				<div class="col-md-12"><h4><b>Project Number(s)</b></h4> {% for pn in project.projectnumbers.all %} {{ pn | linebreaks }} {% endfor %}</div>
-				<div class="col-md-12"><h4><b>County</b></h4> {{ project.county }}</div>
-				<div class="col-md-12"><h4><b>District</b></h4> {{ project.gdot_district }}</div>
-			</div>
+{% extends "projectinfo.html" %}
+{% block project_info %}
+<div class="col-md-3">
+	<div class="row">
+		<div class="col-md-8">
+			<h4><b>Environmental</b></h4>
+			{% if project.nepa_set.all %}
+				{% for nepadoc in project.nepa_set.all %} <b><a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}
+			{% endif %}								
 		</div>
-		<div class="col-md-3">
-			<div class="row">
-				<div class="col-md-12"><h4><b>Environmental Certification (ROW)</b></h4> {{ project.env_cert_row }}</div>
-				<div class="col-md-12"><h4><b>Environmental Certification (LET)</b></h4> {{ project.env_cert_let }}</div>
-				<div class="col-md-12"><h4><b>ROW Authorization</b></h4> {{ project.row_auth }}</div>
-				<div class="col-md-12"><h4><b>LET Certification</b></h4> {{ project.let_cert }}</div>
-				<div class="col-md-12"><h4><b>Preliminary FPR</b></h4> {{ project.pfpr}}</div>
-				<div class="col-md-12"><h4><b>Final FPR</b></h4> {{ project.ffpr }}</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="row">
-				<div class="col-md-8">
-					<h4><b>Environmental</b></h4>
-					{% if project.nepa_set.all %}
-						{% for nepadoc in project.nepa_set.all %} <b><a href="{% url 'nepa_dash' project.id nepadoc.id %}"> {{ nepadoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}
-					{% endif %}								
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'nepa_add' project.id %} " data-toggle="tooltip" title="Add Environmental Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="row">				
-				<div class="col-md-8">
-					<h4><b>Air</b></h4>
-					{% if project.air_set.all %}
-						{% for airdoc in project.air_set.all %} <b><a href="{% url 'air_dash' project.id airdoc.id %}"> {{ airdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}
-					{% endif %}								
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'air_add' project.id %} " data-toggle="tooltip" title="Add Air Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8">
-					<h4><b>Noise</b></h4>
-					{% if project.noise_set.all %}
-						{% for noisedoc in project.noise_set.all %} <b><a href="{% url 'noise_dash' project.id noisedoc.id %}"> {{ noisedoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'noise_add' project.id %} " data-toggle="tooltip" title="Add Noise Document"><span class="glyphicon glyphicon-plus"></a></i>				
-				</div>
-				<div class="col-md-8"><h4>
-					<b>Ecology</b></h4>
-					{% if project.ecology_set.all %}
-						{% for ecodoc in project.ecology_set.all %} <b><a href="{% url 'ecology_dash' project.id ecodoc.id %}"> {{ ecodoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-					<div class="col-md-4">
-					<i><a href="{% url 'eco_add' project.id %} " data-toggle="tooltip" title="Add Ecology Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8"><h4>
-					<b>Aquatics</b></h4>
-					{% if project.aquatics_set.all %}
-						{% for aquadoc in project.aquatics_set.all %} <b><a href="{% url 'aquatics_dash' project.id aquadoc.id %}"> {{ aquadoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'aquatics_add' project.id %} " data-toggle="tooltip" title="Add Aquatics Document"><span class="glyphicon glyphicon-plus"></a></i>					
-				</div>
-				<div class="col-md-8">
-					<h4><b>Archaeology</b></h4>
-					{% if project.archaeology_set.all %}
-						{% for archdoc in project.archaeology_set.all %} <b><a href="{% url 'archaeology_dash' project.id archdoc.id %}"> {{ archdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'archaeology_add' project.id %} " data-toggle="tooltip" title="Add Archaeology Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-				<div class="col-md-8">
-					<h4><b>History</b></h4>
-					{% if project.history_set.all %}
-						{% for histdoc in project.history_set.all %} <b><a href="{% url 'history_dash' project.id histdoc.id %}"> {{ histdoc | linebreaks }} </a></b> {% endfor %}
-					{% else %}					
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<i><a href="{% url 'history_add' project.id %} " data-toggle="tooltip" title="Add History Document"><span class="glyphicon glyphicon-plus"></a></i>
-				</div>
-			</div>
-		</div>
-	</div>  
 		<div class="col-md-4">
-			<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
-			<div class="col-md-12"><h4><b>Project Comments</b></h4> {{ project.comments }}</div>
-		</div>  
+			<i><a href="{% url 'nepa_add' project.id %} " data-toggle="tooltip" title="Add Environmental Document"><span class="glyphicon glyphicon-plus"></a></i>
+		</div>
 	</div>
 </div>
-<!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
+<div class="col-md-3">
+	<div class="row">				
+		<div class="col-md-8">
+			<h4><b>Air</b></h4>
+			{% if project.air_set.all %}
+				{% for airdoc in project.air_set.all %} <b><a href="{% url 'air_dash' project.id airdoc.id %}"> {{ airdoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}
+			{% endif %}								
+		</div>
+		<div class="col-md-4">
+			<i><a href="{% url 'air_add' project.id %} " data-toggle="tooltip" title="Add Air Document"><span class="glyphicon glyphicon-plus"></a></i>
+		</div>
+		<div class="col-md-8">
+			<h4><b>Noise</b></h4>
+			{% if project.noise_set.all %}
+				{% for noisedoc in project.noise_set.all %} <b><a href="{% url 'noise_dash' project.id noisedoc.id %}"> {{ noisedoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}					
+			{% endif %}
+		</div>
+		<div class="col-md-4">
+			<i><a href="{% url 'noise_add' project.id %} " data-toggle="tooltip" title="Add Noise Document"><span class="glyphicon glyphicon-plus"></a></i>				
+		</div>
+		<div class="col-md-8"><h4>
+			<b>Ecology</b></h4>
+			{% if project.ecology_set.all %}
+				{% for ecodoc in project.ecology_set.all %} <b><a href="{% url 'ecology_dash' project.id ecodoc.id %}"> {{ ecodoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}					
+			{% endif %}
+		</div>
+			<div class="col-md-4">
+			<i><a href="{% url 'eco_add' project.id %} " data-toggle="tooltip" title="Add Ecology Document"><span class="glyphicon glyphicon-plus"></a></i>
+		</div>
+		<div class="col-md-8"><h4>
+			<b>Aquatics</b></h4>
+			{% if project.aquatics_set.all %}
+				{% for aquadoc in project.aquatics_set.all %} <b><a href="{% url 'aquatics_dash' project.id aquadoc.id %}"> {{ aquadoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}					
+			{% endif %}
+		</div>
+		<div class="col-md-4">
+			<i><a href="{% url 'aquatics_add' project.id %} " data-toggle="tooltip" title="Add Aquatics Document"><span class="glyphicon glyphicon-plus"></a></i>					
+		</div>
+		<div class="col-md-8">
+			<h4><b>Archaeology</b></h4>
+			{% if project.archaeology_set.all %}
+				{% for archdoc in project.archaeology_set.all %} <b><a href="{% url 'archaeology_dash' project.id archdoc.id %}"> {{ archdoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}					
+			{% endif %}
+		</div>
+		<div class="col-md-4">
+			<i><a href="{% url 'archaeology_add' project.id %} " data-toggle="tooltip" title="Add Archaeology Document"><span class="glyphicon glyphicon-plus"></a></i>
+		</div>
+		<div class="col-md-8">
+			<h4><b>History</b></h4>
+			{% if project.history_set.all %}
+				{% for histdoc in project.history_set.all %} <b><a href="{% url 'history_dash' project.id histdoc.id %}"> {{ histdoc | linebreaks }} </a></b> {% endfor %}
+			{% else %}					
+			{% endif %}
+		</div>
+		<div class="col-md-4">
+			<i><a href="{% url 'history_add' project.id %} " data-toggle="tooltip" title="Add History Document"><span class="glyphicon glyphicon-plus"></a></i>
+		</div>
+	</div>
+</div>
+</div>  
+<div class="col-md-4">
+	<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
+	<div class="col-md-12"><h4><b>Project Comments</b></h4> {{ project.comments }}</div>
+</div>
 {% endblock %}

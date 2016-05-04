@@ -273,7 +273,7 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 		if request.POST.get('delete'):
 			special_study.delete()
 			request.method = 'GET'
-			return project_dash(request, projectid)
+			return redirect('project_dash', projectid)
 		# form = AirForm(request.POST, instance=air)
 		form = form_lookup(request, form_type, special_study)
 		# return form
