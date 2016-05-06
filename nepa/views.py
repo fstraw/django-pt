@@ -188,7 +188,7 @@ def nepa_edit(request, projectid, nepaid):
 			blank_request = HttpRequest()
 			blank_request.method = 'GET'
 			blank_request.user = request.user
-			return project_dash(blank_request, projectid)
+			return redirect('project_dash', projectid)
 		form = NepaForm(request.POST, instance=nepa)
 		if form.is_valid():
 			##fix nepa project change functionality
