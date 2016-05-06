@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        },#
+        },
     },
 ]
 
@@ -80,7 +80,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': 'django',
        'USER': 'django',
-       'PASSWORD': 'h90xc9039a',
+       'PASSWORD': 'GqA2n8lmMa',
        'HOST': 'localhost',
        'PORT': '',
        'TEST': {
