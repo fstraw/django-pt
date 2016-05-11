@@ -1,5 +1,7 @@
 /*@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";*/
 @import url(https://fonts.googleapis.com/css?family=Quattrocento);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
 
 html, body{
     height:100%;		/* For full height images */
@@ -16,8 +18,6 @@ html, body{
     font-size: 25px;
     color: black;
 }
-
-
 
 .glyphicon.glyphicon-pencil {
     font-size: 18px;
@@ -64,6 +64,14 @@ html, body{
 
 #search_float {
 	float: right;
+}
+
+#id_nav_subtitle {
+	float: right;
+	vertical-align: middle;
+	padding-right: 10px;
+	font-family: 'Poiret One', cursive;
+
 }
 
 .navbar {
