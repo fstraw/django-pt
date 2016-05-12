@@ -25,7 +25,10 @@ SECRET_KEY = '19o@zrf639gd8s#lccd&5_ccuf9tnye+&izua$g*87#9l$c0cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['104.236.43.204', '104.236.231.224', '*.lowest-frequency.com', '*.edwards-pitman.com']
+ALLOWED_HOSTS = [
+ '104.236.231.224', 
+'.lowestfrequency.com', '.edwards-pitman.com',
+]
 
 
 # Application definition
