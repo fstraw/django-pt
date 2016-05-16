@@ -17,8 +17,8 @@ $( document ).ready(function() {
 
 <div class="row">
 	<div class = "col-md-12">
-		<div class="col-md-10"><a href="{% url 'add' %}" class="top-menu" data-toggle="tooltip" title="Add Project"><span class="glyphicon glyphicon-plus"></span></a></div>
-		<div class="col-md-2"><input type="text" id="search" placeholder="Filter"></div>
+		<div class="col-md-6 text-left"><a href="{% url 'add' %}" class="top-menu" data-toggle="tooltip" title="Add Project"><span class="glyphicon glyphicon-plus"></span></a></div>
+		<div class="col-md-6 text-right"><input type="text" id="search" placeholder="Filter"></div>
 	</div>
 </div>
 
@@ -28,6 +28,7 @@ $( document ).ready(function() {
 		<td><b>Project Name</b></td>		
 		<td><b>Project Numbers</b></td>
 		<td><b>County</b></td>
+		<td><b>District</b></td>
 		<td><b>Project Manager</b></td>
 
 	{% for project in project_list %}
@@ -42,6 +43,7 @@ $( document ).ready(function() {
 			 {% endfor %}
 			</td>
 		<td> {{ project.county }} </td>
+		<td> District {{ project.gdot_district }} </td>
 		<td> {{ project.projectmanager }} </td>
 
 	</tr>
