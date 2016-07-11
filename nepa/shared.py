@@ -56,10 +56,11 @@ EMPLOYEES = (
 		)
 
 PROJECT_MANAGERS = (
+			('Batt, Brandon', 'Batt, Brandon'),
 			('Brown, Jill', 'Brown, Jill'),
 			('Danser, Russ', 'Danser, Russ'),
 			('Earhart, Josh', 'Earhart, Josh'),
-			('Grindstaff, Mark', 'Grindstaff, Marc'),
+			('Grindstaff, Mark', 'Grindstaff, Mark'),
 			('Pearce, David', 'Pearce, David'),
 			('Perrin, Heather', 'Perrin, Heather'),
 			('Pietak, Lynn', 'Pietak, Lynn'),
