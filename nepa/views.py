@@ -71,6 +71,15 @@ def pi_dash(request, projectid):
 	return render(request, 'home.html', context)
 
 @login_required
+def pns_dash(request, projectid):
+	project = get_object_or_404(Project, id=projectid)
+	project_list = Project.objects.filter(projectnumbers__projects=project)
+	context = { 
+				'project_list': set(project_list),	
+			}
+	return render(request, 'home.html', context)
+
+@login_required
 def nepa_dash(request, projectid, nepaid):
 	project = get_object_or_404(Project, id=projectid)
 	nepa = project.nepa_set.all().get(id=nepaid)

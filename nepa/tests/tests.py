@@ -103,9 +103,9 @@ class ViewsTest(TestCase):
         self.assertTrue(self.project.jobnumber in html, html)
     def test_can_access_projectnumber_dash(self):        
         project_list = Project.objects.filter(projectnumbers__projects=self.project)
-        request = self.factory.get(reverse('projectnumber_dash', kwargs={'projectid' : self.project.id}))
+        request = self.factory.get(reverse('pns_dash', kwargs={'projectid' : self.project.id}))
         request.user = self.user
-        response = views.pi_dash(request, self.project.id)
+        response = views.pns_dash(request, self.project.id)
         html = response.content.decode()
         self.assertTrue(self.project.jobnumber in html, html)
     def test_can_access_new_project_form(self):

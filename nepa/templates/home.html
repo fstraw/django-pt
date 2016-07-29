@@ -44,7 +44,7 @@ $( document ).ready(function() {
 				<a href="{% url 'pi_dash' project.id %}" data-toggle="tooltip" title="See jobs for {{ pi }}">{{ pi | linebreaks }}</a>
 			 {% endfor %}
 			 {% for pn in project.projectnumbers.all %} 
-			 	{{ pn | linebreaks }} 
+			 	<a href="{% url 'pns_dash' project.id %}" data-toggle="tooltip" title="See jobs for {{ pn }}">{{ pn | linebreaks }}</a> 
 			 {% endfor %}
 			</td>
 		<td> {{ project.county }} </td>

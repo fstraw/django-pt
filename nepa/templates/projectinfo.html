@@ -9,7 +9,7 @@
 				<div class="col-md-12"><h4><b>Client</b></h4> {{ project.client }}</div>
 				<div class="col-md-12"><h4><b>Project Manager</b></h4> {{ project.projectmanager }}</div>
 				<div class="col-md-12"><h4><b>PI Number(s)</b></h4> {% for pi in project.pis.all %} <a href="{% url 'pi_dash' project.id %}">{{ pi | linebreaks }}{% endfor %}</a></div>
-				<div class="col-md-12"><h4><b>Project Number(s)</b></h4> {% for pn in project.projectnumbers.all %} {{ pn | linebreaks }} {% endfor %}</div>
+				<div class="col-md-12"><h4><b>Project Number(s)</b></h4> {% for pn in project.projectnumbers.all %} <a href="{% url 'pns_dash' project.id %}">{{ pn | linebreaks }}{% endfor %}</a></div>
 				<div class="col-md-12"><h4><b>County</b></h4> {{ project.county }}</div>
 				<div class="col-md-12"><h4><b>District</b></h4> {{ project.gdot_district }}</div>
 			</div>
