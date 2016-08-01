@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from nepa import urls as nepa_urls
+from pt import urls as nepa_urls
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [

@@ -14,10 +14,10 @@ Bug Tracker
 - Nepa Form project change
 
 Steps for adding special study:
-1. Add to nepa.tests.utils module (for testing)
-2. Add document typed to nepa.shared
+1. Add to pt.tests.utils module (for testing)
+2. Add document typed to pt.shared
 3. Add urls (dash, add, and edit)
-4. Add dash to nepa.views
+4. Add dash to pt.views
 5. Update helper functions
-6. Add to nepa.forms
+6. Add to pt.forms
 7. Update project_dash template

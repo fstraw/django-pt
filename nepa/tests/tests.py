@@ -5,8 +5,8 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.template.loader import render_to_string
-from nepa import views
-from nepa.models import Project, Nepa, Noise, Air, Ecology, Aquatics, Archaeology, History
+from pt import views
+from pt.models import Project, Nepa, Noise, Air, Ecology, Aquatics, Archaeology, History
 from utils import clear_database, add_dummy_data
 
 class ViewsTest(TestCase):

@@ -2,7 +2,7 @@ from django.forms import ModelForm, Textarea, DateInput, Form, TextInput, CharFi
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
-from nepa.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise, Ecology, Aquatics, Archaeology, History
+from pt.models import Project, PINumbers, ProjectNumbers, Nepa, Air, Noise, Ecology, Aquatics, Archaeology, History
 import shared
 
 

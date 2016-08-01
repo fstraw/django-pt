@@ -4,9 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
 from django.core.exceptions import ObjectDoesNotExist
 
-from nepa.forms import ProjectForm, NepaForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm, HistoryForm
-from nepa.models import Project, Nepa, ProjectNumbers, PINumbers
-from nepa.utils import initial_form_lookup, form_lookup, blank_form_lookup
+from pt.forms import ProjectForm, NepaForm, AirForm, NoiseForm, EcologyForm, AquaticsForm, ArchaeologyForm, HistoryForm
+from pt.models import Project, Nepa, ProjectNumbers, PINumbers
+from pt.utils import initial_form_lookup, form_lookup, blank_form_lookup
 
 @login_required
 def home_page(request):	
