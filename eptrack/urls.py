@@ -23,5 +23,4 @@ urlpatterns = [
     url(r'^', include(nepa_urls)),
     url(r'^accounts/login/$', auth_views.login),
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'nepa/projects/', include(nepa_urls))
     ]
