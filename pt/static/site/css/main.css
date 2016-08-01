@@ -1,0 +1,84 @@
+/*@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";*/
+@import url(https://fonts.googleapis.com/css?family=Quattrocento);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+
+html, body{
+    height:100%;		/* For full height images */
+    font-size: 16px;
+	/*font-family: 'Quattrocento', serif;*/
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.glyphicon.glyphicon-plus {
+    font-size: 25px;
+    color: black;
+}
+
+.glyphicon.glyphicon-pencil {
+    font-size: 18px;
+    color: black;	
+}
+
+.pd {
+    text-align: justify;
+}
+
+.pd {
+    text-align: justify;
+}
+
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+.alert {
+    margin-top: 55px;
+    margin-bottom: 0;
+}
+
+#id_project_table {
+	text-align: center;
+}
+
+#id_project_table a {
+	text-decoration: none;
+}
+
+#id_project_table a:hover {
+	text-decoration: underline;
+}
+
+#id_project_table td {
+	vertical-align: middle;
+	border-bottom: 1px solid #ddd;
+}
+
+#search_float {
+	float: right;
+}
+
+#id_nav_subtitle {
+	float: right;
+	vertical-align: middle;
+	padding-right: 10px;
+	font-family: 'Poiret One', cursive;
+
+}
+
+.navbar {
+  min-height: 80px;
+}
+
+#map-container {
+    height: 400px;
+}
+
