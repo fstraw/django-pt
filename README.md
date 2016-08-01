@@ -2,11 +2,6 @@
 pt
 =====
 
-pt is a simple demo of Django's basic usage.
-
-Description
------------
-
 pt is a simple, Django-powered project tracking solution.
 
 Documentation
