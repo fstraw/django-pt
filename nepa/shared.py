@@ -1,106 +1,52 @@
 
 DEPARTMENTS = (			
-			('NEPA', 'NEPA'),
-			('Air/Noise', 'Air/Noise'),
-			('Archaeology', 'Archaeology'),
-			('Aquatics', 'Aquatics'),
-			('Ecology', 'Ecology'),			
-			('History', 'History'),
-			('Survey', 'Survey'),
-			('Employee', 'Employee'),
-	)
-
-EMPLOYEES = (
-			('Adair, David', 'Adair, David'),
-			('Barnett, James', 'Barnett, James'),
-			('Batt, Brandon', 'Batt, Brandon'),
-			('Blackwelder, Jon', 'Blackwelder, Jon'),
-			('Brown, Jill', 'Brown, Jill'),
-			('Brown, Leslie', 'Brown, Leslie'),
-			('Carbo, Andrew', 'Carbo, Andrew'),
-			('Cochran, Kendall', 'Cochran, Kendall'),
-			('Cook, Ryan', 'Cook, Ryan'),
-			('Corcoran, Jennifer', 'Corcoran, Jennifer'),
-			('Crawford, Lisa', 'Crawford, Lisa'),
-			('Danser, Russ', 'Danser, Russ'),
-			('Earhart, Josh', 'Earhart, Josh'),
-			('Edwards, Heather', 'Edwards, Heather'),
-			('Edwards, Linda', 'Edwards, Linda'),
-			('Estes, Charlotte', 'Estes, Charlotte'),
-			('Ferrall-Graff, Katheryn', 'Ferrall-Graff, Katheryn'),
-			('Filer, Rick', 'Filer, Rick'),
-			('Glazer, Natalie', 'Glazer, Natalie'),
-			('Glen, Casey', 'Glen, Casey'),
-			('Green, Lillian', 'Green, Lillian'),
-			('Grindstaff, Mark', 'Grindstaff, Mark'),
-			('Hudson, Grant', 'Hudson, Grant'),
-			('Hunt, Mike', 'Hunt, Mike'),
-			('Jordan, Stephanie', 'Jordan, Stephanie'),
-			('Lane, Collin', 'Lane, Collin'),
-			('Langbruttig, Artis', 'Langbruttig, Artis'),
-			('Melville, Martin', 'Melville, Martin'),
-			('Moss, Richard', 'Moss, Richard'),
-			('Niccoli, Morgan', 'Niccoli, Morgan'),			
-			('Pearce, David', 'Pearce, David'),			
-			('Pietak, Lynn', 'Pietak, Lynn'),
-			# ('Pitman, Andy', 'Pitman, Andy'),
-			('Quirk, Phillip', 'Quirk, Phillip'),
-			('Roberts, Joseph', 'Roberts, Joseph'),
-			('Teall, Martha', 'Teall, Martha'),
-			# ('Theos, Nick', 'Theos, Nick'),
-			('Thomas, Kevin', 'Thomas, Kevin'),
-			('Thomas, Susan', 'Thomas, Susan'),
-			('Trudeau, Mary', 'Trudeau, Mary'),
-			('Welch, Lauren', 'Welch, Lauren'),
-			('Woodson, Jim', 'Woodson, Jim'),	
-			# ('Winkles, Debbie', 'Winkles, Debbie'),
-		)
-
-PROJECT_MANAGERS = (
-			('Batt, Brandon', 'Batt, Brandon'),
-			('Brown, Jill', 'Brown, Jill'),
-			('Danser, Russ', 'Danser, Russ'),
-			('Earhart, Josh', 'Earhart, Josh'),
-			('Edwards, Heather', 'Edwards, Heather'),
-			('Glazer, Natalie', 'Glazer, Natalie'),
-			('Grindstaff, Mark', 'Grindstaff, Mark'),
-			('Pearce, David', 'Pearce, David'),			
-			('Pietak, Lynn', 'Pietak, Lynn'),
-			('Thomas, Susan', 'Thomas, Susan'),
-			('Woodson, Jim', 'Woodson, Jim'),		
+			('Dept 1', 'Dept 1'),
+			('Dept 2', 'Dept 2'),
+			('Dept 3', 'Dept 3'),
+			('Dept 4', 'Dept 4'),
+			('Dept 5', 'Dept 5'),
 			
 	)
 
+EMPLOYEES = (
+			('Employee 1', 'Employee 1'),
+			('Employee 2', 'Employee 2'),
+			('Employee 3', 'Employee 3'),
+			('Employee 4', 'Employee 4'),
+			('Employee 5', 'Employee 5'),
+		)
+
+PROJECT_MANAGERS = (
+			('Manager 1', 'Manager 1'),
+			('Manager 2', 'Manager 2'),
+			('Manager 3', 'Manager 3'),
+			('Manager 4', 'Manager 4'),
+			('Manager 5', 'Manager 5'),			
+		)
+
 NEPA_PLANNERS = (
-			('Brown, Jill', 'Brown, Jill'),
-			('Danser, Russ', 'Danser, Russ'),
-			('Edwards, Heather', 'Edwards, Heather'),
-			('Earhart, Josh', 'Earhart, Josh'),
-			('Glazer, Natalie', 'Glazer, Natalie'),			
-			('Thomas, Susan', 'Thomas, Susan'),
-			('Woodson, Jim', 'Woodson, Jim'),
-	)
+			('Planner 1', 'Planner 1'),
+			('Planner 2', 'Planner 2'),
+			('Planner 3', 'Planner 3'),
+			('Planner 4', 'Planner 4'),
+			('Planner 5', 'Planner 5'),
+		)
 
 CLIENTS = (
-			('Heath and Lineback', 'Heath and Lineback'),
-			('Parsons Brinkerhoff', 'Parsons Brinkerhoff'),
-			('Kimley-Horn', 'Kimley-Horn'),
-			('HTB', 'HTB'),
-			('Arcadis', 'Arcadis'),
-			('HDR', 'HDR'),
-	)
+			('Client 1', 'Client 1'),
+			('Client 2', 'Client 2'),
+			('Client 3', 'Client 3'),
+			('Client 4', 'Client 4'),
+			('Client 5', 'Client 5'),
+		)
 
 ENVIRONMENTAL_DOCUMENTS = (
- 				('CE', 'CE'),
- 				('PCE Type I', 'PCE Type I'),
- 				('PCE Type II', 'PCE Type II'),
- 				('PCE Type III', 'PCE Type III'),
-				('EA', 'EA'),
-				('EIS', 'EIS'),
-				('FONSI', 'FONSI'),
-				('GEPA_Type_B', 'GEPA Type B'),
-				('GEPA_EER', 'GEPA EER'),				
-				)
+			('DocType 1', 'DocType 1'),
+			('DocType 2', 'DocType 2'),
+			('DocType 3', 'DocType 3'),
+			('DocType 4', 'DocType 4'),
+			('DocType 5', 'DocType 5'),
+		)
 
 AIR_DOCUMENTS = (
 				('PM25 Exemption', 'PM25 Exemption'),
@@ -108,39 +54,39 @@ AIR_DOCUMENTS = (
 				('GEPA Memorandum', 'GEPA Memorandum'),
 				('Air Assessment', 'Air Assessment'),
 				('Air Memorandum', 'Air Memorandum'),
-				)
+			)
 
 NOISE_DOCUMENTS = (
 				('Assessment', 'Assessment'),
 				('Addendum', 'Addendum'),
 				('TypeIII', 'Type III'),
 				('Memorandum', 'Memorandum'),
-				)
+			)
 
 ECOLOGY_DOCUMENTS = (
 				('Assessment', 'Assessment'),
 				('Addendum', 'Addendum'),
 				('AOE', 'AOE'),
-				)
+			)
 
 AQUATICS_DOCUMENTS = (
 				('Assessment', 'Assessment'),
 				('Addendum', 'Addendum'),
-				)
+			)
 
 ARCH_DOCUMENTS = (
 				('Short Form', 'Short Form'),
 				('Phase I', 'Phase I'),
 				('Phase II', 'Phase II'),
 				('Phase III', 'Phase III'),
-				)
+			)
 
 
 HISTORY_DOCUMENTS = (
 				('HRSR', 'HRSR'),
 				('Memorandum', 'Memorandum'),
 				('AOE', 'AOE'),
-				)
+			)
 
 COUNTIES = {'Appling':5, 'Atkinson':4, 'Bacon':5, 'Baker':4, 'Baldwin':2,
 'Banks':1, 'Barrow':1, 'Bartow':6, 'Ben Hill':4, 'Berrien':4, 'Bibb':3,
