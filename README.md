@@ -4,6 +4,8 @@ pt
 
 pt is a simple, Django-powered project tracking solution.
 
+[![Build Status](https://travis-ci.org/fstraw/django-pt.svg?branch=master)](https://travis-ci.org/fstraw/django-pt)
+
 Documentation
 -------------
 
