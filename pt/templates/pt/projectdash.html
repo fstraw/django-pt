@@ -82,11 +82,5 @@
 <div class="col-md-4">
 	<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
 	<div class="col-md-12"><h4><b>Project Comments</b></h4> {{ project.comments }}</div>
-	<div class="col-md-12"><h4><b>External Links</b></h4>
-		{% for pi in project.pis.all %} 
-			<a href="http://www.dot.ga.gov/BuildSmart/Projects/Pages/TransPi.aspx?ProjectID={{ pi }}">
-			GDOT TransPi - {{ pi | linebreaks }}
-			{% endfor %}
-			</a></div>
 </div>
 {% endblock %}
