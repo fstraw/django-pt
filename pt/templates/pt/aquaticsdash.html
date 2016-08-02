@@ -1,0 +1,27 @@
+{% extends "pt/base.html" %}
+{% block content %}
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ aquatics.documenttype }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'aquatics_edit' project.id aquatics.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Document Type</b></h4>{{ aquatics.documenttype }}</div>
+				<div class="col-md-12"><h4><b>Title</b></h4>{{ aquatics.title }}</div>
+				<div class="col-md-12"><h4><b>Specialist</b></h4>{{ aquatics.specialist }}</div>
+				<div class="col-md-12"><h4><b>GDOT Specialist</b></h4>{{ aquatics.gdot_specialist }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Draft Submittal</b></h4>{{ aquatics.draftsubmittal }}</div>
+				<div class="col-md-12"><h4><b>Draft Approval</b></h4>{{ aquatics.draftapproval }}</div>
+				<div class="col-md-12"><h4><b>Draft Due Date</b></h4>{{ aquatics.duedate }}</div>
+			</div>
+		</div>
+		<div class="col-md-4">			
+			<div class="col-md-12"><h4><b>Aquatics Comments</b></h4>{{ aquatics.comments }}</div>
+		</div> 
+	</div>
+</div>
+{% endblock %}

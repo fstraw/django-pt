@@ -1,0 +1,32 @@
+{% extends "pt/base.html" %}
+{% block content %}
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'project_edit' project.id %}" data-toggle="tooltip" title="Edit {{project.jobnumber}}"><span class="glyphicon glyphicon-pencil"></span></a></div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Client</b></h4> {{ project.client }}</div>
+				<div class="col-md-12"><h4><b>Project Manager</b></h4> {{ project.projectmanager }}</div>
+				<div class="col-md-12"><h4><b>PI Number(s)</b></h4> {% for pi in project.pis.all %} <a href="{% url 'pi_dash' project.id %}">{{ pi | linebreaks }}{% endfor %}</a></div>
+				<div class="col-md-12"><h4><b>Project Number(s)</b></h4> {% for pn in project.projectnumbers.all %} <a href="{% url 'pns_dash' project.id %}">{{ pn | linebreaks }}{% endfor %}</a></div>
+				<div class="col-md-12"><h4><b>County</b></h4> {{ project.county }}</div>
+				<div class="col-md-12"><h4><b>District</b></h4> {{ project.gdot_district }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Environmental Certification (ROW)</b></h4> {{ project.env_cert_row }}</div>
+				<div class="col-md-12"><h4><b>Environmental Certification (LET)</b></h4> {{ project.env_cert_let }}</div>
+				<div class="col-md-12"><h4><b>ROW Authorization</b></h4> {{ project.row_auth }}</div>
+				<div class="col-md-12"><h4><b>LET Certification</b></h4> {{ project.let_cert }}</div>
+				<div class="col-md-12"><h4><b>Preliminary FPR</b></h4> {{ project.pfpr}}</div>
+				<div class="col-md-12"><h4><b>Final FPR</b></h4> {{ project.ffpr }}</div>
+			</div>
+		</div>
+	{% block project_info %}
+	{% endblock %}
+	</div>
+</div>
+<!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
+{% endblock %}

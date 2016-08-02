@@ -1,0 +1,27 @@
+{% extends "pt/base.html" %}
+{% block content %}
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ archaeology.documenttype }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'archaeology_edit' project.id archaeology.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Document Type</b></h4>{{ archaeology.documenttype }}</div>
+				<div class="col-md-12"><h4><b>Title</b></h4>{{ archaeology.title }}</div>
+				<div class="col-md-12"><h4><b>Specialist</b></h4>{{ archaeology.specialist }}</div>
+				<div class="col-md-12"><h4><b>GDOT Specialist</b></h4>{{ archaeology.gdot_specialist }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Draft Submittal</b></h4>{{ archaeology.draftsubmittal }}</div>
+				<div class="col-md-12"><h4><b>Draft Approval</b></h4>{{ archaeology.draftapproval }}</div>
+				<div class="col-md-12"><h4><b>Draft Due Date</b></h4>{{ archaeology.duedate }}</div>
+			</div>
+		</div>
+		<div class="col-md-4">			
+			<div class="col-md-12"><h4><b>Archaeology Comments</b></h4>{{ archaeology.comments }}</div>
+		</div> 
+	</div>
+</div>
+{% endblock %}

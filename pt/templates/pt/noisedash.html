@@ -1,0 +1,27 @@
+{% extends "pt/base.html" %}
+{% block content %}
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ noise.documenttype }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'noise_edit' project.id noise.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Document Type</b></h4>{{ noise.documenttype }}</div>
+				<div class="col-md-12"><h4><b>Title</b></h4>{{ noise.title }}</div>
+				<div class="col-md-12"><h4><b>Specialist</b></h4>{{ noise.specialist }}</div>
+				<div class="col-md-12"><h4><b>GDOT Specialist</b></h4>{{ noise.gdot_specialist }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Draft Submittal</b></h4>{{ noise.draftsubmittal }}</div>
+				<div class="col-md-12"><h4><b>Draft Approval</b></h4>{{ noise.draftapproval }}</div>
+				<div class="col-md-12"><h4><b>Draft Due Date</b></h4>{{ noise.duedate }}</div>
+			</div>
+		</div>
+		<div class="col-md-4">			
+			<div class="col-md-12"><h4><b>Noise Comments</b></h4>{{ noise.comments }}</div>
+		</div> 
+	</div>
+</div>
+{% endblock %}

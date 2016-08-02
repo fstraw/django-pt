@@ -1,0 +1,57 @@
+{% extends "pt/base.html" %}
+{% block content %}
+
+<script>
+$( document ).ready(function() {
+	$('#id_project_table').DataTable( {
+		paging: false
+	}	);
+	/*var $rows = $('#id_project_table tr:not(:first-child)');
+	$('#search').keyup(function() {
+		var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+		
+		$rows.show().filter(function() {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+			return !~text.indexOf(val);
+		}).hide();
+	});*/
+});
+</script>
+
+<div class="row">
+	<div class = "col-md-12">
+		<div class="col-md-6 text-left"><a href="{% url 'add' %}" class="top-menu" data-toggle="tooltip" title="Add Project"><span class="glyphicon glyphicon-plus"></span> Add Project</a></div>
+		<!--<div class="col-md-6 text-right"><input type="text" id="search" placeholder="Filter"></div>-->
+	</div>
+</div>
+
+<table id="id_project_table" class="table table-bordered">
+	<thead>
+	<tr>
+		<td><b>Job Number</b></td>
+		<td><b>Project Name</b></td>		
+		<td><b>Project Numbers</b></td>
+		<td><b>County</b></td>
+		<td><b>District</b></td>
+		<td><b>Project Manager</b></td>
+
+	{% for project in project_list %}
+	</tr>
+	</thead>
+		<td> <a href="{% url 'project_dash' project.id %}" data-toggle="tooltip" title="See details for {{ project.jobnumber }}"><b>{{ project.jobnumber }}</b></td>
+		<td>{{ project.projectname }}</td>			
+		<td> {% for pi in project.pis.all %} 
+				<a href="{% url 'pi_dash' project.id %}" data-toggle="tooltip" title="See jobs for {{ pi }}">{{ pi | linebreaks }}</a>
+			 {% endfor %}
+			 {% for pn in project.projectnumbers.all %} 
+			 	<a href="{% url 'pns_dash' project.id %}" data-toggle="tooltip" title="See jobs for {{ pn }}">{{ pn | linebreaks }}</a> 
+			 {% endfor %}
+			</td>
+		<td> {{ project.county }} </td>
+		<td> District {{ project.gdot_district }} </td>
+		<td> {{ project.projectmanager }} </td>
+
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

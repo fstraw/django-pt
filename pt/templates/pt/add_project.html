@@ -1,0 +1,33 @@
+{% extends "pt/base.html" %}
+{% block content %}
+{% load staticfiles %}
+<script>
+$( document ).ready(function() {
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      yearRange: "1900:2050",
+      // You can put more options here.
+
+    });
+  });
+});
+  </script>
+	<h1>Add/Edit Project</h1>
+		<form method="POST">
+		{% csrf_token %}
+		{% for field in project_form %}
+		{{ form.non_field_errors }}
+			<div class="row">
+				<div class="col-md-2">
+					{{ field.errors }}
+					<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+				</div>			
+				<div class="col-md-4">
+	    			{{ field }}
+				</div>
+			</div>	
+		{% endfor %}	
+		<button type="submit" name='save' class="save btn btn-primary">Save</button>
+		<button type="submit" name='delete' value='delete' class="save btn btn-primary">Delete</button> <br><br>	
+		</form>
+{% endblock %}

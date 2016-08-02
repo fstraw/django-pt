@@ -1,0 +1,46 @@
+{% extends "pt/base.html" %}
+{% block content %}
+<div class="col-md-11"><h2>{{ project.jobnumber }} - {{ project.projectname }} - {{ nepa.documenttype }}</h2></div>
+<div class="col-md-1"><a class="btn btn-default" href="{% url 'nepa_edit' project.id nepa.id %} "><span class="glyphicon glyphicon-pencil"></span></a></div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Specialist</b></h4> {{ nepa.specialist }}</div>
+				<div class="col-md-12"><h4><b>State Planner</b></h4> {{ nepa.stateplanner }}</div>
+				<div class="col-md-12"><h4><b>Document Type</b></h4> {{ nepa.documenttype }}</div>
+				<div class="col-md-12"><h4></h4></div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>Early Coordination Sent</b></h4> {{ nepa.earlycoordination }}</div>
+				<div class="col-md-12"><h4><b>State Draft Submittal</b></h4> {{ nepa.statedraft }}</div>
+				<div class="col-md-12"><h4><b>Federal Draft Submittal</b></h4> {{ nepa.fhwadraft }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-12"><h4><b>State Approval</b></h4> {{ nepa.stateapproval }}</div>
+				<div class="col-md-12"><h4><b>Federal Approval</b></h4> {{ nepa.fhwaapproval }}</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">				
+				<div class="col-md-12"><h4><b>Air Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4><b>Noise Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4><b>Ecology Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4><b>Aquatics Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4><b>Archaeology Documents</b></h4>{{ documenttype }}</div>
+				<div class="col-md-12"><h4><b>History</b></h4>{{ documenttype }}</div>	
+			</div>
+		</div>
+	</div>  
+		<div class="col-md-4">
+			<div class="col-md-12 pd"><h4><b>Project Description</b></h4> {{ project.projectdescription }}</div>
+			<div class="col-md-12"><h4><b>NEPA Comments</b></h4>{{ nepa.comments }}</div>
+		</div>  
+	</div>
+</div>
+<!--<div class="col-md-4"><h4>Air</h4> {% for air in project.air_set.all %} {{ air }} {% endfor %}</div>-->
+{% endblock %}
