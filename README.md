@@ -14,14 +14,16 @@ Coming soon!
 Quickstart
 ----------
 
-1. Add "pt" to INSTALLED_APPS:
-  INSTALLED_APPS = {
-    ...
-    'pt'
-  }
+1. Add "pt" to `INSTALLED_APPS:`
+	```python
+		INSTALLED_APPS = {
+		...
+		'pt'
+		}
+	```
 
-2. Include the pt URLconf in urls.py:
-  url(r'^pt/', include('pt.urls'))
+2. Include the `pt` URLconf in urls.py:
+  `url(r'^pt/', include('pt.urls'))`
 
 3. Run `python manage.py makemigrations` to create pt's models.
 
