@@ -20,7 +20,7 @@ def home_page(request):
 		except:
 			project_list = Project.objects.all()
 	context = {'project_list' : project_list}
-	template = loader.get_template('home.html')
+	template = loader.get_template('pt/home.html')
 	return HttpResponse(template.render(context))
 
 @login_required
@@ -48,9 +48,9 @@ def add_page(request):
 			return redirect(home_page)
 		else:
 			## need to fix error checking			
-			return render(request, 'add_project.html', {'project_form' : project_form})
+			return render(request, 'pt/add_project.html', {'project_form' : project_form})
 	else:
-		return render(request, 'add_project.html', {'project_form' : ProjectForm })
+		return render(request, 'pt/add_project.html', {'project_form' : ProjectForm })
 
 @login_required
 def project_dash(request, projectid):
@@ -59,7 +59,7 @@ def project_dash(request, projectid):
 	context = { 
 				'project': project,				
 			}
-	return render(request, 'projectdash.html', context)
+	return render(request, 'pt/projectdash.html', context)
 
 @login_required
 def pi_dash(request, projectid):
@@ -68,7 +68,7 @@ def pi_dash(request, projectid):
 	context = { 
 				'project_list': set(project_list),	
 			}
-	return render(request, 'home.html', context)
+	return render(request, 'pt/home.html', context)
 
 @login_required
 def pns_dash(request, projectid):
@@ -77,7 +77,7 @@ def pns_dash(request, projectid):
 	context = { 
 				'project_list': set(project_list),	
 			}
-	return render(request, 'home.html', context)
+	return render(request, 'pt/home.html', context)
 
 @login_required
 def nepa_dash(request, projectid, nepaid):
@@ -87,7 +87,7 @@ def nepa_dash(request, projectid, nepaid):
 				'project' : project,
 				'nepa': nepa,				
 			}
-	return render(request, 'nepadash.html', context)
+	return render(request, 'pt/nepadash.html', context)
 
 @login_required
 def air_dash(request, projectid, airid):
@@ -97,7 +97,7 @@ def air_dash(request, projectid, airid):
 				'project' : project,
 				'air': air,				
 			}
-	return render(request, 'airdash.html', context)
+	return render(request, 'pt/airdash.html', context)
 
 @login_required
 def noise_dash(request, projectid, noiseid):
@@ -107,7 +107,7 @@ def noise_dash(request, projectid, noiseid):
 				'project' : project,
 				'noise': noise,				
 			}
-	return render(request, 'noisedash.html', context)
+	return render(request, 'pt/noisedash.html', context)
 
 @login_required
 def ecology_dash(request, projectid, ecologyid):
@@ -117,7 +117,7 @@ def ecology_dash(request, projectid, ecologyid):
 				'project' : project,
 				'ecology': ecology,				
 			}
-	return render(request, 'ecologydash.html', context)
+	return render(request, 'pt/ecologydash.html', context)
 
 @login_required
 def aquatics_dash(request, projectid, aquaticsid):
@@ -127,7 +127,7 @@ def aquatics_dash(request, projectid, aquaticsid):
 				'project' : project,
 				'aquatics': aquatics,				
 			}
-	return render(request, 'aquaticsdash.html', context)
+	return render(request, 'pt/aquaticsdash.html', context)
 
 @login_required
 def archaeology_dash(request, projectid, archaeologyid):
@@ -137,7 +137,7 @@ def archaeology_dash(request, projectid, archaeologyid):
 				'project' : project,
 				'archaeology': archaeology,				
 			}
-	return render(request, 'archaeologydash.html', context)
+	return render(request, 'pt/archaeologydash.html', context)
 
 @login_required
 def history_dash(request, projectid, historyid):
@@ -147,7 +147,7 @@ def history_dash(request, projectid, historyid):
 				'project' : project,
 				'history': history,				
 			}
-	return render(request, 'historydash.html', context)
+	return render(request, 'pt/historydash.html', context)
 	
 @login_required
 def project_edit(request, projectid):
@@ -181,11 +181,11 @@ def project_edit(request, projectid):
 			##add PI and PN cleanup, check for orphans
 			# return HttpResponse('<html>{}</html>'.format(pi))
 			project_form.save() #save and commit job number to db			
-			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add_project.html', {'project_form' : project_form})
+			return redirect('pt/project_dash', projectid=project.id)
+		return render(request, 'pt/add_project.html', {'project_form' : project_form})
 	else:		
 		project_form = ProjectForm(instance=project)
-		return render(request, 'add_project.html', {'project_form' : project_form})
+		return render(request, 'pt/add_project.html', {'project_form' : project_form})
 
 @login_required
 def nepa_edit(request, projectid, nepaid):
@@ -203,10 +203,10 @@ def nepa_edit(request, projectid, nepaid):
 			##fix nepa project change functionality
 			form.save() #save and commit job number to db			
 			return redirect('nepa_dash', projectid=project.id, nepaid=nepa.id)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})
 	else:		
 		form = NepaForm(instance=nepa)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})
 
 @login_required
 def nepa_add(request, projectid):
@@ -217,10 +217,10 @@ def nepa_add(request, projectid):
 			##fix nepa project change functionality
 			form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})
 	else:
 		form = NepaForm(initial={'project':project})	
-		return render(request, 'add_document.html', {'form':form, 'project':project})
+		return render(request, 'pt/add_document.html', {'form':form, 'project':project})
 
 @login_required
 def ss_add(request, projectid, ss_type, form_type):
@@ -231,11 +231,11 @@ def ss_add(request, projectid, ss_type, form_type):
 			##fix nepa project change functionality
 			form.save() #save and commit job number to db			
 			return redirect('project_dash', projectid=project.id)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})
 	else:
 		# form = AirForm(initial={'project':project})
 		form = initial_form_lookup(ss_type, project)
-		return render(request, 'add_document.html', {'form':form, 'project':project})
+		return render(request, 'pt/add_document.html', {'form':form, 'project':project})
 
 @login_required
 def ss_edit(request, projectid, ssid, ss_type, form_type):
@@ -290,8 +290,8 @@ def ss_edit(request, projectid, ssid, ss_type, form_type):
 			##fix air project change functionality
 			form.save() ##save and commit job number to db
 			return redirect('{}_dash'.format(ss_type), project.id, ssid)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})
 	else:
 		##also ugly - fix
 		form = blank_form_lookup(ss_type, special_study)
-		return render(request, 'add_document.html', {'form':form})
+		return render(request, 'pt/add_document.html', {'form':form})

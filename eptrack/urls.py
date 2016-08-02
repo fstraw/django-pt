@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from pt import urls as nepa_urls
+from pt import urls as pt_urls
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #Login
-    url(r'^', include(nepa_urls)),
+    url(r'^pt/', include(pt_urls)),
     url(r'^accounts/login/$', auth_views.login),
     url(r'^admin/', include(admin.site.urls)),
     ]
