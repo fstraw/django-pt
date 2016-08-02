@@ -7,11 +7,23 @@ TEMPLATE_DEBUG = DEBUG
 
 SECRET_KEY = 'StraighTUPnoTSeCRETKeyXX938012fgNo0'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3'
-    },
-}
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travis_ci_test',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3'
+        },
+    }
 
 ALLOWED_HOSTS = []
 
