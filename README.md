@@ -11,27 +11,44 @@ Documentation
 
 Coming soon!
 
+Demo
+----
+
+[http://www.lowestfrequency.com/pt](http://lowestfrequency.com/pt "PT Demo")
+
+
 Quickstart
 ----------
 
-1. Add "pt" to `INSTALLED_APPS:`
-	```python
-		INSTALLED_APPS = {
-		...
-		'pt'
-		}
-	```
+1. Add `pt` to `INSTALLED_APPS` in `settings.py`:
 
-2. Include the `pt` URLconf in urls.py:
-  `url(r'^pt/', include('pt.urls'))`
+> 		INSTALLED_APPS = {
+> 		...
+> 		'pt'
+> 		}
 
-3. Run `python manage.py makemigrations` to create pt's models.
+2. Add 'pt/templates/pt' to `TEMPLATES` in `settings.py`:
 
-4. Run `python manage.py migrate` to migrate pt's models.
+>       TEMPLATES = [
+> 	    {
+> 	        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+> 	        'DIRS': ['pt/templates/pt/'],
+> 	        ...
+> 	        }
 
-5. Run `python manage.py createsuperuser` to set up initial login.
+Add '/login/' to `LOGIN_URL` in `settings.py`:
 
-6. Run the development server and access http://127.0.0.1:8000 to
-    access project dashboard.
+>       LOGIN_URL = '/login/'
 
-7. Start tracking!
+Include the `pt` URLconf in urls.py:
+  
+>       url(r'^pt/', include('pt.urls'))
+
+
+Run `python manage.py makemigrations` to create pt's models.
+
+Run `python manage.py migrate` to migrate pt's models.
+
+Run `python manage.py createsuperuser` to set up initial login.
+
+Start tracking!
