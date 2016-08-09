@@ -27,7 +27,7 @@ Quickstart
 > 		'pt'
 > 		}
 
-2. Add 'pt/templates/pt' to `TEMPLATES` in `settings.py`:
+Add 'pt/templates/pt' to `TEMPLATES` in `settings.py`:
 
 >       TEMPLATES = [
 > 	    {
@@ -45,10 +45,10 @@ Include the `pt` URLconf in urls.py:
 >       url(r'^pt/', include('pt.urls'))
 
 
-Run `python manage.py makemigrations` to create pt's models.
+2. Run `python manage.py makemigrations` to create pt's models.
 
-Run `python manage.py migrate` to migrate pt's models.
+3. Run `python manage.py migrate` to migrate pt's models.
 
-Run `python manage.py createsuperuser` to set up initial login.
+4. Run `python manage.py createsuperuser` to set up initial login.
 
-Start tracking!
+5. Start tracking!
