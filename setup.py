@@ -10,7 +10,7 @@ setup(
     version='0.1',
     description='A simple, Django-powered project tracking solution.',
     long_description=read('README.md'),
-    url='',
+    url='https://github.com/fstraw/django-pt',
     download_url='',
     author='Brandon Batt',
     author_email='brbatt@gmail.com',
