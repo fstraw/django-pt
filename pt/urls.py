@@ -22,8 +22,8 @@ import views
 urlpatterns = [
 	url(r'^$', views.home_page, name='home'),
 	url(r'^add/$', views.add_page, name='add'),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^accounts/login/$', auth_views.login, name='login'),
+    url(r'^accounts/logout/$', auth_views.logout, name='logout'),
     url(r'^admin/', include(admin.site.urls)),
     ##Dashboards
     url(r'^(?P<projectid>[0-9]+)/$', views.project_dash, name='project_dash'),    

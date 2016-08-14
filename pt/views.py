@@ -8,7 +8,7 @@ from pt.forms import ProjectForm, NepaForm, AirForm, NoiseForm, EcologyForm, Aqu
 from pt.models import Project, Nepa, ProjectNumbers, PINumbers
 from pt.utils import initial_form_lookup, form_lookup, blank_form_lookup
 
-@login_required(login_url='/login/')
+@login_required()
 def home_page(request):	
 	if request.method == 'GET':
 		# project_list = Project.objects.all()
